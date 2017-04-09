@@ -1,40 +1,44 @@
 var webpack = require("webpack"),
     path = require("path"),
-    ExtractTextPlugin = require("extract-text-webpack-plugin");
+    LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
     context: __dirname + "/frontend",
 
-    entry: "./app.js",
+    entry: {
+       login: "./login.js",
+       game: "./game.js"
+    },
+        
     output: {
         publicPath: "/",
         path: __dirname + "/public",
-        filename: "main.js"
+        filename: "[name].js"
     },
 
-    // watch: true,
+    watch: true,
 
     watchOptions: {
         aggregateTimeout: 100
     },
 
-    devtool: "sourse-map",
+    devtool: "source-map",
 
     module: {
         loaders: [
             {
                 test: /\.js$/,
                 loader: "babel-loader",
-                include: path.join(__dirname, "frontend"),            
+                include: path.join(__dirname, "/frontend"),            
                 exclude: "/node_modules/"
             }, {
                 test: /.styl$/,
-                loader: ExtractTextPlugin.extract("css-loader!stylus-loader?resolve url"),
+                loader: "style-loader!css-loader!autoprefixer-loader?browsers=last 2 versions!stylus-loader?resolve url",
                 exclude: "/node_modules/"
             },            
             {
                 test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-                loader: "file-loader?name=[path][name].[ext]",
+                loader: "file-loader?name=[path][name].[ext]", 
                 exclude: "/node_modules/"
             }
         ]
@@ -43,6 +47,8 @@ module.exports = {
     
     plugins: [
         new webpack.NoErrorsPlugin(),
-        new ExtractTextPlugin("./styles/style.css")
+        new LiveReloadPlugin({
+            appendScriptTag: true
+         })
     ]
 }

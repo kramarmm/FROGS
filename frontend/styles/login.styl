@@ -1,0 +1,85 @@
+@import ("variables.styl")
+@import ("swimming.styl")
+@import ("upDown.styl")
+
+body
+    background-image url('../images/cell.png')
+    margin 0
+    padding 0
+
+    .wrapper
+        width wrapper
+        margin 0 auto
+
+        .table-frogs
+            width 708px
+            height 280px
+            margin-left ( (wrapper -@width)/2 )
+            margin-bottom 20px
+        
+        input 
+            font-family Alabama
+            font-size f20
+            letter-spacing 0.05em
+            color green
+            background-color rgba(255,255,255,0.7)
+            padding 8px 0 8px 40px
+            border-radius 10px
+            border 1px solid #cccccc
+            width 270px
+            margin-left 422px
+            margin-bottom 19px
+
+        placeH = @block{color placeholder}
+        input::-webkit-input-placeholder
+            {placeH}
+        input::-moz-placeholder 
+            {placeH}
+        input:-moz-placeholder
+            {placeH} 
+        input:-ms-input-placeholder
+            {placeH} 
+        
+        button
+            background-image url('../images/yes_btn.png')
+            width 116px
+            height 45px
+            margin-left 526px 
+            margin-top 16px
+            border-radius 10px
+            background-color rgba(0,0,0,0)
+            border none
+            font-family Alabama
+            font-size f33
+            color darkgray
+            cursor pointer
+            padding-bottom 30px
+            display block
+
+        button:hover
+            background-color rgba(94,162,125,0.5)
+            
+        breakDefaultFocus = @block { outline 0 }
+        button:focus 
+            {breakDefaultFocus}
+        input:focus
+            {breakDefaultFocus}            
+            box-shadow 0 0 7px rgba(94,162,125,0.7)
+
+        .fish
+            display block
+            width 156px
+            height 95px
+            float right
+            margin-top 90px
+            margin-right 150px
+            animation: swimming 25s infinite linear 
+
+        .fish1
+            animation: upDown 1s infinite linear 
+
+        .plant1
+            position absolute
+            top 600px
+
+            

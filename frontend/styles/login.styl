@@ -10,7 +10,7 @@ body
     .table-frogs
         width 708px
         height 280px
-        margin-left ( (wrapper -@width)/2 )
+        margin-left ( (wrapper -@width)/2 - 10 )
         margin-bottom 20px
 
     
@@ -51,7 +51,7 @@ body
         border-radius 10px
         border 1px solid #cccccc
         width 270px
-        margin-left 422px
+        margin-left 322px
         margin-bottom 19px
 
     placeH = @block{color placeholder}
@@ -86,24 +86,24 @@ body
 
     .fish
         display block
+        position relative
         width 156px
         height 95px
-        float right
-        margin-top 90px
-        animation: swimming 20s infinite linear 
+        top -125px
+        animation: swimming 5s infinite linear 
 
     .fish1
         animation: upDown 1s infinite linear 
 
     .plant1
         position relative
-        top 70px
-        left 100px
+        top -10px
+        left -40px
         transform scaleX(-1)
 
     .plant2
         position relative
-        left 830px
-        bottom -70px
+        left 750px
+        bottom 10px
 
             

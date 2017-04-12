@@ -74,7 +74,7 @@
 /******/ 	  document.getElementsByTagName("head")[0].appendChild(el);
 /******/ 	}());
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -157,7 +157,7 @@ function toComment(sourceMap) {
   return '/*# ' + data + ' */';
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9).Buffer))
 
 /***/ }),
 /* 1 */
@@ -173,6 +173,12 @@ module.exports = __webpack_require__.p + "images/cell.png";
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/yes_btn.png";
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -209,7 +215,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(13);
+	fixUrls = __webpack_require__(15);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -468,17 +474,17 @@ function updateLink(linkElement, options, obj) {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _module = __webpack_require__(5);
+var _module = __webpack_require__(6);
 
 var _module2 = _interopRequireDefault(_module);
 
-__webpack_require__(6);
+__webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -490,7 +496,7 @@ var b = 12;
 console.log((0, _module2.default)(1, 5));
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -501,16 +507,16 @@ module.exports = function (a, b) {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(9);
+var content = __webpack_require__(10);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, {});
+var update = __webpack_require__(4)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -527,7 +533,7 @@ if(false) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -648,7 +654,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -662,9 +668,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(7)
-var ieee754 = __webpack_require__(11)
-var isArray = __webpack_require__(12)
+var base64 = __webpack_require__(8)
+var ieee754 = __webpack_require__(13)
+var isArray = __webpack_require__(14)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -2442,10 +2448,10 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -2453,19 +2459,25 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: Alabama;\n  font-style: normal;\n  src: url(" + __webpack_require__(1) + ");\n}\nbody {\n  background-image: url(" + __webpack_require__(2) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 1140px;\n  margin: 0 auto;\n}\nbody .hiden {\n  opacity: 0;\n}\nbutton {\n  background-image: url(" + __webpack_require__(19) + ");\n  width: 116px;\n  height: 45px;\n  margin-left: 518px;\n  margin-top: 16px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 30px;\n  display: block;\n  letter-spacing: 0.05em;\n}\nbutton:hover {\n  background-color: rgba(94,162,125,0.5);\n}\nbutton:focus {\n  outline: none;\n}\nbody .papper {\n  height: 600px;\n  background-image: url(" + __webpack_require__(10) + ");\n  background-repeat: no-repeat;\n  background-position: center;\n}\nbody .papper .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(20) + ");\n  background-repeat: no-repeat;\n  float: right;\n  margin: 55px 132px 0 0;\n}\nbody .papper .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\nbody .papper .heading {\n  font-size: 30px;\n  width: 247px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 80px;\n}\nbody .papper .item {\n  font-size: 20px;\n  display: block;\n  text-align: right;\n  float: left;\n  padding-left: 280px;\n  padding-top: 30px;\n  line-height: 1.3;\n}\nbody .papper .item-value {\n  font-size: 16px;\n  color: #818180;\n  display: block;\n  padding-left: 470px;\n  padding-top: 30px;\n}\nbody .papper .dimonds {\n  display: block;\n  color: #818180;\n  margin-left: 281px;\n  padding: 70px 0 50px 0;\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: Alabama;\n  font-style: normal;\n  src: url(" + __webpack_require__(1) + ");\n}\nbody {\n  background-image: url(" + __webpack_require__(2) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  opacity: 0;\n}\nbutton {\n  background-image: url(" + __webpack_require__(3) + ");\n  width: 116px;\n  height: 45px;\n  margin-left: 420px;\n  margin-top: 16px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 30px;\n  display: block;\n  letter-spacing: 0.05em;\n}\nbutton:hover {\n  background-color: rgba(94,162,125,0.5);\n}\nbutton:focus {\n  outline: none;\n}\nbody .papper {\n  height: 545px;\n  background-image: url(" + __webpack_require__(12) + ");\n  background-repeat: no-repeat;\n  background-position: center;\n  padding-top: 25px;\n}\nbody .papper .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(11) + ");\n  background-repeat: no-repeat;\n  float: right;\n  margin: 55px 132px 0 0;\n}\nbody .papper .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\nbody .papper .heading {\n  font-size: 30px;\n  width: 247px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 40px;\n}\nbody .papper .item {\n  font-size: 20px;\n  display: block;\n  text-align: right;\n  float: left;\n  padding-left: 176px;\n  padding-top: 30px;\n  line-height: 1.3;\n}\nbody .papper .item-value {\n  font-size: 16px;\n  color: #818180;\n  display: block;\n  padding-left: 370px;\n  padding-top: 30px;\n}\nbody .papper .dimonds {\n  display: block;\n  color: #818180;\n  margin-left: 176px;\n  padding: 70px 0 50px 0;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 10 */
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/close.png";
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/papper.png";
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -2555,7 +2567,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -2566,7 +2578,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports) {
 
 
@@ -2661,7 +2673,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2686,22 +2698,6 @@ try {
 
 module.exports = g;
 
-
-/***/ }),
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/yes_btn.png";
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/close.png";
 
 /***/ })
 /******/ ]);

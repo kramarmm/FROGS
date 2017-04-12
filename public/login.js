@@ -74,7 +74,7 @@
 /******/ 	  document.getElementsByTagName("head")[0].appendChild(el);
 /******/ 	}());
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -157,7 +157,7 @@ function toComment(sourceMap) {
   return '/*# ' + data + ' */';
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9).Buffer))
 
 /***/ }),
 /* 1 */
@@ -173,6 +173,12 @@ module.exports = __webpack_require__.p + "images/cell.png";
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/yes_btn.png";
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -209,7 +215,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(13);
+	fixUrls = __webpack_require__(15);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -468,17 +474,17 @@ function updateLink(linkElement, options, obj) {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _module = __webpack_require__(5);
+var _module = __webpack_require__(6);
 
 var _module2 = _interopRequireDefault(_module);
 
-__webpack_require__(6);
+__webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -490,7 +496,7 @@ var b = 12;
 console.log((0, _module2.default)(1, 5));
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -501,16 +507,16 @@ module.exports = function (a, b) {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(9);
+var content = __webpack_require__(10);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, {});
+var update = __webpack_require__(4)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -527,7 +533,7 @@ if(false) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -648,7 +654,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -662,9 +668,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(7)
-var ieee754 = __webpack_require__(11)
-var isArray = __webpack_require__(12)
+var base64 = __webpack_require__(8)
+var ieee754 = __webpack_require__(13)
+var isArray = __webpack_require__(14)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -2442,10 +2448,10 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -2453,19 +2459,25 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: Alabama;\n  font-style: normal;\n  src: url(" + __webpack_require__(1) + ");\n}\nbody {\n  background-image: url(" + __webpack_require__(2) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 1140px;\n  margin: 0 auto;\n}\nbody .hiden {\n  opacity: 0;\n}\nbutton {\n  background-image: url(" + __webpack_require__(19) + ");\n  width: 116px;\n  height: 45px;\n  margin-left: 518px;\n  margin-top: 16px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 30px;\n  display: block;\n  letter-spacing: 0.05em;\n}\nbutton:hover {\n  background-color: rgba(94,162,125,0.5);\n}\nbutton:focus {\n  outline: none;\n}\nbody .papper {\n  height: 600px;\n  background-image: url(" + __webpack_require__(10) + ");\n  background-repeat: no-repeat;\n  background-position: center;\n}\nbody .papper .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(20) + ");\n  background-repeat: no-repeat;\n  float: right;\n  margin: 55px 132px 0 0;\n}\nbody .papper .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\nbody .papper .heading {\n  font-size: 30px;\n  width: 247px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 80px;\n}\nbody .papper .item {\n  font-size: 20px;\n  display: block;\n  text-align: right;\n  float: left;\n  padding-left: 280px;\n  padding-top: 30px;\n  line-height: 1.3;\n}\nbody .papper .item-value {\n  font-size: 16px;\n  color: #818180;\n  display: block;\n  padding-left: 470px;\n  padding-top: 30px;\n}\nbody .papper .dimonds {\n  display: block;\n  color: #818180;\n  margin-left: 281px;\n  padding: 70px 0 50px 0;\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: Alabama;\n  font-style: normal;\n  src: url(" + __webpack_require__(1) + ");\n}\nbody {\n  background-image: url(" + __webpack_require__(2) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  opacity: 0;\n}\nbutton {\n  background-image: url(" + __webpack_require__(3) + ");\n  width: 116px;\n  height: 45px;\n  margin-left: 420px;\n  margin-top: 16px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 30px;\n  display: block;\n  letter-spacing: 0.05em;\n}\nbutton:hover {\n  background-color: rgba(94,162,125,0.5);\n}\nbutton:focus {\n  outline: none;\n}\nbody .papper {\n  height: 545px;\n  background-image: url(" + __webpack_require__(12) + ");\n  background-repeat: no-repeat;\n  background-position: center;\n  padding-top: 25px;\n}\nbody .papper .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(11) + ");\n  background-repeat: no-repeat;\n  float: right;\n  margin: 55px 132px 0 0;\n}\nbody .papper .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\nbody .papper .heading {\n  font-size: 30px;\n  width: 247px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 40px;\n}\nbody .papper .item {\n  font-size: 20px;\n  display: block;\n  text-align: right;\n  float: left;\n  padding-left: 176px;\n  padding-top: 30px;\n  line-height: 1.3;\n}\nbody .papper .item-value {\n  font-size: 16px;\n  color: #818180;\n  display: block;\n  padding-left: 370px;\n  padding-top: 30px;\n}\nbody .papper .dimonds {\n  display: block;\n  color: #818180;\n  margin-left: 176px;\n  padding: 70px 0 50px 0;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 10 */
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/close.png";
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/papper.png";
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -2555,7 +2567,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -2566,7 +2578,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports) {
 
 
@@ -2661,7 +2673,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2688,16 +2700,16 @@ module.exports = g;
 
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(17);
+var content = __webpack_require__(19);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, {});
+var update = __webpack_require__(4)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2714,22 +2726,22 @@ if(false) {
 }
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(15);
+__webpack_require__(17);
 
-var _game = __webpack_require__(4);
+var _game = __webpack_require__(5);
 
 var _game2 = _interopRequireDefault(_game);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -2737,28 +2749,16 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: Alabama;\n  font-style: normal;\n  src: url(" + __webpack_require__(1) + ");\n}\nbody {\n  background-image: url(" + __webpack_require__(2) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 1140px;\n  margin: 0 auto;\n}\nbody .hiden {\n  opacity: 0;\n}\n@keyframes swimming {\n  0% {\n    margin-right: 140px;\n    transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    transform: scaleX(1);\n  }\n  50% {\n    margin-right: 810px;\n    transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    transform: scaleX(-1);\n  }\n  100% {\n    margin-right: 140px;\n    transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@keyframes upDown {\n  0% {\n    transform: rotate(-15deg);\n  }\n  50% {\n    transform: rotate(-13deg);\n  }\n  100% {\n    transform: rotate(-15deg);\n  }\n}\n@keyframes table-in {\n  0% {\n    margin-top: -50px;\n  }\n  100% {\n    margin-top: 0;\n  }\n}\nbutton {\n  background-image: url(" + __webpack_require__(19) + ");\n  width: 116px;\n  height: 45px;\n  margin-left: 518px;\n  margin-top: 16px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 30px;\n  display: block;\n  letter-spacing: 0.05em;\n}\nbutton:hover {\n  background-color: rgba(94,162,125,0.5);\n}\nbutton:focus {\n  outline: none;\n}\nbody .table-frogs {\n  width: 708px;\n  height: 280px;\n  margin-left: 216px;\n  margin-bottom: 20px;\n}\nbody .new-user {\n  display: inline-block;\n  width: 50px;\n  height: 51px;\n  position: relative;\n  top: 53px;\n  left: -605px;\n}\nbody .new-user span {\n  position: absolute;\n  background: url(" + __webpack_require__(18) + ");\n  cursor: pointer;\n  width: 100%;\n  height: 100%;\n}\nbody .new-user span:hover {\n  background-position: -50px 0;\n}\nbody .new-user span:hover:before {\n  content: \"\\43D\\43E\\432\\44B\\439   \\438\\433\\440\\43E\\43A\";\n  position: relative;\n  top: 55px;\n  text-align: center;\n  color: #818180;\n}\nbody input {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 422px;\n  margin-bottom: 19px;\n}\nbody input::-webkit-input-placeholder {\n  color: #909090;\n}\nbody input::-moz-placeholder {\n  color: #909090;\n}\nbody input:-moz-placeholder {\n  color: #909090;\n}\nbody input:-ms-input-placeholder {\n  color: #909090;\n}\nbody .invalid-data {\n  display: inline-block;\n  width: 140px;\n  color: #f65263;\n  text-align: center;\n  vertical-align: middle;\n}\nbody button:focus {\n  outline: 0;\n}\nbody input:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n}\nbody .fish {\n  display: block;\n  width: 156px;\n  height: 95px;\n  float: right;\n  margin-top: 90px;\n  animation: swimming 20s infinite linear;\n}\nbody .fish1 {\n  animation: upDown 1s infinite linear;\n}\nbody .plant1 {\n  position: relative;\n  top: 70px;\n  left: 100px;\n  transform: scaleX(-1);\n}\nbody .plant2 {\n  position: relative;\n  left: 830px;\n  bottom: -70px;\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: Alabama;\n  font-style: normal;\n  src: url(" + __webpack_require__(1) + ");\n}\nbody {\n  background-image: url(" + __webpack_require__(2) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  opacity: 0;\n}\n@keyframes swimming {\n  0% {\n    left: 750px;\n    transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@keyframes upDown {\n  0% {\n    transform: rotate(-15deg);\n  }\n  50% {\n    transform: rotate(-13deg);\n  }\n  100% {\n    transform: rotate(-15deg);\n  }\n}\n@keyframes table-in {\n  0% {\n    margin-top: -50px;\n  }\n  100% {\n    margin-top: 0;\n  }\n}\nbutton {\n  background-image: url(" + __webpack_require__(3) + ");\n  width: 116px;\n  height: 45px;\n  margin-left: 420px;\n  margin-top: 16px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 30px;\n  display: block;\n  letter-spacing: 0.05em;\n}\nbutton:hover {\n  background-color: rgba(94,162,125,0.5);\n}\nbutton:focus {\n  outline: none;\n}\nbody .table-frogs {\n  width: 708px;\n  height: 280px;\n  margin-left: 101px;\n  margin-bottom: 20px;\n}\nbody .new-user {\n  display: inline-block;\n  width: 50px;\n  height: 51px;\n  position: relative;\n  top: 53px;\n  left: -605px;\n}\nbody .new-user span {\n  position: absolute;\n  background: url(" + __webpack_require__(20) + ");\n  cursor: pointer;\n  width: 100%;\n  height: 100%;\n}\nbody .new-user span:hover {\n  background-position: -50px 0;\n}\nbody .new-user span:hover:before {\n  content: \"\\43D\\43E\\432\\44B\\439   \\438\\433\\440\\43E\\43A\";\n  position: relative;\n  top: 55px;\n  text-align: center;\n  color: #818180;\n}\nbody input {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 322px;\n  margin-bottom: 19px;\n}\nbody input::-webkit-input-placeholder {\n  color: #909090;\n}\nbody input::-moz-placeholder {\n  color: #909090;\n}\nbody input:-moz-placeholder {\n  color: #909090;\n}\nbody input:-ms-input-placeholder {\n  color: #909090;\n}\nbody .invalid-data {\n  display: inline-block;\n  width: 140px;\n  color: #f65263;\n  text-align: center;\n  vertical-align: middle;\n}\nbody button:focus {\n  outline: 0;\n}\nbody input:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n}\nbody .fish {\n  display: block;\n  position: relative;\n  width: 156px;\n  height: 95px;\n  top: -125px;\n  animation: swimming 5s infinite linear;\n}\nbody .fish1 {\n  animation: upDown 1s infinite linear;\n}\nbody .plant1 {\n  position: relative;\n  top: -10px;\n  left: -40px;\n  transform: scaleX(-1);\n}\nbody .plant2 {\n  position: relative;\n  left: 750px;\n  bottom: 10px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/new_user.png";
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/yes_btn.png";
-
-/***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/close.png";
+module.exports = __webpack_require__.p + "images/new_user.png";
 
 /***/ })
 /******/ ]);

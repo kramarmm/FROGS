@@ -33,7 +33,7 @@ module.exports = {
                 exclude: "/node_modules/"
             }, {
                 test: /.styl$/,
-                loader: "style-loader!css-loader!autoprefixer-loader?browsers=last 2 versions!stylus-loader?resolve url",
+                loader: "style-loader!css-loader?importLoaders=1!postcss-loader!stylus-loader?resolve url",
                 exclude: "/node_modules/"
             },            
             {

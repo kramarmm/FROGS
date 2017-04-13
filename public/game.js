@@ -74,11 +74,17 @@
 /******/ 	  document.getElementsByTagName("head")[0].appendChild(el);
 /******/ 	}());
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/Alabama.ttf";
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -157,28 +163,34 @@ function toComment(sourceMap) {
   return '/*# ' + data + ' */';
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9).Buffer))
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "fonts/Alabama.ttf";
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11).Buffer))
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/cell.png";
+module.exports = __webpack_require__.p + "fonts/Alabama.eot";
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/yes_btn.png";
+module.exports = __webpack_require__.p + "fonts/Alabama.woff";
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/cell.png";
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/yes_btn.png";
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -215,7 +227,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(15);
+	fixUrls = __webpack_require__(20);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -474,17 +486,17 @@ function updateLink(linkElement, options, obj) {
 
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _module = __webpack_require__(6);
+var _module = __webpack_require__(8);
 
 var _module2 = _interopRequireDefault(_module);
 
-__webpack_require__(7);
+__webpack_require__(9);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -496,7 +508,7 @@ var b = 12;
 console.log((0, _module2.default)(1, 5));
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -507,23 +519,23 @@ module.exports = function (a, b) {
 };
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(10);
+var content = __webpack_require__(12);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(4)(content, {});
+var update = __webpack_require__(6)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/autoprefixer-loader/index.js?browsers=last 2 versions!../../node_modules/stylus-loader/index.js?resolve url!./game.styl", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/autoprefixer-loader/index.js?browsers=last 2 versions!../../node_modules/stylus-loader/index.js?resolve url!./game.styl");
+		module.hot.accept("!!../../node_modules/css-loader/index.js?importLoaders=1!../../node_modules/postcss-loader/index.js!../../node_modules/stylus-loader/index.js?resolve url!./game.styl", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js?importLoaders=1!../../node_modules/postcss-loader/index.js!../../node_modules/stylus-loader/index.js?resolve url!./game.styl");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -533,7 +545,7 @@ if(false) {
 }
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -654,7 +666,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -668,9 +680,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(8)
-var ieee754 = __webpack_require__(13)
-var isArray = __webpack_require__(14)
+var base64 = __webpack_require__(10)
+var ieee754 = __webpack_require__(18)
+var isArray = __webpack_require__(19)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -2448,36 +2460,54 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)))
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "@font-face {\n  font-family: Alabama;\n  font-style: normal;\n  src: url(" + __webpack_require__(1) + ");\n}\nbody {\n  background-image: url(" + __webpack_require__(2) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  opacity: 0;\n}\nbutton {\n  background-image: url(" + __webpack_require__(3) + ");\n  width: 116px;\n  height: 45px;\n  margin-left: 420px;\n  margin-top: 16px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 30px;\n  display: block;\n  letter-spacing: 0.05em;\n}\nbutton:hover {\n  background-color: rgba(94,162,125,0.5);\n}\nbutton:focus {\n  outline: none;\n}\nbody .papper {\n  height: 545px;\n  background-image: url(" + __webpack_require__(12) + ");\n  background-repeat: no-repeat;\n  background-position: center;\n  padding-top: 25px;\n}\nbody .papper .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(11) + ");\n  background-repeat: no-repeat;\n  float: right;\n  margin: 18px 30px 0 0;\n}\nbody .papper .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\nbody .papper .heading {\n  font-size: 30px;\n  width: 247px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 40px;\n}\nbody .papper .item {\n  font-size: 20px;\n  display: block;\n  text-align: right;\n  float: left;\n  padding-left: 176px;\n  padding-top: 30px;\n  line-height: 1.3;\n}\nbody .papper .item-value {\n  font-size: 16px;\n  color: #818180;\n  display: block;\n  padding-left: 370px;\n  padding-top: 30px;\n}\nbody .papper .dimonds {\n  display: block;\n  color: #818180;\n  padding-left: 370px;\n  padding-top: 48px;\n  margin-bottom: 35px;\n}\nbody .papper .rules-diamond {\n  display: block;\n  position: relative;\n  top: -180px;\n  left: 285px;\n}\nbody .papper .small-diamond {\n  display: block;\n  position: relative;\n  top: -178px;\n  left: 592px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/close.png";
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(21)))
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/papper.png";
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(2) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(3) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(4) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  opacity: 0;\n}\nbody .papper {\n  height: 545px;\n  background-image: url(" + __webpack_require__(17) + ");\n  background-repeat: no-repeat;\n  background-position: center;\n  padding-top: 25px;\n}\nbutton {\n  background-image: url(" + __webpack_require__(5) + ");\n  width: 116px;\n  height: 45px;\n  margin-left: 420px;\n  margin-top: 16px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 30px;\n  display: block;\n  letter-spacing: 0.05em;\n}\nbutton:hover {\n  background-color: rgba(94,162,125,0.5);\n}\nbutton:focus {\n  outline: none;\n}\n.close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(15) + ");\n  background-repeat: no-repeat;\n  float: right;\n  margin: 18px 30px 0 0;\n}\n.close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.br-small {\n  display: block;\n  margin: 3px 0;\n}\n.heading {\n  font-size: 30px;\n  width: 247px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 40px;\n}\n@-moz-document url-prefix() {\n  .heading {\n    padding-top: 26px;\n  }\n}\n.item {\n  font-size: 20px;\n  display: block;\n  text-align: right;\n  float: left;\n  padding-left: 176px;\n  padding-top: 30px;\n  line-height: 1.3;\n}\n.item-value {\n  font-size: 16px;\n  color: #818180;\n  display: block;\n  padding-left: 370px;\n  padding-top: 30px;\n}\n.dimonds {\n  display: block;\n  color: #818180;\n  padding-left: 370px;\n  padding-top: 48px;\n  margin-bottom: 35px;\n}\n@-moz-document url-prefix() {\n  .dimonds {\n    padding-top: 39px;\n  }\n}\n.rules-diamond {\n  display: block;\n  position: relative;\n  top: -180px;\n  left: 285px;\n}\n.small-diamond {\n  display: block;\n  position: relative;\n  top: -178px;\n  left: 592px;\n}\n@-moz-document url-prefix() {\n  .small-diamond {\n    top: -185px;\n    left: 589px;\n  }\n}\n.map {\n  position: relative;\n  top: -550px;\n}\n.map .boss {\n  width: 250px;\n  height: 190px;\n  position: absolute;\n  z-index: 2;\n  top: 120px;\n  left: 80px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .boss:hover:before {\n  content: url(" + __webpack_require__(13) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-15deg);\n          transform: rotate(-15deg);\n  top: 55px;\n  left: 250px;\n}\n.map .chi {\n  width: 180px;\n  height: 116px;\n  position: absolute;\n  z-index: 2;\n  top: 362px;\n  left: 87px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .chi:hover:before {\n  content: url(" + __webpack_require__(14) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-15deg);\n          transform: rotate(-15deg);\n  top: 55px;\n  left: 50px;\n}\n.map .plan {\n  font-size: 30px;\n  width: 389px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 30px;\n}\n.map .info {\n  width: 31px;\n  height: 31px;\n  background-image: url(" + __webpack_require__(16) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 881px;\n}\n.map .info:hover {\n  background-position: -31px 0;\n  cursor: pointer;\n}\n.map .shine_diamond {\n  position: relative;\n  top: -67px;\n  left: 141px;\n}\n.map .points {\n  position: relative;\n  left: 110px;\n  top: -46px;\n  color: #000;\n  font-size: 24px;\n}\n.map .cat {\n  position: relative;\n  left: 691px;\n  top: -51px;\n}\n.map #userName {\n  position: relative;\n  left: 650px;\n  top: -41px;\n  font-size: 13px;\n}\n.map .compass {\n  position: relative;\n  left: 35px;\n  top: -41px;\n}\n.map .islands {\n  position: relative;\n  left: -509px;\n  top: -167px;\n}\n.map .rigth-hand {\n  position: absolute;\n  left: 885px;\n  top: 220px;\n}\n.map .left-hand {\n  position: absolute;\n  left: -172px;\n  top: 220px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/boss_hint.png";
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/chi_hint.png";
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/close.png";
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/info.png";
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/papper.png";
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -2567,7 +2597,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 14 */
+/* 19 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -2578,7 +2608,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 15 */
+/* 20 */
 /***/ (function(module, exports) {
 
 
@@ -2673,7 +2703,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 16 */
+/* 21 */
 /***/ (function(module, exports) {
 
 var g;

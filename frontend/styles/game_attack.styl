@@ -1,8 +1,8 @@
-        .attack
-            position absolute
-            z-index 2
-
-
+Attack = @block{
+    position absolute
+    z-index 2
+}
+ 
             .close
                 width 22px
                 height 22px
@@ -16,3 +16,72 @@
                 &:hover
                     background-position -22px 0
                     cursor pointer
+
+            .image-attack
+                position relative
+                top 34px
+                left 93px
+
+            #attackBtn
+                font-size f30
+                color black
+                position relative
+                top -578px
+                left 378px
+                height 42px
+                width 100px
+                padding-left 19px
+                padding-top 8px
+
+
+                &:hover
+                    color pink
+                    cursor pointer
+                    transition all 0.2s
+
+                &:active
+                    color black
+                    transform scale(0.94)
+
+            .fate-obj
+                height 102px
+                width 102px
+                border-radius 12px
+                border 2px dashed #E0E0E0
+                position relative
+
+                &:hover
+                    border-color pink
+                    cursor pointer
+                    transition all 0.3s
+
+                &:active
+                    border-color #6A111A
+                    transform scale(0.96)
+
+            .choosen-fate
+                border 2px solid pink
+
+
+            // position for every fate-obj
+
+            .fate1 
+                top -262px
+                left 107px
+
+            .fate2 
+                top -368px
+                left 258px
+
+            .fate3 
+                top -474px
+                left 409px
+
+            .fate4 
+                top -580px
+                left 561px
+
+            .fate5 
+                top -686px
+                left 712px
+

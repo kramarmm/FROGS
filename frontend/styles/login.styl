@@ -15,7 +15,7 @@
     .login-toogle
         width 311px
         position relative
-        top -28px
+        top -35px
         left 307px
         margin-left 16px
 
@@ -54,7 +54,8 @@
         border 1px solid #cccccc
         width 270px
         margin-left 307px
-        margin-bottom 19px
+        margin-bottom 25px
+        margin-top -25px
 
         &:focus
             outline 0           
@@ -72,6 +73,15 @@
     input:-ms-input-placeholder
         {placeH} 
 
+    .empty-value::-webkit-input-placeholder
+        color pink
+    .empty-value::-moz-placeholder 
+        color pink
+    .empty-value:-moz-placeholder
+        color pink 
+    .empty-value:-ms-input-placeholder
+        color pink 
+
 
     
     .invalid-data
@@ -88,7 +98,7 @@
         height 45px
         position relative
         top -12px
-        left -55px
+        left 366px
         border-radius 10px
         background-color rgba(0,0,0,0)
         border none

@@ -6,7 +6,7 @@ module.exports = {
     context: __dirname + "/frontend",
 
     entry: {
-       login: "./login.js",
+       index: "./index.js",
        game: "./game.js"
     },
         

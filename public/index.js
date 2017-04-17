@@ -74,7 +74,7 @@
 /******/ 	  document.getElementsByTagName("head")[0].appendChild(el);
 /******/ 	}());
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 27);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -85,473 +85,6 @@ module.exports = __webpack_require__.p + "fonts/Alabama.ttf";
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/close.png";
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(Buffer) {/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap) {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-  var base64 = new Buffer(JSON.stringify(sourceMap)).toString('base64');
-  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-  return '/*# ' + data + ' */';
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12).Buffer))
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "fonts/Alabama.eot";
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "fonts/Alabama.woff";
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/cell.png";
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/yes_btn.png";
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-var stylesInDom = {},
-	memoize = function(fn) {
-		var memo;
-		return function () {
-			if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-			return memo;
-		};
-	},
-	isOldIE = memoize(function() {
-		// Test for IE <= 9 as proposed by Browserhacks
-		// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-		// Tests for existence of standard globals is to allow style-loader 
-		// to operate correctly into non-standard environments
-		// @see https://github.com/webpack-contrib/style-loader/issues/177
-		return window && document && document.all && !window.atob;
-	}),
-	getElement = (function(fn) {
-		var memo = {};
-		return function(selector) {
-			if (typeof memo[selector] === "undefined") {
-				memo[selector] = fn.call(this, selector);
-			}
-			return memo[selector]
-		};
-	})(function (styleTarget) {
-		return document.querySelector(styleTarget)
-	}),
-	singletonElement = null,
-	singletonCounter = 0,
-	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(24);
-
-module.exports = function(list, options) {
-	if(typeof DEBUG !== "undefined" && DEBUG) {
-		if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-	}
-
-	options = options || {};
-	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
-
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-
-	// By default, add <style> tags to the <head> element
-	if (typeof options.insertInto === "undefined") options.insertInto = "head";
-
-	// By default, add <style> tags to the bottom of the target
-	if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
-
-	var styles = listToStyles(list);
-	addStylesToDom(styles, options);
-
-	return function update(newList) {
-		var mayRemove = [];
-		for(var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-		if(newList) {
-			var newStyles = listToStyles(newList);
-			addStylesToDom(newStyles, options);
-		}
-		for(var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-			if(domStyle.refs === 0) {
-				for(var j = 0; j < domStyle.parts.length; j++)
-					domStyle.parts[j]();
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
-};
-
-function addStylesToDom(styles, options) {
-	for(var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-		if(domStyle) {
-			domStyle.refs++;
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
-		} else {
-			var parts = [];
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-		}
-	}
-}
-
-function listToStyles(list) {
-	var styles = [];
-	var newStyles = {};
-	for(var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-		if(!newStyles[id])
-			styles.push(newStyles[id] = {id: id, parts: [part]});
-		else
-			newStyles[id].parts.push(part);
-	}
-	return styles;
-}
-
-function insertStyleElement(options, styleElement) {
-	var styleTarget = getElement(options.insertInto)
-	if (!styleTarget) {
-		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
-	}
-	var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
-	if (options.insertAt === "top") {
-		if(!lastStyleElementInsertedAtTop) {
-			styleTarget.insertBefore(styleElement, styleTarget.firstChild);
-		} else if(lastStyleElementInsertedAtTop.nextSibling) {
-			styleTarget.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
-		} else {
-			styleTarget.appendChild(styleElement);
-		}
-		styleElementsInsertedAtTop.push(styleElement);
-	} else if (options.insertAt === "bottom") {
-		styleTarget.appendChild(styleElement);
-	} else {
-		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-	}
-}
-
-function removeStyleElement(styleElement) {
-	styleElement.parentNode.removeChild(styleElement);
-	var idx = styleElementsInsertedAtTop.indexOf(styleElement);
-	if(idx >= 0) {
-		styleElementsInsertedAtTop.splice(idx, 1);
-	}
-}
-
-function createStyleElement(options) {
-	var styleElement = document.createElement("style");
-	options.attrs.type = "text/css";
-
-	attachTagAttrs(styleElement, options.attrs);
-	insertStyleElement(options, styleElement);
-	return styleElement;
-}
-
-function createLinkElement(options) {
-	var linkElement = document.createElement("link");
-	options.attrs.type = "text/css";
-	options.attrs.rel = "stylesheet";
-
-	attachTagAttrs(linkElement, options.attrs);
-	insertStyleElement(options, linkElement);
-	return linkElement;
-}
-
-function attachTagAttrs(element, attrs) {
-	Object.keys(attrs).forEach(function (key) {
-		element.setAttribute(key, attrs[key]);
-	});
-}
-
-function addStyle(obj, options) {
-	var styleElement, update, remove;
-
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-		styleElement = singletonElement || (singletonElement = createStyleElement(options));
-		update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-	} else if(obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function") {
-		styleElement = createLinkElement(options);
-		update = updateLink.bind(null, styleElement, options);
-		remove = function() {
-			removeStyleElement(styleElement);
-			if(styleElement.href)
-				URL.revokeObjectURL(styleElement.href);
-		};
-	} else {
-		styleElement = createStyleElement(options);
-		update = applyToTag.bind(null, styleElement);
-		remove = function() {
-			removeStyleElement(styleElement);
-		};
-	}
-
-	update(obj);
-
-	return function updateStyle(newObj) {
-		if(newObj) {
-			if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-				return;
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
-}
-
-var replaceText = (function () {
-	var textStore = [];
-
-	return function (index, replacement) {
-		textStore[index] = replacement;
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag(styleElement, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (styleElement.styleSheet) {
-		styleElement.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = styleElement.childNodes;
-		if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-		if (childNodes.length) {
-			styleElement.insertBefore(cssNode, childNodes[index]);
-		} else {
-			styleElement.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag(styleElement, obj) {
-	var css = obj.css;
-	var media = obj.media;
-
-	if(media) {
-		styleElement.setAttribute("media", media)
-	}
-
-	if(styleElement.styleSheet) {
-		styleElement.styleSheet.cssText = css;
-	} else {
-		while(styleElement.firstChild) {
-			styleElement.removeChild(styleElement.firstChild);
-		}
-		styleElement.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink(linkElement, options, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	/* If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
-	and there is no publicPath defined then lets turn convertToAbsoluteUrls
-	on by default.  Otherwise default to the convertToAbsoluteUrls option
-	directly
-	*/
-	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
-
-	if (options.convertToAbsoluteUrls || autoFixUrls){
-		css = fixUrls(css);
-	}
-
-	if(sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = linkElement.href;
-
-	linkElement.href = URL.createObjectURL(blob);
-
-	if(oldSrc)
-		URL.revokeObjectURL(oldSrc);
-}
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _module = __webpack_require__(9);
-
-var _module2 = _interopRequireDefault(_module);
-
-__webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var a = "hello";
-
-console.log('Hello ' + a);
-var b = 12;
-
-console.log((0, _module2.default)(1, 5));
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (a, b) {
-  return a + b;
-};
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(13);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(7)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js?importLoaders=1!../../node_modules/postcss-loader/index.js!../../node_modules/stylus-loader/index.js?resolve url!./game.styl", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js?importLoaders=1!../../node_modules/postcss-loader/index.js!../../node_modules/stylus-loader/index.js?resolve url!./game.styl");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -672,7 +205,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 12 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -686,9 +219,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(11)
-var ieee754 = __webpack_require__(22)
-var isArray = __webpack_require__(23)
+var base64 = __webpack_require__(1)
+var ieee754 = __webpack_require__(8)
+var isArray = __webpack_require__(9)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -2466,72 +1999,111 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ }),
-/* 13 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
+/* WEBPACK VAR INJECTION */(function(Buffer) {/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
 
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
 
-// module
-exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(3) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(4) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(5) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\nbody .papper {\n  height: 545px;\n  background-image: url(" + __webpack_require__(21) + ");\n  background-repeat: no-repeat;\n  background-position: center;\n  padding-top: 25px;\n}\nbutton {\n  background-image: url(" + __webpack_require__(6) + ");\n  width: 116px;\n  height: 45px;\n  margin-left: 420px;\n  margin-top: 16px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 30px;\n  display: block;\n  letter-spacing: 0.05em;\n}\nbutton:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\nbutton:focus {\n  outline: none;\n}\n.rules {\n  position: absolute;\n  z-index: 2;\n}\n.rules .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(1) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.rules .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.rules .br-small {\n  display: block;\n  margin: 3px 0;\n}\n.rules .heading {\n  font-size: 30px;\n  width: 247px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 40px;\n}\n@-moz-document url-prefix() {\n  .rules .heading {\n    padding-top: 26px;\n  }\n}\n.rules .item {\n  font-size: 20px;\n  display: block;\n  text-align: right;\n  float: left;\n  padding-left: 176px;\n  padding-top: 30px;\n  line-height: 1.3;\n}\n.rules .item-value {\n  font-size: 16px;\n  color: #818180;\n  display: block;\n  padding-left: 370px;\n  padding-top: 30px;\n}\n.rules .dimonds {\n  display: block;\n  color: #818180;\n  padding-left: 370px;\n  padding-top: 48px;\n  margin-bottom: 35px;\n}\n@-moz-document url-prefix() {\n  .rules .dimonds {\n    padding-top: 39px;\n  }\n}\n.rules .rules-diamond {\n  display: block;\n  position: relative;\n  top: -180px;\n  left: 285px;\n}\n.rules .small-diamond {\n  display: block;\n  position: relative;\n  top: -178px;\n  left: 592px;\n}\n@-moz-document url-prefix() {\n  .rules .small-diamond {\n    top: -185px;\n    left: 589px;\n  }\n}\n.map {\n  position: relative;\n  top: -2px;\n}\n.map .boss {\n  width: 250px;\n  height: 190px;\n  position: absolute;\n  z-index: 3;\n  top: 120px;\n  left: 80px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: pointer;\n}\n.map .boss:hover:before {\n  content: url(" + __webpack_require__(14) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-15deg);\n          transform: rotate(-15deg);\n  top: 35px;\n  left: 150px;\n}\n.map .chi {\n  width: 180px;\n  height: 116px;\n  position: absolute;\n  z-index: 3;\n  top: 362px;\n  left: 87px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: pointer;\n}\n.map .chi:hover:before {\n  content: url(" + __webpack_require__(15) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-15deg);\n          transform: rotate(-15deg);\n  top: 55px;\n  left: 50px;\n}\n.map .dol {\n  width: 160px;\n  height: 127px;\n  position: absolute;\n  z-index: 3;\n  top: 336px;\n  left: 400px;\n  -webkit-transform: rotate(-18deg);\n          transform: rotate(-18deg);\n  border-radius: 70px;\n  cursor: pointer;\n}\n.map .dol:hover:before {\n  content: url(" + __webpack_require__(16) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(18deg);\n          transform: rotate(18deg);\n  top: 55px;\n  left: 50px;\n}\n.map .lazy {\n  width: 140px;\n  height: 107px;\n  position: absolute;\n  z-index: 3;\n  top: 147px;\n  left: 449px;\n  -webkit-transform: rotate(23deg);\n          transform: rotate(23deg);\n  border-radius: 70px;\n  cursor: pointer;\n}\n.map .lazy:hover:before {\n  content: url(" + __webpack_require__(20) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-23deg);\n          transform: rotate(-23deg);\n  top: 55px;\n  left: 50px;\n}\n.map .gir {\n  width: 126px;\n  height: 221px;\n  position: absolute;\n  z-index: 3;\n  top: 122px;\n  left: 695px;\n  border-radius: 70px;\n  cursor: pointer;\n}\n.map .gir:hover:before {\n  content: url(" + __webpack_require__(17) + ");\n  position: relative;\n  display: block;\n  top: 207px;\n  left: 35px;\n}\n.map .gir-passed {\n  width: 126px;\n  height: 221px;\n  position: absolute;\n  z-index: 3;\n  top: 122px;\n  left: 695px;\n  border-radius: 70px;\n  cursor: not-allowed;\n  border: 1px solid #000;\n}\n.map .gir-passed:hover:before {\n  content: url(" + __webpack_require__(18) + ");\n  position: relative;\n  display: block;\n  top: 207px;\n  left: 35px;\n}\n.map .plan {\n  font-size: 30px;\n  width: 389px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 30px;\n}\n.map .info {\n  width: 31px;\n  height: 31px;\n  background-image: url(" + __webpack_require__(19) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 881px;\n}\n.map .info:hover {\n  background-position: -31px 0;\n  cursor: pointer;\n}\n.map .shine_diamond {\n  position: relative;\n  top: -67px;\n  left: 141px;\n}\n.map .points {\n  position: relative;\n  left: 110px;\n  top: -46px;\n  color: #000;\n  font-size: 24px;\n}\n.map .cat {\n  position: relative;\n  left: 691px;\n  top: -51px;\n}\n.map #userName {\n  position: relative;\n  left: 650px;\n  top: -41px;\n  font-size: 13px;\n}\n.map .compass {\n  position: relative;\n  left: -808px;\n  top: -417px;\n}\n.map .islands {\n  position: relative;\n  left: 36px;\n  top: -45px;\n}\n.map .rigth-hand {\n  position: absolute;\n  left: 885px;\n  top: 220px;\n}\n.map .left-hand {\n  position: absolute;\n  left: -172px;\n  top: 220px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n.close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(1) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.image-attack {\n  position: relative;\n  top: 34px;\n  left: 93px;\n}\n#attackBtn {\n  font-size: 30px;\n  color: #000;\n  position: relative;\n  top: -578px;\n  left: 378px;\n  height: 42px;\n  width: 100px;\n  padding-left: 19px;\n  padding-top: 8px;\n}\n#attackBtn:hover {\n  color: #f65263;\n  cursor: pointer;\n  -webkit-transition: all 0.2s;\n  transition: all 0.2s;\n}\n#attackBtn:active {\n  color: #000;\n  -webkit-transform: scale(0.94);\n          transform: scale(0.94);\n}\n.fate-obj {\n  height: 102px;\n  width: 102px;\n  border-radius: 12px;\n  border: 2px dashed #e0e0e0;\n  position: relative;\n}\n.fate-obj:hover {\n  border-color: #f65263;\n  cursor: pointer;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.fate-obj:active {\n  border-color: #6a111a;\n  -webkit-transform: scale(0.96);\n          transform: scale(0.96);\n}\n.choosen-fate {\n  border: 2px solid #f65263;\n}\n.fate1 {\n  top: -262px;\n  left: 107px;\n}\n.fate2 {\n  top: -368px;\n  left: 258px;\n}\n.fate3 {\n  top: -474px;\n  left: 409px;\n}\n.fate4 {\n  top: -580px;\n  left: 561px;\n}\n.fate5 {\n  top: -686px;\n  left: 712px;\n}\n.lazy-attack {\n  position: absolute;\n  z-index: 2;\n}\n.close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(1) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.image-attack {\n  position: relative;\n  top: 34px;\n  left: 93px;\n}\n#attackBtn {\n  font-size: 30px;\n  color: #000;\n  position: relative;\n  top: -578px;\n  left: 378px;\n  height: 42px;\n  width: 100px;\n  padding-left: 19px;\n  padding-top: 8px;\n}\n#attackBtn:hover {\n  color: #f65263;\n  cursor: pointer;\n  -webkit-transition: all 0.2s;\n  transition: all 0.2s;\n}\n#attackBtn:active {\n  color: #000;\n  -webkit-transform: scale(0.94);\n          transform: scale(0.94);\n}\n.fate-obj {\n  height: 102px;\n  width: 102px;\n  border-radius: 12px;\n  border: 2px dashed #e0e0e0;\n  position: relative;\n}\n.fate-obj:hover {\n  border-color: #f65263;\n  cursor: pointer;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.fate-obj:active {\n  border-color: #6a111a;\n  -webkit-transform: scale(0.96);\n          transform: scale(0.96);\n}\n.choosen-fate {\n  border: 2px solid #f65263;\n}\n.fate1 {\n  top: -262px;\n  left: 107px;\n}\n.fate2 {\n  top: -368px;\n  left: 258px;\n}\n.fate3 {\n  top: -474px;\n  left: 409px;\n}\n.fate4 {\n  top: -580px;\n  left: 561px;\n}\n.fate5 {\n  top: -686px;\n  left: 712px;\n}\n.goose-attack {\n  position: absolute;\n  z-index: 2;\n}\n", ""]);
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
 
-// exports
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
 
+	if (useSourceMap) {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+  var base64 = new Buffer(JSON.stringify(sourceMap)).toString('base64');
+  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+  return '/*# ' + data + ' */';
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).Buffer))
 
 /***/ }),
-/* 14 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/boss_hint.png";
+module.exports = __webpack_require__.p + "fonts/Alabama.eot";
 
 /***/ }),
-/* 15 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/chi_hint.png";
+module.exports = __webpack_require__.p + "fonts/Alabama.woff";
 
 /***/ }),
-/* 16 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/dol_hint.png";
+module.exports = __webpack_require__.p + "images/cell.png";
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/gir_hint.png";
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/gir_passed_hint.png";
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/info.png";
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/lazy_hint.png";
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/papper.png";
-
-/***/ }),
-/* 22 */
+/* 7 */,
+/* 8 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -2621,7 +2193,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 23 */
+/* 9 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -2632,7 +2204,303 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 24 */
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+var stylesInDom = {},
+	memoize = function(fn) {
+		var memo;
+		return function () {
+			if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+			return memo;
+		};
+	},
+	isOldIE = memoize(function() {
+		// Test for IE <= 9 as proposed by Browserhacks
+		// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+		// Tests for existence of standard globals is to allow style-loader 
+		// to operate correctly into non-standard environments
+		// @see https://github.com/webpack-contrib/style-loader/issues/177
+		return window && document && document.all && !window.atob;
+	}),
+	getElement = (function(fn) {
+		var memo = {};
+		return function(selector) {
+			if (typeof memo[selector] === "undefined") {
+				memo[selector] = fn.call(this, selector);
+			}
+			return memo[selector]
+		};
+	})(function (styleTarget) {
+		return document.querySelector(styleTarget)
+	}),
+	singletonElement = null,
+	singletonCounter = 0,
+	styleElementsInsertedAtTop = [],
+	fixUrls = __webpack_require__(11);
+
+module.exports = function(list, options) {
+	if(typeof DEBUG !== "undefined" && DEBUG) {
+		if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+	if (typeof options.insertInto === "undefined") options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+	var styles = listToStyles(list);
+	addStylesToDom(styles, options);
+
+	return function update(newList) {
+		var mayRemove = [];
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+		if(newList) {
+			var newStyles = listToStyles(newList);
+			addStylesToDom(newStyles, options);
+		}
+		for(var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+			if(domStyle.refs === 0) {
+				for(var j = 0; j < domStyle.parts.length; j++)
+					domStyle.parts[j]();
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom(styles, options) {
+	for(var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+		if(domStyle) {
+			domStyle.refs++;
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles(list) {
+	var styles = [];
+	var newStyles = {};
+	for(var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+		if(!newStyles[id])
+			styles.push(newStyles[id] = {id: id, parts: [part]});
+		else
+			newStyles[id].parts.push(part);
+	}
+	return styles;
+}
+
+function insertStyleElement(options, styleElement) {
+	var styleTarget = getElement(options.insertInto)
+	if (!styleTarget) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+	var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+	if (options.insertAt === "top") {
+		if(!lastStyleElementInsertedAtTop) {
+			styleTarget.insertBefore(styleElement, styleTarget.firstChild);
+		} else if(lastStyleElementInsertedAtTop.nextSibling) {
+			styleTarget.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			styleTarget.appendChild(styleElement);
+		}
+		styleElementsInsertedAtTop.push(styleElement);
+	} else if (options.insertAt === "bottom") {
+		styleTarget.appendChild(styleElement);
+	} else {
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+	}
+}
+
+function removeStyleElement(styleElement) {
+	styleElement.parentNode.removeChild(styleElement);
+	var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+	if(idx >= 0) {
+		styleElementsInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement(options) {
+	var styleElement = document.createElement("style");
+	options.attrs.type = "text/css";
+
+	attachTagAttrs(styleElement, options.attrs);
+	insertStyleElement(options, styleElement);
+	return styleElement;
+}
+
+function createLinkElement(options) {
+	var linkElement = document.createElement("link");
+	options.attrs.type = "text/css";
+	options.attrs.rel = "stylesheet";
+
+	attachTagAttrs(linkElement, options.attrs);
+	insertStyleElement(options, linkElement);
+	return linkElement;
+}
+
+function attachTagAttrs(element, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		element.setAttribute(key, attrs[key]);
+	});
+}
+
+function addStyle(obj, options) {
+	var styleElement, update, remove;
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+		styleElement = singletonElement || (singletonElement = createStyleElement(options));
+		update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+	} else if(obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function") {
+		styleElement = createLinkElement(options);
+		update = updateLink.bind(null, styleElement, options);
+		remove = function() {
+			removeStyleElement(styleElement);
+			if(styleElement.href)
+				URL.revokeObjectURL(styleElement.href);
+		};
+	} else {
+		styleElement = createStyleElement(options);
+		update = applyToTag.bind(null, styleElement);
+		remove = function() {
+			removeStyleElement(styleElement);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle(newObj) {
+		if(newObj) {
+			if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+				return;
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag(styleElement, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (styleElement.styleSheet) {
+		styleElement.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = styleElement.childNodes;
+		if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+		if (childNodes.length) {
+			styleElement.insertBefore(cssNode, childNodes[index]);
+		} else {
+			styleElement.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag(styleElement, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		styleElement.setAttribute("media", media)
+	}
+
+	if(styleElement.styleSheet) {
+		styleElement.styleSheet.cssText = css;
+	} else {
+		while(styleElement.firstChild) {
+			styleElement.removeChild(styleElement.firstChild);
+		}
+		styleElement.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink(linkElement, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/* If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+	and there is no publicPath defined then lets turn convertToAbsoluteUrls
+	on by default.  Otherwise default to the convertToAbsoluteUrls option
+	directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls){
+		css = fixUrls(css);
+	}
+
+	if(sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = linkElement.href;
+
+	linkElement.href = URL.createObjectURL(blob);
+
+	if(oldSrc)
+		URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports) {
 
 
@@ -2727,7 +2595,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 25 */
+/* 12 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2754,16 +2622,108 @@ module.exports = g;
 
 
 /***/ }),
-/* 26 */
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var toogleAuthMode = function toogleAuthMode(target, another) {
+    var $logIn = document.querySelector("#logIn"),
+        $signIn = document.querySelector("#signIn"),
+        $loginBtn = document.querySelector("#loginBtn");
+
+    var mode = "log in";
+
+    target.classList.add("choosen-auth");
+    another.classList.remove("choosen-auth");
+
+    if (target.textContent === "вход") {
+        mode = "log_in";
+        $loginBtn.textContent = "войти";
+        $loginBtn.setAttribute("mode", "log_in");
+    } else {
+        mode = "sign_in";
+        $loginBtn.textContent = "зарегистрироваться";
+        $loginBtn.setAttribute("mode", "sign_in");
+    }
+
+    return mode;
+};
+
+exports.default = toogleAuthMode;
+
+/***/ }),
+/* 14 */,
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var sendAuthData = function sendAuthData() {
+    var login = document.querySelector("[name='login']"),
+        password = document.querySelector("[name='password']"),
+        $loginBtn = document.querySelector("#loginBtn");
+
+    if (!login.value || !password.value) {
+        login.classList.add("empty-value");
+        password.classList.add("empty-value");
+        return;
+    }
+
+    function checkStatus(response) {
+        if (response.status >= 200 && response.status < 300) {
+            return response;
+        } else {
+            var error = new Error(response.statusText);
+            error.response = response;
+            throw error;
+        }
+    }
+
+    var promise = fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            login: login.value,
+            password: password.value,
+            mode: $loginBtn.getAttribute("mode")
+        })
+    }).then(checkStatus).then(function (response) {
+        return response.text();
+    }).then(function (body) {
+        var $wrapper = document.querySelector(".wrapper");
+        while ($wrapper.firstChild) {
+            $wrapper.removeChild($wrapper.firstChild);
+        }$wrapper.innerHTML = body;
+    }).catch(function (error) {
+        return console.log('request failed', error);
+    });
+};
+
+exports.default = sendAuthData;
+
+/***/ }),
+/* 16 */,
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(28);
+var content = __webpack_require__(21);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(7)(content, {});
+var update = __webpack_require__(10)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2780,42 +2740,70 @@ if(false) {
 }
 
 /***/ }),
-/* 27 */
+/* 18 */,
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(26);
+__webpack_require__(17);
 
-var _game = __webpack_require__(8);
+var _sendAuthData = __webpack_require__(15);
 
-var _game2 = _interopRequireDefault(_game);
+var _sendAuthData2 = _interopRequireDefault(_sendAuthData);
+
+var _toogleAuthMode = __webpack_require__(13);
+
+var _toogleAuthMode2 = _interopRequireDefault(_toogleAuthMode);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+document.addEventListener("DOMContentLoaded", ready);
+function ready() {
+
+    var $logIn = document.querySelector("#logIn"),
+        $signIn = document.querySelector("#signIn");
+
+    $logIn.addEventListener("click", function () {
+        return (0, _toogleAuthMode2.default)($logIn, $signIn);
+    });
+    $signIn.addEventListener("click", function () {
+        return (0, _toogleAuthMode2.default)($signIn, $logIn);
+    });
+
+    var $loginBtn = document.querySelector("#loginBtn");
+    $loginBtn.addEventListener("click", _sendAuthData2.default);
+}
+
 /***/ }),
-/* 28 */
+/* 20 */,
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(3) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(4) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(5) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\n@-webkit-keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@-webkit-keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n@keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n@-webkit-keyframes table-in {\n  0% {\n    margin-top: -50px;\n  }\n  100% {\n    margin-top: 0;\n  }\n}\n@keyframes table-in {\n  0% {\n    margin-top: -50px;\n  }\n  100% {\n    margin-top: 0;\n  }\n}\n.table-frogs {\n  width: 648px;\n  height: 296px;\n  position: relative;\n  top: -26px;\n  left: 142px;\n}\n.login-toogle {\n  width: 311px;\n  position: relative;\n  top: -28px;\n  left: 307px;\n  margin-left: 16px;\n}\n.login-toogle .log-sign {\n  display: inline-block;\n  color: #909090;\n  letter-spacing: 0.07em;\n  padding: 1px 25px 3px;\n}\n.login-toogle .log-sign:hover {\n  cursor: pointer;\n  color: #000;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.login-toogle .choosen-auth {\n  background-color: rgba(94,162,125,0.3);\n  border-radius: 10px;\n  color: #000;\n}\n.login-toogle #logIn {\n  width: 37px;\n}\n.login-toogle #signIn {\n  margin-left: 22px;\n  width: 106px;\n}\ninput {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 307px;\n  margin-bottom: 19px;\n}\ninput:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ninput::-webkit-input-placeholder {\n  color: #909090;\n}\ninput::-moz-placeholder {\n  color: #909090;\n}\ninput:-moz-placeholder {\n  color: #909090;\n}\ninput:-ms-input-placeholder {\n  color: #909090;\n}\n.invalid-data {\n  display: inline-block;\n  width: 140px;\n  color: #f65263;\n  text-align: center;\n  vertical-align: middle;\n}\n#loginBtn {\n  background-image: url(" + __webpack_require__(31) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: -55px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n}\n#loginBtn:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#loginBtn:focus {\n  outline: none;\n}\n.fish {\n  display: block;\n  position: relative;\n  width: 156px;\n  height: 95px;\n  top: -125px;\n  -webkit-animation: swimming 15s infinite linear;\n          animation: swimming 15s infinite linear;\n}\n.fish1 {\n  -webkit-animation: upDown 1s infinite linear;\n          animation: upDown 1s infinite linear;\n}\n.plant1 {\n  position: relative;\n  top: -10px;\n  left: -40px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n.plant2 {\n  position: relative;\n  left: 750px;\n  bottom: 10px;\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(4) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(5) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(6) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\n@-webkit-keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@-webkit-keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n@keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n@-webkit-keyframes table-in {\n  0% {\n    margin-top: -50px;\n  }\n  100% {\n    margin-top: 0;\n  }\n}\n@keyframes table-in {\n  0% {\n    margin-top: -50px;\n  }\n  100% {\n    margin-top: 0;\n  }\n}\n.table-frogs {\n  width: 648px;\n  height: 296px;\n  position: relative;\n  top: -26px;\n  left: 142px;\n}\n.login-toogle {\n  width: 311px;\n  position: relative;\n  top: -35px;\n  left: 307px;\n  margin-left: 16px;\n}\n.login-toogle .log-sign {\n  display: inline-block;\n  color: #909090;\n  letter-spacing: 0.07em;\n  padding: 1px 25px 3px;\n}\n.login-toogle .log-sign:hover {\n  cursor: pointer;\n  color: #000;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.login-toogle .choosen-auth {\n  background-color: rgba(94,162,125,0.3);\n  border-radius: 10px;\n  color: #000;\n}\n.login-toogle #logIn {\n  width: 37px;\n}\n.login-toogle #signIn {\n  margin-left: 22px;\n  width: 106px;\n}\ninput {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 307px;\n  margin-bottom: 25px;\n  margin-top: -25px;\n}\ninput:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ninput::-webkit-input-placeholder {\n  color: #909090;\n}\ninput::-moz-placeholder {\n  color: #909090;\n}\ninput:-moz-placeholder {\n  color: #909090;\n}\ninput:-ms-input-placeholder {\n  color: #909090;\n}\n.empty-value::-webkit-input-placeholder {\n  color: #f65263;\n}\n.empty-value::-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-ms-input-placeholder {\n  color: #f65263;\n}\n.invalid-data {\n  display: inline-block;\n  width: 140px;\n  color: #f65263;\n  text-align: center;\n  vertical-align: middle;\n}\n#loginBtn {\n  background-image: url(" + __webpack_require__(29) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n}\n#loginBtn:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#loginBtn:focus {\n  outline: none;\n}\n.fish {\n  display: block;\n  position: relative;\n  width: 156px;\n  height: 95px;\n  top: -125px;\n  -webkit-animation: swimming 15s infinite linear;\n          animation: swimming 15s infinite linear;\n}\n.fish1 {\n  -webkit-animation: upDown 1s infinite linear;\n          animation: upDown 1s infinite linear;\n}\n.plant1 {\n  position: relative;\n  top: -10px;\n  left: -40px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n.plant2 {\n  position: relative;\n  left: 750px;\n  bottom: 10px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 29 */,
-/* 30 */,
-/* 31 */
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/login_btn.png";
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=login.js.map
+//# sourceMappingURL=index.js.map

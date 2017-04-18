@@ -1,20 +1,30 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/game');
+var User = require('./models/user').User;
 
-
-
-var Cat = mongoose.model('Cat', { name: String });
-
-var kitty = new Cat({
-  name: 'Zildjian'
+var user = new User({
+  username: "Tester2",
+  password: "secret"
 });
 
-console.log(kitty);
-
-kitty.save(function (err) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('meow');
-  }
+user.save(function(err, user, affected) {
+  console.log(arguments);
 });
+
+// second
+
+// var mongoose = require('./lib/mongoose');
+// var async = require('async');
+// var User = require('./models/user').User;
+
+// mongoose.connection.on("open", () => {
+
+//   var db = mongoose.connections.db;
+//   db.dropDatabase( (err) => {
+//     if (err) throw err;
+
+//     async.parallel([
+//       function (callback) {
+
+//       }  
+//     ])
+//   })
+// });

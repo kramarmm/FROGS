@@ -6,7 +6,7 @@ var path = require('path'),
 
 var favicon = require('serve-favicon');
 
-var config = require("./config/index.js");
+var config = require("./config");
 
 var bodyParser = require('body-parser');
 var login = require("./users.js");

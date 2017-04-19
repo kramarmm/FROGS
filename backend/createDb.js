@@ -1,12 +1,12 @@
 var User = require('./models/user').User;
 
 var user = new User({
-  username: "Tester2",
+  username: "Tester" + Math.random()*10,
   password: "secret"
 });
 
 user.save(function(err, user, affected) {
-  console.log(arguments);
+  console.log(user);
 });
 
 // second

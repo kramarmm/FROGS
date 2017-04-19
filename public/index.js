@@ -81,7 +81,7 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fonts/Alabama.ttf";
+module.exports = __webpack_require__.p + "_/fonts/Alabama.ttf";
 
 /***/ }),
 /* 1 */
@@ -2087,19 +2087,19 @@ function toComment(sourceMap) {
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fonts/Alabama.eot";
+module.exports = __webpack_require__.p + "_/fonts/Alabama.eot";
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fonts/Alabama.woff";
+module.exports = __webpack_require__.p + "_/fonts/Alabama.woff";
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/cell.png";
+module.exports = __webpack_require__.p + "_/images/cell.png";
 
 /***/ }),
 /* 7 */,
@@ -2622,97 +2622,9 @@ module.exports = g;
 
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var toogleAuthMode = function toogleAuthMode(target, another) {
-    var $logIn = document.querySelector("#logIn"),
-        $signIn = document.querySelector("#signIn"),
-        $loginBtn = document.querySelector("#loginBtn");
-
-    var mode = "log in";
-
-    target.classList.add("choosen-auth");
-    another.classList.remove("choosen-auth");
-
-    if (target.textContent === "вход") {
-        mode = "log_in";
-        $loginBtn.textContent = "войти";
-        $loginBtn.setAttribute("mode", "log_in");
-    } else {
-        mode = "sign_in";
-        $loginBtn.textContent = "зарегистрироваться";
-        $loginBtn.setAttribute("mode", "sign_in");
-    }
-
-    return mode;
-};
-
-exports.default = toogleAuthMode;
-
-/***/ }),
+/* 13 */,
 /* 14 */,
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var sendAuthData = function sendAuthData() {
-    var login = document.querySelector("[name='login']"),
-        password = document.querySelector("[name='password']"),
-        $loginBtn = document.querySelector("#loginBtn");
-
-    if (!login.value || !password.value) {
-        login.classList.add("empty-value");
-        password.classList.add("empty-value");
-        return;
-    }
-
-    function checkStatus(response) {
-        if (response.status >= 200 && response.status < 300) {
-            return response;
-        } else {
-            var error = new Error(response.statusText);
-            error.response = response;
-            throw error;
-        }
-    }
-
-    var promise = fetch('/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            login: login.value,
-            password: password.value,
-            mode: $loginBtn.getAttribute("mode")
-        })
-    }).then(checkStatus).then(function (response) {
-        return response.text();
-    }).then(function (body) {
-        var $wrapper = document.querySelector(".wrapper");
-        while ($wrapper.firstChild) {
-            $wrapper.removeChild($wrapper.firstChild);
-        }$wrapper.innerHTML = body;
-    }).catch(function (error) {
-        return console.log('request failed', error);
-    });
-};
-
-exports.default = sendAuthData;
-
-/***/ }),
+/* 15 */,
 /* 16 */,
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -2749,11 +2661,11 @@ if(false) {
 
 __webpack_require__(17);
 
-var _sendAuthData = __webpack_require__(15);
+var _sendAuthData = __webpack_require__(32);
 
 var _sendAuthData2 = _interopRequireDefault(_sendAuthData);
 
-var _toogleAuthMode = __webpack_require__(13);
+var _toogleAuthMode = __webpack_require__(33);
 
 var _toogleAuthMode2 = _interopRequireDefault(_toogleAuthMode);
 
@@ -2802,7 +2714,191 @@ exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url("
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/login_btn.png";
+module.exports = __webpack_require__.p + "_/images/login_btn.png";
+
+/***/ }),
+/* 30 */,
+/* 31 */,
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _login_post = __webpack_require__(35);
+
+var _login_post2 = _interopRequireDefault(_login_post);
+
+var _signin_post = __webpack_require__(37);
+
+var _signin_post2 = _interopRequireDefault(_signin_post);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var sendAuthData = function sendAuthData() {
+    var login = document.querySelector("[name='login']"),
+        password = document.querySelector("[name='password']"),
+        $loginBtn = document.querySelector("#loginBtn");
+
+    if (!login.value || !password.value) {
+        login.classList.add("empty-value");
+        password.classList.add("empty-value");
+        return;
+    }
+
+    switch ($loginBtn.getAttribute("mode")) {
+        case "log_in":
+            (0, _login_post2.default)(login, password);
+            break;
+        case "sign_in":
+            (0, _signin_post2.default)(login, password);
+            break;
+    }
+};
+
+exports.default = sendAuthData;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var toogleAuthMode = function toogleAuthMode(target, another) {
+    var $logIn = document.querySelector("#logIn"),
+        $signIn = document.querySelector("#signIn"),
+        $loginBtn = document.querySelector("#loginBtn");
+
+    var mode = "log in";
+
+    target.classList.add("choosen-auth");
+    another.classList.remove("choosen-auth");
+
+    if (target.textContent === "вход") {
+        mode = "log_in";
+        $loginBtn.textContent = "войти";
+        $loginBtn.setAttribute("mode", "log_in");
+    } else {
+        mode = "sign_in";
+        $loginBtn.textContent = "зарегистрироваться";
+        $loginBtn.setAttribute("mode", "sign_in");
+    }
+
+    return mode;
+};
+
+exports.default = toogleAuthMode;
+
+/***/ }),
+/* 34 */,
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _check_status = __webpack_require__(36);
+
+var _check_status2 = _interopRequireDefault(_check_status);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var loginPost = function loginPost(login, password) {
+    var promise = fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            login: login.value,
+            password: password.value
+        })
+    }).then(_check_status2.default).then(function (response) {
+        return response.text();
+    }).then(function (body) {
+        var $wrapper = document.querySelector(".wrapper");
+        // while ($wrapper.firstChild) $wrapper.removeChild($wrapper.firstChild);
+        $wrapper.innerHTML = body;
+    }).catch(function (error) {
+        return console.log('request failed', error);
+    });
+};
+
+exports.default = loginPost;
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var checkStatus = function checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+        return response;
+    } else {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+    }
+};
+
+exports.default = checkStatus;
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _check_status = __webpack_require__(36);
+
+var _check_status2 = _interopRequireDefault(_check_status);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var signinPost = function signinPost(login, password) {
+    var promise = fetch('/signin', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            login: login.value,
+            password: password.value
+        })
+    }).then(_check_status2.default).then(function (response) {
+        return response.text();
+    }).then(function (body) {
+        var $wrapper = document.querySelector(".wrapper");
+        // while ($wrapper.firstChild) $wrapper.removeChild($wrapper.firstChild);
+        $wrapper.innerHTML = body;
+    }).catch(function (error) {
+        return console.log('request failed', error);
+    });
+};
+
+exports.default = signinPost;
 
 /***/ })
 /******/ ]);

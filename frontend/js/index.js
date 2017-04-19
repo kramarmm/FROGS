@@ -1,6 +1,6 @@
-import './styles/login.styl';
-import sendAuthData from './sendAuthData';
-import toogleAuthMode from './toogleAuthMode';
+import '../styles/login.styl';
+import sendAuthData from './authorization/sendAuthData';
+import toogleAuthMode from './authorization/toogleAuthMode';
 
 document.addEventListener("DOMContentLoaded", ready);
 function ready () {

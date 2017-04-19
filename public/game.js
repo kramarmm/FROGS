@@ -81,7 +81,7 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fonts/Alabama.ttf";
+module.exports = __webpack_require__.p + "_/fonts/Alabama.ttf";
 
 /***/ }),
 /* 1 */
@@ -2087,25 +2087,25 @@ function toComment(sourceMap) {
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fonts/Alabama.eot";
+module.exports = __webpack_require__.p + "_/fonts/Alabama.eot";
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fonts/Alabama.woff";
+module.exports = __webpack_require__.p + "_/fonts/Alabama.woff";
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/cell.png";
+module.exports = __webpack_require__.p + "_/images/cell.png";
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/close.png";
+module.exports = __webpack_require__.p + "_/images/close.png";
 
 /***/ }),
 /* 8 */
@@ -2627,8 +2627,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 13 */,
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2639,6 +2638,7 @@ module.exports = function (a, b) {
 };
 
 /***/ }),
+/* 14 */,
 /* 15 */,
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -2673,7 +2673,7 @@ if(false) {
 "use strict";
 
 
-var _module = __webpack_require__(14);
+var _module = __webpack_require__(13);
 
 var _module2 = _interopRequireDefault(_module);
 
@@ -2708,56 +2708,56 @@ exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url("
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/boss_hint.png";
+module.exports = __webpack_require__.p + "_/images/boss_hint.png";
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/chi_hint.png";
+module.exports = __webpack_require__.p + "_/images/chi_hint.png";
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/dol_hint.png";
+module.exports = __webpack_require__.p + "_/images/dol_hint.png";
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/gir_hint.png";
+module.exports = __webpack_require__.p + "_/images/gir_hint.png";
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/gir_passed_hint.png";
+module.exports = __webpack_require__.p + "_/images/gir_passed_hint.png";
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/info.png";
+module.exports = __webpack_require__.p + "_/images/info.png";
 
 /***/ }),
 /* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/lazy_hint.png";
+module.exports = __webpack_require__.p + "_/images/lazy_hint.png";
 
 /***/ }),
 /* 29 */,
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/papper.png";
+module.exports = __webpack_require__.p + "_/images/papper.png";
 
 /***/ }),
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/yes_btn.png";
+module.exports = __webpack_require__.p + "_/images/yes_btn.png";
 
 /***/ })
 /******/ ]);

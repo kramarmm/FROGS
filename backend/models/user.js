@@ -1,10 +1,12 @@
 var crypto = require('crypto');
+var async = require("async");
+var util = require('util');
 
 var mongoose = require('../lib/mongoose'),
   Schema = mongoose.Schema;
 
 var schema = new Schema({
-  username: {
+  login: {
     type: String,
     unique: true,
     required: true
@@ -40,4 +42,52 @@ schema.methods.checkPassword = function(password) {
   return this.encryptPassword(password) === this.hashedPassword;
 };
 
+schema.statics.login = function(login, password, callback) {
+  var User = this;
+
+  async.waterfall([
+    function(callback) {
+      User.findOne({login: login}, callback);
+    },
+    function(user, callback) {
+      if (user) {
+        if (user.checkPassword(password)) {
+          callback(null, user);
+        } else {
+          callback(new AuthError("Пароль неверен"));
+        }
+      } else {
+          callback(new AuthError("Нет такого пользователя"));
+      }
+    }
+  ], callback);
+};
+
+schema.statics.signin = function(login, password, callback) {
+  var User = this;
+
+  async.waterfall([
+    function(callback) {
+      var user = new User({login: login, password: password});
+      user.save( function(err) {
+        if (err) return callback(new AuthError("Логин уже занят"));
+        callback(null, user);
+      });
+    }
+  ], callback);
+};
+
 exports.User = mongoose.model('User', schema);
+
+function AuthError(message) {
+  Error.apply(this, arguments);
+  Error.captureStackTrace(this, AuthError);
+
+  this.message = message;
+}
+
+util.inherits(AuthError, Error);
+
+AuthError.prototype.name = 'AuthError';
+
+exports.AuthError = AuthError;

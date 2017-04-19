@@ -1,11 +1,17 @@
 module.exports = function (app) {
 
+var express = require('express');
+var path = require('path');
+var HttpError = require('../error').HttpError;
+
 var fs = require('fs');
 var login = require("../users.js");
 
-app.post('/login', function(req, res) {
 
-    ( login.checkUserAuth(req.body.login, req.body.password) ) ? fs.readdir(path.join(__dirname, '../public'), (err) => console.log(err)) : res.sendStatus(403);
+app.post('/login', function(req, res, next) {
+    console.log(req.body);
+    ( login.checkUserAuth(req.body.login, req.body.password) ) ? next(true) : res.sendStatus(403);
+    res.end();
     
 });
 
@@ -20,9 +26,14 @@ app.get("/users", (req,res, next) => {
 app.get("/user/:id", (req, res, next) => {
     User.findById(req.params.id, (err, user) => {
         if (err) return next(err);
-        if (!user) next(new HttpError(404, "User not found"))
+        if (!user) {
+            next(new HttpError(404));
+        } 
         res.json(user); 
     });
 });
 
+app.get("/game", (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public', "game.html"));
+});
 }

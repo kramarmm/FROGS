@@ -1,4 +1,4 @@
-import checkStatus from "./check_status";
+import checkStatus from "./checkStatus";
 
 let loginPost = (login, password) => {
     let promise = fetch('/login', {

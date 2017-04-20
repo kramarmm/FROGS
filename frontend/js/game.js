@@ -1,13 +1,9 @@
-import sum from './module';
-
-let a = "hello";
-
 import '../styles/game.styl';
 
-console.log(`Hello ${a}`);   
-let b = 12;
+document.addEventListener("DOMContentLoaded", ready);
+function ready () {
 
-console.log(sum(1,5));
+console.log("Hello");   
 
-
+}
 

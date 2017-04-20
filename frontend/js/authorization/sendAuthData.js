@@ -1,5 +1,5 @@
-import loginPost from './login_post';
-import signinPost from './signin_post';
+import loginPost from './loginPost';
+import signinPost from './signinPost';
 
 let sendAuthData = () => {
     let login = document.querySelector("[name='login']"),

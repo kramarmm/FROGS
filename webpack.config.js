@@ -3,11 +3,11 @@ var webpack = require("webpack"),
     LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
-    context: __dirname + "/frontend/js",
+    context: __dirname + "/frontend",
 
     entry: {
-       index: "./index.js",
-       game: "./game.js"
+       index: "./js/index.js",
+       game: "./js/game.js"
     },
         
     output: {

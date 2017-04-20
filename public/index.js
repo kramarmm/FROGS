@@ -2779,9 +2779,7 @@ var loginPost = function loginPost(login, password) {
     }).then(_checkStatus2.default).then(function (response) {
         return response.text();
     }).then(function (body) {
-        var $wrapper = document.querySelector(".wrapper");
-        // while ($wrapper.firstChild) $wrapper.removeChild($wrapper.firstChild);
-        $wrapper.innerHTML = body;
+        document.location.href = "/game";
     }).catch(function (error) {
         return console.log('request failed', error);
     });
@@ -2819,9 +2817,7 @@ var signinPost = function signinPost(login, password) {
     }).then(_checkStatus2.default).then(function (response) {
         return response.text();
     }).then(function (body) {
-        var $wrapper = document.querySelector(".wrapper");
-        // while ($wrapper.firstChild) $wrapper.removeChild($wrapper.firstChild);
-        $wrapper.innerHTML = body;
+        document.location.href = "/game";
     }).catch(function (error) {
         return console.log('request failed', error);
     });

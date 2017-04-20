@@ -14,9 +14,7 @@ let signinPost = (login, password) => {
     .then(checkStatus)
     .then(response => response.text())
     .then((body) => {
-        let $wrapper = document.querySelector(".wrapper");
-        // while ($wrapper.firstChild) $wrapper.removeChild($wrapper.firstChild);
-        $wrapper.innerHTML = body;
+        document.location.href = "/game";
     })
     .catch(error => console.log('request failed', error));
 

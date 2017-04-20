@@ -1,8 +1,7 @@
 var path = require('path');
 
 exports.get = (req, res, next) => {
-    // express.static(path.join(__dirname, '../../public', "game1.html"));
-    next();
+    res.sendFile(path.join(__dirname, '../../public', "game.html"));
 }
 
 exports.post = (req, res, next) => {

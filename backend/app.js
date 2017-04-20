@@ -6,11 +6,10 @@ var session = require('express-session');
 var errorHandler = require('errorhandler');
 var log = require("./lib/log")(module);
 var config = require("./config");
+var mongoose = require('./lib/mongoose');
 var favicon = require('serve-favicon');
 
 var app = express();
-app.use(favicon(path.join(__dirname, '../public', 'favicon.ico'))); 
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -25,15 +24,15 @@ app.use(session({
   saveUninitialized: true,
   key: config.get("session:key"),
   cookie: config.get("session:cookie"),
-  store: new MongoStore({mongooseConnection: require("./lib/mongoose").connection})
+  store: new MongoStore({url:'mongodb://localhost:27017/game'})
 }));
 
-
-app.use(express.static(path.join(__dirname, '../public')));
-
+app.use(favicon(path.join(__dirname, '../public', 'favicon.ico'))); 
 app.use(require("./middleware/loadUser.js"));
+
 require('./routes')(app);
 
+app.use(express.static(path.join(__dirname, '../public')));
 
 // higth error level
 app.use((err, req, res, next) => {

@@ -12,7 +12,7 @@
   },
     "session": {
         "secret": "SupperPuperSecret",
-        "key": "sid",
+        "key": "session",
         "cookie": {
             "path": "/",
             "httpOnly": true,

@@ -10,8 +10,10 @@ function ready () {
 
     $logIn.addEventListener("click", () => toogleAuthMode($logIn, $signIn));
     $signIn.addEventListener("click", () => toogleAuthMode($signIn, $logIn));
+
     
 
     let $loginBtn = document.querySelector("#loginBtn");
     $loginBtn.addEventListener("click", sendAuthData);
+    document.addEventListener("keypress", e => {if (e.keyCode == 13) sendAuthData()});
 }

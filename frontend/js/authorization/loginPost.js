@@ -2,6 +2,7 @@ import checkStatus from "./checkStatus";
 
 let loginPost = (login, password) => {
     let promise = fetch('/login', {
+        credentials: 'same-origin',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -15,6 +16,7 @@ let loginPost = (login, password) => {
     .then(response => response.text())
     .then((body) => {
         document.location.href = "/game";
+        // console.log(body);
     })
     .catch(error => console.log('request failed', error));
 }

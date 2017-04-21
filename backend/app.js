@@ -20,15 +20,16 @@ var MongoStore = require("connect-mongo")(session);
 
 app.use(session({
   secret: config.get("session:secret"),
-  resave: false,
+  resave: true,
   saveUninitialized: true,
   key: config.get("session:key"),
   cookie: config.get("session:cookie"),
-  store: new MongoStore({url:'mongodb://localhost:27017/game'})
+  ttl: 3*30*60
+  // store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 
 app.use(favicon(path.join(__dirname, '../public', 'favicon.ico'))); 
-app.use(require("./middleware/loadUser.js"));
+// require("./middleware/loadUser2.js");
 
 require('./routes')(app);
 

@@ -19,9 +19,17 @@ var schema = new Schema({
     type: String,
     required: true
   },
-  created: {
-    type: Date,
-    default: Date.now
+  points: {
+    type: Number,
+    default: 10
+  },
+  passedIslands: {
+    type: Array,
+    default: []
+  },
+  showRules: {
+    type: Boolean,
+    default: true
   }
 });
 
@@ -42,6 +50,7 @@ schema.methods.checkPassword = function(password) {
   return this.encryptPassword(password) === this.hashedPassword;
 };
 
+// LOGIN
 schema.statics.login = function(login, password, callback) {
   var User = this;
 
@@ -63,6 +72,8 @@ schema.statics.login = function(login, password, callback) {
   ], callback);
 };
 
+
+// SIGNIN
 schema.statics.signin = function(login, password, callback) {
   var User = this;
 
@@ -77,7 +88,11 @@ schema.statics.signin = function(login, password, callback) {
   ], callback);
 };
 
+
+
 exports.User = mongoose.model('User', schema);
+
+
 
 function AuthError(message) {
   Error.apply(this, arguments);

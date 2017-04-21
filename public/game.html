@@ -12,16 +12,17 @@
         <script type="text/javascript" src="../game.js"></script>
         <div class="papper">
             <!-- RULES -->
-            <div class="rules hiden">
+            <div class="rules ">
                 <div class="close"></div>
                 <span class="heading">ПРАВИЛА ИГРЫ</span>
                 <span class="item">ЦЕЛЬ:<br/><br/>КАК ВЫИГРАТЬ:<br/><br/><br/><br/>БРЮЛЛИКИ:</span>
                 <span class="item-value">
                     Захватить все острова и победить BOSSа
                     <br class="br-small"/><br class="br-small"/><br/>
-                    Чтобы победить нужно: <br/>
-                        &nbsp;&nbsp;- найти баланс параметров воинов-лягушек <br/>
-                        &nbsp;&nbsp;- не ошибиться с выбором предмета судьбы
+                    Чтобы победить нужно не ошибиться с выбором предмета судьбы <br/>
+                    (в твоем распоряжении лишь армия бумажных лягушек,<br/>
+                    тем не менне они могут проявить смекалку и применить верно, <br/>
+                    взятый с собой на остров "предмет судьбы") 
                 </span>
                 <span class="dimonds">
                     У тебя есть ограниченное число брюлликов. <br/>
@@ -45,11 +46,11 @@
                 <span id="userName">masha</span>
                 <div class="info"></div>
                 
-                <div class="boss"></div>
-                <div class="chi"></div>
-                <div class="dol"></div>
-                <div class="lazy"></div>
-                <div class="gir-passed"></div>
+                <div class="boss" data-cost="2"></div>
+                <div class="chi" data-cost="2"></div>
+                <div class="goose" data-cost="2"></div>
+                <div class="lazy" data-cost="2"></div>
+                <div class="gir-passed" data-cost="2"></div>
 
                 <img src="../images/islands.png" class="islands">
                 <img src="../images/compass.png" class="compass">
@@ -73,7 +74,7 @@
             </div>
 
             <!-- GOOSE ATTACK -->
-            <div class="goose-attack ">
+            <div class="goose-attack hiden">
                 <div class="close"></div>
 
                 <img src="../images/goose_attack.png" class="image-attack">

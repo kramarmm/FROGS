@@ -17,62 +17,17 @@ exports.post = function(req, res, next) {
       }
     }
 
+
+
+    console.log('Cookies: ', req.cookies);
     req.session.user = user._id;
-    res.send({});
+    req.session.test = "hello";
+    // res.send({}); 
+
+req.session.regenerate(function(err) {
+  // will have a new session here
+});
+    res.send(user._id + "");
 
   });
 }
-
-
-
-
-
-
-
-
-
-// exports.post = (req, res, next) => {
-//     console.log(req.body);
-//     var login = req.body.login;
-//     var password = req.body.password;
-
-//     if (req.body.mode === "log_in") {
-//         async.waterfall([
-//            callback => User.findOne({login: login}, (callback)),
-//            (user, callback) => {
-//                if (user) {
-//                     if (user.checkPassword(password)) {
-//                         callback(null, user);
-//                     } else {
-//                         // 403
-//                     } 
-//                 } else {
-//                     // no such user
-//                 }
-//            }
-//         ], (err) => {
-//             if (err) return next(err);
-//             req.session.user = user._id;
-//             res.send({});
-//         });
-//     }
-
-//     if (req.body.mode === "sign_in") {
-//         var user = new User({login: login, password: password});
-//         user.save((err) => {
-//             if (err) return next(err);
-//             // 200
-//             req.session.user = user._id;
-//         });
-//     }
-
-
-
-
-// module.exports.checkUserAuth = ( login, password ) => {
-//     let authUser = false; 
-//     users.forEach((user) => {
-//         (user.login === login && user.password === password) ? authUser = true : authUser = false;
-//     });
-//     return authUser;
-// }

@@ -2,6 +2,7 @@ import checkStatus from "./checkStatus";
 
 let signinPost = (login, password) => {
     let promise = fetch('/signin', {
+        credentials: 'same-origin',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

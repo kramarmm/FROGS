@@ -2768,6 +2768,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var loginPost = function loginPost(login, password) {
     var promise = fetch('/login', {
+        credentials: 'same-origin',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -2780,6 +2781,7 @@ var loginPost = function loginPost(login, password) {
         return response.text();
     }).then(function (body) {
         document.location.href = "/game";
+        // console.log(body);
     }).catch(function (error) {
         return console.log('request failed', error);
     });
@@ -2806,6 +2808,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var signinPost = function signinPost(login, password) {
     var promise = fetch('/signin', {
+        credentials: 'same-origin',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -2860,6 +2863,9 @@ function ready() {
 
     var $loginBtn = document.querySelector("#loginBtn");
     $loginBtn.addEventListener("click", _sendAuthData2.default);
+    document.addEventListener("keypress", function (e) {
+        if (e.keyCode == 13) (0, _sendAuthData2.default)();
+    });
 }
 
 /***/ }),

@@ -18,16 +18,8 @@ exports.post = function(req, res, next) {
     }
 
 
-
-    console.log('Cookies: ', req.cookies);
     req.session.user = user._id;
-    req.session.test = "hello";
-    // res.send({}); 
-
-req.session.regenerate(function(err) {
-  // will have a new session here
-});
-    res.send(user._id + "");
+    res.redirect("/game");
 
   });
 }

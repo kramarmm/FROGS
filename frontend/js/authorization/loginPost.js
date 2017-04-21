@@ -1,7 +1,7 @@
-import checkStatus from "./checkStatus";
+import checkStatus from "../helper/checkStatus";
 
 let loginPost = (login, password) => {
-    let promise = fetch('/login', {
+fetch('/login', {
         credentials: 'same-origin',
         method: 'POST',
         headers: {
@@ -13,12 +13,8 @@ let loginPost = (login, password) => {
         })
     })
     .then(checkStatus)
-    .then(response => response.text())
-    .then((body) => {
-        document.location.href = "/game";
-        // console.log(body);
-    })
-    .catch(error => console.log('request failed', error));
+    .then(() => document.location.href = "/game")
+    .catch(error => console.log(error));
 }
 
 export default loginPost;

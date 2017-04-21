@@ -17,7 +17,7 @@ exports.post = function(req, res, next) {
     }
 
     req.session.user = user._id;
-    res.send({});
+    res.redirect("/game");
 
   });
 

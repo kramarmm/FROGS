@@ -2622,28 +2622,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var checkStatus = function checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-        return response;
-    } else {
-        var error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-    }
-};
-
-exports.default = checkStatus;
-
-/***/ }),
+/* 13 */,
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2760,14 +2739,14 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _checkStatus = __webpack_require__(13);
+var _checkStatus = __webpack_require__(35);
 
 var _checkStatus2 = _interopRequireDefault(_checkStatus);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var loginPost = function loginPost(login, password) {
-    var promise = fetch('/login', {
+    fetch('/login', {
         credentials: 'same-origin',
         method: 'POST',
         headers: {
@@ -2777,13 +2756,10 @@ var loginPost = function loginPost(login, password) {
             login: login.value,
             password: password.value
         })
-    }).then(_checkStatus2.default).then(function (response) {
-        return response.text();
-    }).then(function (body) {
-        document.location.href = "/game";
-        // console.log(body);
+    }).then(_checkStatus2.default).then(function () {
+        return document.location.href = "/game";
     }).catch(function (error) {
-        return console.log('request failed', error);
+        return console.log(error);
     });
 };
 
@@ -2800,14 +2776,14 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _checkStatus = __webpack_require__(13);
+var _checkStatus = __webpack_require__(35);
 
 var _checkStatus2 = _interopRequireDefault(_checkStatus);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var signinPost = function signinPost(login, password) {
-    var promise = fetch('/signin', {
+    fetch('/signin', {
         credentials: 'same-origin',
         method: 'POST',
         headers: {
@@ -2817,12 +2793,10 @@ var signinPost = function signinPost(login, password) {
             login: login.value,
             password: password.value
         })
-    }).then(_checkStatus2.default).then(function (response) {
-        return response.text();
-    }).then(function (body) {
-        document.location.href = "/game";
+    }).then(_checkStatus2.default).then(function () {
+        return document.location.href = "/game";
     }).catch(function (error) {
-        return console.log('request failed', error);
+        return console.log(error);
     });
 };
 
@@ -2895,6 +2869,31 @@ exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url("
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/login_btn.png";
+
+/***/ }),
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var checkStatus = function checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+        return response;
+    } else {
+        var error = new Error(response.statusCode, response.statusText);
+        error.response = response;
+        throw error;
+    }
+};
+
+exports.default = checkStatus;
 
 /***/ })
 /******/ ]);

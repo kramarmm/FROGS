@@ -24,22 +24,21 @@ app.use(session({
   saveUninitialized: true,
   key: config.get("session:key"),
   cookie: config.get("session:cookie"),
-  ttl: 3*30*60
-  // store: new MongoStore({mongooseConnection: mongoose.connection})
+  store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 
 app.use(favicon(path.join(__dirname, '../public', 'favicon.ico'))); 
-// require("./middleware/loadUser2.js");
+app.use(require("./middleware/loadUser.js"));
 
 require('./routes')(app);
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-// higth error level
+// highest level of errors
 app.use((err, req, res, next) => {
     log.error(err.message);
-    // err = new Error(500);
-    // res.send(err);
+    err = new Error(500);
+    res.send(err);
 });
 
 app.listen(config.get("port"), () => log.info("\nServer is on! \n \\ \/\n\ . \.\n  O"));

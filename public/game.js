@@ -2667,11 +2667,20 @@ if(false) {
 
 __webpack_require__(16);
 
-document.cookie = 'name=value; path=/Main/';
+var _showHide = __webpack_require__(34);
+
+var _getStartData = __webpack_require__(37);
+
+var _getStartData2 = _interopRequireDefault(_getStartData);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 document.addEventListener("DOMContentLoaded", ready);
 function ready() {
 
-  console.log("Hello");
+  // console.log(getStartData("showRules"));
+
+
 }
 
 /***/ }),
@@ -2744,6 +2753,101 @@ module.exports = __webpack_require__.p + "images/papper.png";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/yes_btn.png";
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function show(elem) {
+    elem.classList.remove("hiden");
+}
+
+function hide(elem) {
+    elem.classList.add("hiden");
+}
+
+exports.show = show;
+exports.hide = hide;
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var checkStatus = function checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+        return response;
+    } else {
+        var error = new Error(response.statusCode, response.statusText);
+        error.response = response;
+        throw error;
+    }
+};
+
+exports.default = checkStatus;
+
+/***/ }),
+/* 36 */,
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _checkStatus = __webpack_require__(35);
+
+var _checkStatus2 = _interopRequireDefault(_checkStatus);
+
+var _showHide = __webpack_require__(34);
+
+var _querySelector = __webpack_require__(38);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var $map = (0, _querySelector.$)(".map");
+
+function getStartData(data) {
+    fetch('/game', {
+        credentials: 'same-origin',
+        method: 'GET'
+    }).then(_checkStatus2.default).then(function (res) {
+
+        if (res.headers.get("showRules")) {
+            $map.show();
+        } else {
+            $map.hide();
+        }
+    }).catch(function (error) {
+        return console.log(error);
+    });
+}
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function $(elem) {
+    return document.querySelector(elem);
+}
+
+exports.$ = $;
 
 /***/ })
 /******/ ]);

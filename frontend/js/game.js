@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", ready);
 function ready () {
 
     let $rules = $(".rules");
+    let $map = $(".map");
 
     fetch('/game', {
         credentials: 'same-origin',
@@ -20,7 +21,7 @@ function ready () {
         // console.log(res.headers.get("showRules"));
         (res.headers.get("showRules") === "true")
         ? show($rules)
-        : hide($rules)
+        : show($map)
     })
     .catch(error => console.log(error));
 

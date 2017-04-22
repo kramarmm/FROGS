@@ -97,8 +97,8 @@ var checkStatus = function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
         return response;
     } else {
-        var error = new Error(response.statusCode, response.statusText);
-        error.response = response;
+        var error = new Error(response.statusText);
+        // error.response = response;
         throw error;
     }
 };
@@ -2779,9 +2779,12 @@ var loginPost = function loginPost(login, password) {
             login: login.value,
             password: password.value
         })
-    }).then(_checkStatus2.default).then(function () {
-        return document.location.href = "/game";
-    }).catch(function (error) {
+    }).then(function (res) {
+        return console.log(res.status, res);
+    })
+    // .then(checkStatus)
+    // .then(() => document.location.href = "/game")
+    .catch(function (error) {
         return console.log(error);
     });
 };

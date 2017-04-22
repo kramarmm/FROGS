@@ -10,13 +10,12 @@ exports.post = function(req, res, next) {
   User.login(login, password, function(err, user) {
     if (err) {
       if (err instanceof AuthError) {
-        console.log(err.message); // log error
+        console.log(err.message);
         return next(new HttpError(403, err.message));
       } else {
         return next(err); // and send it up
       }
     }
-
 
     req.session.user = user._id;
     User.update({ _id: user._id }, { $set: { showRules: false }}, err => console.log(err));

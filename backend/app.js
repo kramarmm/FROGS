@@ -8,6 +8,7 @@ var log = require("./lib/log")(module);
 var config = require("./config");
 var mongoose = require('./lib/mongoose');
 var favicon = require('serve-favicon');
+var HttpError = require('./error').HttpError;
 
 var app = express();
 
@@ -28,6 +29,8 @@ app.use(session({
 }));
 
 app.use(favicon(path.join(__dirname, '../public', 'favicon.ico'))); 
+
+app.use(require('./middleware/sendHttpError'));
 app.use(require("./middleware/loadUser.js"));
 
 require('./routes')(app);
@@ -35,10 +38,18 @@ require('./routes')(app);
 app.use(express.static(path.join(__dirname, '../public')));
 
 // highest level of errors
-app.use((err, req, res, next) => {
-    log.error(err.message);
-    err = new Error(500);
-    res.send(err);
+app.use(function(err, req, res, next) {
+  if (typeof err == 'number') {
+    err = new HttpError(err);
+  }
+
+  if (err instanceof HttpError) {
+    res.sendHttpError(err);
+  } else {
+      log.error(err);
+      err = new HttpError(500);
+      res.sendHttpError(err);
+  }
 });
 
 app.listen(config.get("port"), () => log.info("\nServer is on! \n \\ \/\n\ . \.\n  O"));

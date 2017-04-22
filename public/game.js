@@ -97,8 +97,8 @@ var checkStatus = function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
         return response;
     } else {
-        var error = new Error(response.statusCode, response.statusText);
-        error.response = response;
+        var error = new Error(response.statusText);
+        // error.response = response;
         throw error;
     }
 };
@@ -2739,13 +2739,14 @@ document.addEventListener("DOMContentLoaded", ready);
 function ready() {
 
     var $rules = (0, _querySelector.$)(".rules");
+    var $map = (0, _querySelector.$)(".map");
 
     fetch('/game', {
         credentials: 'same-origin',
         method: 'GET'
     }).then(_checkStatus2.default).then(function (res) {
         // console.log(res.headers.get("showRules"));
-        res.headers.get("showRules") === "true" ? (0, _showHide.show)($rules) : (0, _showHide.hide)($rules);
+        res.headers.get("showRules") === "true" ? (0, _showHide.show)($rules) : (0, _showHide.show)($map);
     }).catch(function (error) {
         return console.log(error);
     });

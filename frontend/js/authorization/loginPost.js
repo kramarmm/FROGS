@@ -12,8 +12,9 @@ fetch('/login', {
             password: password.value
         })
     })
-    .then(checkStatus)
-    .then(() => document.location.href = "/game")
+    .then( res => console.log(res.status, res))
+    // .then(checkStatus)
+    // .then(() => document.location.href = "/game")
     .catch(error => console.log(error));
 }
 

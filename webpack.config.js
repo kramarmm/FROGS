@@ -46,7 +46,7 @@ module.exports = {
 
     
     plugins: [
-        new webpack.NoErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
         new LiveReloadPlugin({
             appendScriptTag: true
          })

@@ -9,26 +9,20 @@ import {$} from "./helper/querySelector";
 document.addEventListener("DOMContentLoaded", ready);
 function ready () {
 
+    let $rules = $(".rules");
 
-let $rules = $(".rules);
-
-function getStartData (data) {
     fetch('/game', {
         credentials: 'same-origin',
         method: 'GET'        
     })
     .then(checkStatus)
     .then(res => {
-        if (res.headers.get("showRules")) {
-            $rules.show()
-        } else {
-            $rules.hide()
-        }
+        // console.log(res.headers.get("showRules"));
+        (res.headers.get("showRules") === "true")
+        ? show($rules)
+        : hide($rules)
     })
     .catch(error => console.log(error));
-
-}
-
 
 
 

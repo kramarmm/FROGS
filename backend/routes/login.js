@@ -19,7 +19,8 @@ exports.post = function(req, res, next) {
 
 
     req.session.user = user._id;
-    res.redirect("/game");
+    User.update({ _id: user._id }, { $set: { showRules: false }}, err => console.log(err));
+    res.end();
 
   });
 }

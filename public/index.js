@@ -2768,6 +2768,7 @@ var _checkStatus2 = _interopRequireDefault(_checkStatus);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var $invalidData = document.querySelector(".invalid-data");
 var loginPost = function loginPost(login, password) {
     fetch('/login', {
         credentials: 'same-origin',
@@ -2780,9 +2781,10 @@ var loginPost = function loginPost(login, password) {
             password: password.value
         })
     }).then(function (res) {
-        return console.log(res.status, res);
+        return res.headers.get("errorMessage");
+    }).then(function (err) {
+        return document.querySelector(".invalid-data").textContent = err;
     })
-    // .then(checkStatus)
     // .then(() => document.location.href = "/game")
     .catch(function (error) {
         return console.log(error);

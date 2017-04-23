@@ -63,10 +63,10 @@ schema.statics.login = function(login, password, callback) {
         if (user.checkPassword(password)) {
           callback(null, user);
         } else {
-          callback(new AuthError("Пароль неверен"));
+          callback(new AuthError("Invalid password"));
         }
       } else {
-          callback(new AuthError("Нет такого пользователя"));
+          callback(new AuthError("No user"));
       }
     }
   ], callback);
@@ -81,7 +81,7 @@ schema.statics.signin = function(login, password, callback) {
     function(callback) {
       var user = new User({login: login, password: password});
       user.save( function(err) {
-        if (err) return callback(new AuthError("Логин уже занят"));
+        if (err) return callback(new AuthError("Login is already in use"));
         callback(null, user);
       });
     }

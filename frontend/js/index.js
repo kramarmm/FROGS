@@ -9,9 +9,7 @@ function ready () {
         $signIn = document.querySelector("#signIn");
 
     $logIn.addEventListener("click", () => toogleAuthMode($logIn, $signIn));
-    $signIn.addEventListener("click", () => toogleAuthMode($signIn, $logIn));
-
-    
+    $signIn.addEventListener("click", () => toogleAuthMode($signIn, $logIn));    
 
     let $loginBtn = document.querySelector("#loginBtn");
     $loginBtn.addEventListener("click", sendAuthData);

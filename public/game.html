@@ -11,6 +11,7 @@
     <div class="wrapper">
         <script type="text/javascript" src="../game.js"></script>
         <div class="papper">
+
             <!-- RULES -->
             <div class="rules hiden">
                 <div class="close"></div>
@@ -58,11 +59,13 @@
                 <img src="../images/hand.png" class="left-hand">
             </div>
 
-            <!-- LAZY ATTACK -->
-            <div class="lazy-attack hiden">
+            <!-- ATTACK -->
+            <div class="attack hiden" data-enemy="">
                 <div class="close"></div>
 
-                <img src="../images/lazy_attack.png" class="image-attack">
+                <img src="../images/lazy_attack.png" class="image-attack hiden" data-enemy-image="lazy">
+                <img src="../images/goose_attack.png" class="image-attack hiden" data-enemy-image="goose">
+                <img src="../images/goose_attack.png" class="image-attack hiden" data-enemy-image="chi">
 
                 <div class="fate-obj fate1 " ></div>
                 <div class="fate-obj fate2" ></div>
@@ -73,20 +76,6 @@
                 <div id="attackBtn">Attack</div>
             </div>
 
-            <!-- GOOSE ATTACK -->
-            <div class="goose-attack hiden">
-                <div class="close"></div>
-
-                <img src="../images/goose_attack.png" class="image-attack">
-
-                <div class="fate-obj fate1 " ></div>
-                <div class="fate-obj fate2" ></div>
-                <div class="fate-obj fate3" ></div>
-                <div class="fate-obj fate4" ></div>
-                <div class="fate-obj fate5" ></div>
-                
-                <div id="attackBtn">Attack</div>
-            </div>
 
 
         </div>

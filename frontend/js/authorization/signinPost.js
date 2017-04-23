@@ -1,4 +1,4 @@
-import checkStatus from "../helper/checkStatus";
+import checkAuthStatus from "../helper/checkAuthStatus";
 
 let signinPost = (login, password) => {
 fetch('/signin', {
@@ -12,8 +12,7 @@ fetch('/signin', {
             password: password.value
         })
     })
-    .then(checkStatus)
-    .then(() => document.location.href = "/game")
+    .then(checkAuthStatus)
     .catch(error => console.log(error));
 
 }

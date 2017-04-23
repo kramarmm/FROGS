@@ -13,7 +13,7 @@ exports.post = function(req, res, next) {
         console.log(err.message);
         return next(new HttpError(403, err.message));
       } else {
-        return next(err); // and send it up
+        return next(err); 
       }
     }
 

@@ -37,11 +37,8 @@ require('./routes')(app);
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-// highest level of errors
+// ERRORS
 app.use(function(err, req, res, next) {
-  if (typeof err == 'number') {
-    err = new HttpError(err);
-  }
 
   if (err instanceof HttpError) {
     res.sendHttpError(err);

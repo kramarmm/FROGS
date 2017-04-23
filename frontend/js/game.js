@@ -12,17 +12,13 @@ function ready () {
     let $rules = $(".rules");
     let $map = $(".map");
 
-    fetch('/game', {
+    fetch('/user/info', {
         credentials: 'same-origin',
         method: 'GET'        
     })
     .then(checkStatus)
-    .then(res => {
-        // console.log(res.headers.get("showRules"));
-        (res.headers.get("showRules") === "true")
-        ? show($rules)
-        : show($map)
-    })
+    .then(res => res.json())
+    .then(json => json.showRules ? show($rules) : show($map))
     .catch(error => console.log(error));
 
 

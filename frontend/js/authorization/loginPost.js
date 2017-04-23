@@ -1,4 +1,4 @@
-import checkStatus from "../helper/checkStatus";
+import checkAuthStatus from "../helper/checkAuthStatus";
 
 let $invalidData = document.querySelector(".invalid-data");
 let loginPost = (login, password) => {
@@ -13,9 +13,7 @@ fetch('/login', {
             password: password.value
         })
     })
-    .then( res => res.headers.get("errorMessage"))
-    .then(err => document.querySelector(".invalid-data").textContent = err)
-    // .then(() => document.location.href = "/game")
+    .then(checkAuthStatus)
     .catch(error => console.log(error));
 }
 

@@ -17,13 +17,15 @@ function ready () {
     let $okay = document.querySelectorAll(".okay");
     let $close = document.querySelectorAll(".close");
     let $fateObj = document.querySelectorAll(".fate-obj");
+    let $enemiesImages = document.querySelectorAll(".image-attack");
     let $outcome = $(".outcome");
     let $outcomeText = $(".outcome-text");
 
-    let $chi = $(".chi");
-    let $goose = $(".goose");
-    let $lazy = $(".lazy");
     let $gir = $(".gir");
+    let $lazy = $(".lazy");
+    let $goose = $(".goose");
+    let $chi = $(".chi");    
+    
 
     // GET USER DATA
     fetch('/user/info', {
@@ -41,10 +43,9 @@ function ready () {
 
 
     // ATACK THE ISLAND
-    let showAttack = function(enemy) {        
-        let enemiesImages = document.querySelectorAll(".image-attack");
+    let showAttack = function(enemy) {
         let imageToShow = null;
-        enemiesImages.forEach((image) => {
+        $enemiesImages.forEach((image) => {
             if (image.getAttribute("data-enemy-image") == enemy) imageToShow = image;
         });
         $attack.setAttribute("data-enemy", enemy);
@@ -53,6 +54,9 @@ function ready () {
         show($attack);
     }
 
+    $gir.addEventListener("click", () => showAttack("gir"));   
+    $lazy.addEventListener("click", () => showAttack("lazy"));   
+    $goose.addEventListener("click", () => showAttack("goose"));   
     $chi.addEventListener("click", () => showAttack("chi"));   
 
     // CHOOSE FATE OBJECT
@@ -90,12 +94,14 @@ function ready () {
             $fateObj.forEach(fate => fate.classList.remove("choosen-fate"));
             $attackBtn.setAttribute("chosen-object-number", "");
             $attackErrorText.classList.remove("visible");
+            $enemiesImages.forEach(image => hide(image));
         })
         .catch(error => console.log(error))
     });
 
     // CLOSE AND OKAY BUTTONS
     let close = (elem, num) => {
+        if (elem.parentElement === $attack) $enemiesImages.forEach(image => hide(image));
         hide(elem.parentElement);
         show($map);
     }

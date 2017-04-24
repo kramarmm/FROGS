@@ -3,7 +3,6 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var errorHandler = require('errorhandler');
 var log = require("./lib/log")(module);
 var config = require("./config");
 var mongoose = require('./lib/mongoose');
@@ -31,7 +30,6 @@ app.use(session({
 app.use(favicon(path.join(__dirname, '../public', 'favicon.ico'))); 
 
 app.use(require('./middleware/sendHttpError'));
-app.use(require("./middleware/loadUser.js"));
 
 require('./routes')(app);
 
@@ -41,11 +39,12 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(function(err, req, res, next) {
 
   if (err instanceof HttpError) {
+    log.error(err.message);
     res.sendHttpError(err);
   } else {
-      log.error(err);
-      err = new HttpError(500);
-      res.sendHttpError(err);
+    log.error(err);
+    err = new HttpError(500);
+    res.sendHttpError(err);
   }
 });
 

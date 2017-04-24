@@ -2754,13 +2754,14 @@ function ready() {
     var $okay = document.querySelectorAll(".okay");
     var $close = document.querySelectorAll(".close");
     var $fateObj = document.querySelectorAll(".fate-obj");
+    var $enemiesImages = document.querySelectorAll(".image-attack");
     var $outcome = (0, _querySelector.$)(".outcome");
     var $outcomeText = (0, _querySelector.$)(".outcome-text");
 
-    var $chi = (0, _querySelector.$)(".chi");
-    var $goose = (0, _querySelector.$)(".goose");
-    var $lazy = (0, _querySelector.$)(".lazy");
     var $gir = (0, _querySelector.$)(".gir");
+    var $lazy = (0, _querySelector.$)(".lazy");
+    var $goose = (0, _querySelector.$)(".goose");
+    var $chi = (0, _querySelector.$)(".chi");
 
     // GET USER DATA
     fetch('/user/info', {
@@ -2778,9 +2779,8 @@ function ready() {
 
     // ATACK THE ISLAND
     var showAttack = function showAttack(enemy) {
-        var enemiesImages = document.querySelectorAll(".image-attack");
         var imageToShow = null;
-        enemiesImages.forEach(function (image) {
+        $enemiesImages.forEach(function (image) {
             if (image.getAttribute("data-enemy-image") == enemy) imageToShow = image;
         });
         $attack.setAttribute("data-enemy", enemy);
@@ -2789,6 +2789,15 @@ function ready() {
         (0, _showHide.show)($attack);
     };
 
+    $gir.addEventListener("click", function () {
+        return showAttack("gir");
+    });
+    $lazy.addEventListener("click", function () {
+        return showAttack("lazy");
+    });
+    $goose.addEventListener("click", function () {
+        return showAttack("goose");
+    });
     $chi.addEventListener("click", function () {
         return showAttack("chi");
     });
@@ -2832,6 +2841,9 @@ function ready() {
             });
             $attackBtn.setAttribute("chosen-object-number", "");
             $attackErrorText.classList.remove("visible");
+            $enemiesImages.forEach(function (image) {
+                return (0, _showHide.hide)(image);
+            });
         }).catch(function (error) {
             return console.log(error);
         });
@@ -2839,6 +2851,9 @@ function ready() {
 
     // CLOSE AND OKAY BUTTONS
     var close = function close(elem, num) {
+        if (elem.parentElement === $attack) $enemiesImages.forEach(function (image) {
+            return (0, _showHide.hide)(image);
+        });
         (0, _showHide.hide)(elem.parentElement);
         (0, _showHide.show)($map);
     };

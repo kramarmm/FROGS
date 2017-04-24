@@ -8,7 +8,3 @@ exports.get = (req, res, next) => {
     });
     console.log(req.user);
 }
-
-exports.post = (req, res, next) => {
-    next();
-}

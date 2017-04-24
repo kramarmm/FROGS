@@ -1,25 +1,21 @@
 @import ("variables.styl")
 
-    button
-        background-image url('../images/yes_btn.png')
-        width 116px
-        height 45px
-        margin-left 420px 
-        margin-top 16px
-        border-radius 10px
-        background-color rgba(0,0,0,0)
-        border none
-        font-family Alabama, sans-serif
-        font-size f33
-        color darkgray
-        cursor pointer
-        padding-bottom 30px
-        display block
-        letter-spacing 0.05em
+.okay
+    background-image url('../images/yes_btn.png')
+    width 116px
+    height 45px
+    position absolute
+    z-index 3
+    top 431px
+    left 417px
+    border-radius 10px
+    font-family Alabama, sans-serif
+    font-size f33
+    color darkgray
+    cursor pointer
+    letter-spacing 0.05em
+    text-align center
 
-        &:hover
-            background-color rgba(94,162,125,0.5)
-            transition all 0.3s
-
-        &:focus
-            outline none
+    &:hover
+        background-color rgba(94,162,125,0.5)
+        transition all 0.3s

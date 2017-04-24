@@ -74,7 +74,7 @@
 /******/ 	  document.getElementsByTagName("head")[0].appendChild(el);
 /******/ 	}());
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 24);
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -220,8 +220,8 @@ function fromByteArray (uint8) {
 
 
 var base64 = __webpack_require__(1)
-var ieee754 = __webpack_require__(7)
-var isArray = __webpack_require__(8)
+var ieee754 = __webpack_require__(8)
+var isArray = __webpack_require__(9)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -1999,7 +1999,7 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ }),
 /* 3 */
@@ -2102,7 +2102,8 @@ module.exports = __webpack_require__.p + "fonts/Alabama.woff";
 module.exports = __webpack_require__.p + "images/cell.png";
 
 /***/ }),
-/* 7 */
+/* 7 */,
+/* 8 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -2192,7 +2193,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -2203,7 +2204,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2240,7 +2241,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(10);
+	fixUrls = __webpack_require__(11);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -2499,7 +2500,7 @@ function updateLink(linkElement, options, obj) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 
@@ -2594,7 +2595,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2621,7 +2622,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2632,7 +2633,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 var checkAuthStatus = function checkAuthStatus(res) {
     if (res.status === 403) {
-        document.querySelector(".invalid-data").textContent = res.headers.get("errorMessage");
+        var errorsOutput = document.querySelector(".invalid-data");
+        switch (res.headers.get("errorMessage")) {
+            case "Incorrect password":
+                errorsOutput.textContent = "Неверный пароль";
+                break;
+            case "No such user":
+                errorsOutput.textContent = "Нет пользовтеля с таким логином";
+                break;
+            case "Login is already in use":
+                errorsOutput.textContent = "Логин уже используется";
+                break;
+        }
         return;
     }
     if (res.status === 200) {
@@ -2645,8 +2657,8 @@ var checkAuthStatus = function checkAuthStatus(res) {
 exports.default = checkAuthStatus;
 
 /***/ }),
-/* 13 */,
-/* 14 */
+/* 14 */,
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2656,11 +2668,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _loginPost = __webpack_require__(21);
+var _loginPost = __webpack_require__(22);
 
 var _loginPost2 = _interopRequireDefault(_loginPost);
 
-var _signinPost = __webpack_require__(22);
+var _signinPost = __webpack_require__(23);
 
 var _signinPost2 = _interopRequireDefault(_signinPost);
 
@@ -2690,7 +2702,7 @@ var sendAuthData = function sendAuthData() {
 exports.default = sendAuthData;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2725,27 +2737,27 @@ var toogleAuthMode = function toogleAuthMode(target, another) {
 exports.default = toogleAuthMode;
 
 /***/ }),
-/* 16 */,
 /* 17 */,
 /* 18 */,
 /* 19 */,
-/* 20 */
+/* 20 */,
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(26);
+var content = __webpack_require__(27);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(9)(content, {});
+var update = __webpack_require__(10)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js?importLoaders=1!../../node_modules/postcss-loader/index.js!../../node_modules/stylus-loader/index.js?resolve url!./login.styl", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js?importLoaders=1!../../node_modules/postcss-loader/index.js!../../node_modules/stylus-loader/index.js?resolve url!./login.styl");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js?importLoaders=1!../../../node_modules/postcss-loader/index.js!../../../node_modules/stylus-loader/index.js?resolve url!./login.styl", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js?importLoaders=1!../../../node_modules/postcss-loader/index.js!../../../node_modules/stylus-loader/index.js?resolve url!./login.styl");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -2755,7 +2767,7 @@ if(false) {
 }
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2765,7 +2777,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _checkAuthStatus = __webpack_require__(12);
+var _checkAuthStatus = __webpack_require__(13);
 
 var _checkAuthStatus2 = _interopRequireDefault(_checkAuthStatus);
 
@@ -2791,7 +2803,7 @@ var loginPost = function loginPost(login, password) {
 exports.default = loginPost;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2801,7 +2813,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _checkAuthStatus = __webpack_require__(12);
+var _checkAuthStatus = __webpack_require__(13);
 
 var _checkAuthStatus2 = _interopRequireDefault(_checkAuthStatus);
 
@@ -2826,20 +2838,20 @@ var signinPost = function signinPost(login, password) {
 exports.default = signinPost;
 
 /***/ }),
-/* 23 */,
-/* 24 */
+/* 24 */,
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(20);
+__webpack_require__(21);
 
-var _sendAuthData = __webpack_require__(14);
+var _sendAuthData = __webpack_require__(15);
 
 var _sendAuthData2 = _interopRequireDefault(_sendAuthData);
 
-var _toogleAuthMode = __webpack_require__(15);
+var _toogleAuthMode = __webpack_require__(16);
 
 var _toogleAuthMode2 = _interopRequireDefault(_toogleAuthMode);
 
@@ -2866,8 +2878,8 @@ function ready() {
 }
 
 /***/ }),
-/* 25 */,
-/* 26 */
+/* 26 */,
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -2875,20 +2887,21 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(4) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(5) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(6) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\n@-webkit-keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@-webkit-keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n@keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n@-webkit-keyframes table-in {\n  0% {\n    margin-top: -50px;\n  }\n  100% {\n    margin-top: 0;\n  }\n}\n@keyframes table-in {\n  0% {\n    margin-top: -50px;\n  }\n  100% {\n    margin-top: 0;\n  }\n}\n.table-frogs {\n  width: 648px;\n  height: 296px;\n  position: relative;\n  top: -26px;\n  left: 142px;\n}\n.login-toogle {\n  width: 311px;\n  position: relative;\n  top: -35px;\n  left: 307px;\n  margin-left: 16px;\n}\n.login-toogle .log-sign {\n  display: inline-block;\n  color: #909090;\n  letter-spacing: 0.07em;\n  padding: 1px 25px 3px;\n}\n.login-toogle .log-sign:hover {\n  cursor: pointer;\n  color: #000;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.login-toogle .choosen-auth {\n  background-color: rgba(94,162,125,0.3);\n  border-radius: 10px;\n  color: #000;\n}\n.login-toogle #logIn {\n  width: 37px;\n}\n.login-toogle #signIn {\n  margin-left: 22px;\n  width: 106px;\n}\ninput {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 307px;\n  margin-bottom: 25px;\n  margin-top: -25px;\n}\ninput:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ninput::-webkit-input-placeholder {\n  color: #909090;\n}\ninput::-moz-placeholder {\n  color: #909090;\n}\ninput:-moz-placeholder {\n  color: #909090;\n}\ninput:-ms-input-placeholder {\n  color: #909090;\n}\n.empty-value::-webkit-input-placeholder {\n  color: #f65263;\n}\n.empty-value::-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-ms-input-placeholder {\n  color: #f65263;\n}\n.invalid-data {\n  display: inline-block;\n  width: 140px;\n  color: #f65263;\n  text-align: center;\n  vertical-align: middle;\n}\n#loginBtn {\n  background-image: url(" + __webpack_require__(34) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n}\n#loginBtn:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#loginBtn:focus {\n  outline: none;\n}\n.fish {\n  display: block;\n  position: relative;\n  width: 156px;\n  height: 95px;\n  top: -125px;\n  -webkit-animation: swimming 15s infinite linear;\n          animation: swimming 15s infinite linear;\n}\n.fish1 {\n  -webkit-animation: upDown 1s infinite linear;\n          animation: upDown 1s infinite linear;\n}\n.plant1 {\n  position: relative;\n  top: -10px;\n  left: -40px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n.plant2 {\n  position: relative;\n  left: 750px;\n  bottom: 10px;\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(4) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(5) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(6) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\n@-webkit-keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@-webkit-keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n@keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n.table-frogs {\n  width: 648px;\n  height: 296px;\n  position: relative;\n  top: -26px;\n  left: 142px;\n}\n.login-toogle {\n  width: 311px;\n  position: relative;\n  top: -35px;\n  left: 307px;\n  margin-left: 16px;\n}\n.login-toogle .log-sign {\n  display: inline-block;\n  color: #909090;\n  letter-spacing: 0.07em;\n  padding: 1px 25px 3px;\n}\n.login-toogle .log-sign:hover {\n  cursor: pointer;\n  color: #000;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.login-toogle .choosen-auth {\n  background-color: rgba(94,162,125,0.3);\n  border-radius: 10px;\n  color: #000;\n}\n.login-toogle #logIn {\n  width: 37px;\n}\n.login-toogle #signIn {\n  margin-left: 22px;\n  width: 106px;\n}\ninput {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 307px;\n  margin-bottom: 25px;\n  margin-top: -25px;\n}\ninput:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ninput::-webkit-input-placeholder {\n  color: #909090;\n}\ninput::-moz-placeholder {\n  color: #909090;\n}\ninput:-moz-placeholder {\n  color: #909090;\n}\ninput:-ms-input-placeholder {\n  color: #909090;\n}\n.empty-value::-webkit-input-placeholder {\n  color: #f65263;\n}\n.empty-value::-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-ms-input-placeholder {\n  color: #f65263;\n}\n.invalid-data {\n  display: inline-block;\n  width: 140px;\n  color: #f65263;\n  text-align: center;\n  vertical-align: middle;\n  margin-left: 15px;\n}\n#loginBtn {\n  background-image: url(" + __webpack_require__(36) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n}\n#loginBtn:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#loginBtn:focus {\n  outline: none;\n}\n.fish {\n  display: block;\n  position: relative;\n  width: 156px;\n  height: 95px;\n  top: -125px;\n  -webkit-animation: swimming 15s infinite linear;\n          animation: swimming 15s infinite linear;\n}\n.fish1 {\n  -webkit-animation: upDown 1s infinite linear;\n          animation: upDown 1s infinite linear;\n}\n.plant1 {\n  position: relative;\n  top: -10px;\n  left: -40px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n.plant2 {\n  position: relative;\n  left: 750px;\n  bottom: 10px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 27 */,
 /* 28 */,
 /* 29 */,
 /* 30 */,
 /* 31 */,
 /* 32 */,
 /* 33 */,
-/* 34 */
+/* 34 */,
+/* 35 */,
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/login_btn.png";

@@ -12,10 +12,13 @@ function ready () {
     let $userName = $("#userName");
     let $attack = $(".attack");
     let $attackBtn = $("#attackBtn");
+    let $attackErrorText = $(".attack-error-text");
     let $info = $(".info");
     let $okay = document.querySelectorAll(".okay");
     let $close = document.querySelectorAll(".close");
     let $fateObj = document.querySelectorAll(".fate-obj");
+    let $outcome = $(".outcome");
+    let $outcomeText = $(".outcome-text");
 
     let $chi = $(".chi");
     let $goose = $(".goose");
@@ -62,7 +65,7 @@ function ready () {
     // POST ATTACK
     $attackBtn.addEventListener("click" , () => {
         if (!$attackBtn.getAttribute("chosen-object-number")) {
-            console.log("Choose your object!");
+            $attackErrorText.classList.add("visible");
             return;
         }
         fetch('/game', {
@@ -76,18 +79,28 @@ function ready () {
                 fateObj: $attackBtn.getAttribute("chosen-object-number")
             })
         })
-        // .then(checkAuthStatus)
-        // .then(res => console.log(res))
-        .catch(error => console.log(error));
+        .then(checkStatus)
+        .then(res => res.text())
+        .then(text => {
+            $outcomeText.textContent = text;
+            hide($attack);
+            show($outcome);  
+        })
+        .then( () => {
+            $fateObj.forEach(fate => fate.classList.remove("choosen-fate"));
+            $attackBtn.setAttribute("chosen-object-number", "");
+            $attackErrorText.classList.remove("visible");
+        })
+        .catch(error => console.log(error))
     });
 
     // CLOSE AND OKAY BUTTONS
-    let close = (num) => {
-        hide($close[num].parentElement);
+    let close = (elem, num) => {
+        hide(elem.parentElement);
         show($map);
     }
-    $close.forEach((closeBtn, i) => closeBtn.addEventListener("click", () => close(i)));
-    $okay.forEach((okayBtn, i) => okayBtn.addEventListener("click", () => close(i)));
+    $close.forEach(closeBtn => closeBtn.addEventListener("click", () => close(closeBtn)));
+    $okay.forEach(okayBtn => okayBtn.addEventListener("click", () => close(okayBtn)));
 
     // INFO BUTTON
     $info.addEventListener("click", () => {

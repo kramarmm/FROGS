@@ -1,4 +1,4 @@
-import '../styles/login.styl';
+import '../styles/login/login.styl';
 import sendAuthData from './authorization/sendAuthData';
 import toogleAuthMode from './authorization/toogleAuthMode';
 

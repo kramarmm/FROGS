@@ -63,10 +63,10 @@ schema.statics.login = function(login, password, callback) {
         if (user.checkPassword(password)) {
           callback(null, user);
         } else {
-          callback(new AuthError("Invalid password"));
+          callback(new AuthError("Incorrect password"));
         }
       } else {
-          callback(new AuthError("No user"));
+          callback(new AuthError("No such user"));
       }
     }
   ], callback);

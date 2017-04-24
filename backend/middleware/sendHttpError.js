@@ -4,8 +4,7 @@ module.exports = function(req, res, next) {
 
     res.status(error.status);
     res.set("errorMessage", error.message);
-
-    res.send(error);
+    res.end();
   };
 
   next();

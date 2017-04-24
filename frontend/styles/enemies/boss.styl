@@ -1,0 +1,39 @@
+.boss-not-available
+    width 250px
+    height 190px 
+    position absolute
+    z-index 3
+    top 120px
+    left 80px
+    transform rotate(15deg)
+    border-radius 70px
+    cursor not-allowed
+    border 1px solid black
+
+    &:hover:before
+        content url('../../images/boss_hint.png')
+        position relative
+        display block
+        transform rotate(-15deg)
+        top 35px
+        left 150px
+
+.boss
+    width 250px
+    height 190px 
+    position absolute
+    z-index 3
+    top 120px
+    left 80px
+    transform rotate(15deg)
+    border-radius 70px
+    cursor pointer
+    border 1px solid black
+
+    &:hover:before
+        content url('../../images/boss_hint.png')
+        position relative
+        display block
+        transform rotate(-15deg)
+        top 35px
+        left 150px

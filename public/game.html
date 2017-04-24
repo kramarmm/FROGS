@@ -15,27 +15,8 @@
             <!-- RULES -->
             <div class="rules hiden">
                 <div class="close"></div>
-                <span class="heading">ПРАВИЛА ИГРЫ</span>
-                <span class="item">ЦЕЛЬ:<br/><br/>КАК ВЫИГРАТЬ:<br/><br/><br/><br/>БРЮЛЛИКИ:</span>
-                <span class="item-value">
-                    Захватить все острова и победить BOSSа
-                    <br class="br-small"/><br class="br-small"/><br/>
-                    Чтобы победить нужно не ошибиться с выбором предмета судьбы <br/>
-                    (в твоем распоряжении лишь армия бумажных лягушек,<br/>
-                    тем не менне они могут проявить смекалку и применить верно, <br/>
-                    взятый с собой на остров "предмет судьбы") 
-                </span>
-                <span class="dimonds">
-                    У тебя есть ограниченное число брюлликов. <br/>
-                    Если их не хватает - ты не можешь нападать на остров. <br/>
-                    Каждая попытка завхватить врага влияет на их колличество.<br/><br/>
-                    Например, если ты видишь: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - это значит, <br/>
-                    что в случае победы у тебя станет на 2 брюллика больше,<br/>
-                    а в случае проигрыша - на 2 меньше.
-                </span>
-                <button class="okay">окей</button>
-                <img src="../images/rules_diamond.png" alt="" class="rules-diamond">
-                <img src="../images/rules_small_diamond.png" alt="" class="small-diamond">
+                <img src="../images/rules.png" class="rules-image">
+                <div class="okay">окей</div>
             </div>
 
             <!-- MAP -->
@@ -47,7 +28,7 @@
                 <span id="userName">masha</span>
                 <div class="info"></div>
                 
-                <div class="boss"></div>
+                <div class="boss-not-available"></div>
                 <div class="chi"></div>
                 <div class="goose"></div>
                 <div class="lazy"></div>
@@ -73,12 +54,22 @@
                 <div class="fate-obj fate4" ></div>
                 <div class="fate-obj fate5" ></div>
                 
+                <div class="attack-error-text">Сперва сделай выбор</div>
+
                 <div id="attackBtn" chosen-object-number="">Attack</div>
             </div>
 
-
-
+            <!-- OUTCOME -->
+            <div class="outcome hiden">
+                <div class="close"></div>
+                <div class="outcome-text"></div>
+                <div class="points-result">+ 2</div>
+                <img src="../images/big_diamond.png" class="big-diamond">
+                <div class="okay">окей</div>
+            </div>
+            
         </div>
-    </div>    
+    </div>   
+    <a href="https://github.com/kramarmm/FROGS" target="_blank" class="github"></a> 
 </body>
 </html>

@@ -4,7 +4,7 @@ It is my first project. Short but very interesting html game.
 
 Capture the world with only an army of paper frogs.
 
-[Try it yourself][game]
+[Try it yourself][game]{:target="_blank"}
 
 ![N|Solid](./public/images/frog.png)
 

@@ -10,6 +10,7 @@ exports.get = (req, res, next) => {
             points: user.points,
             login: user.login
         });
+        res.end();
         console.log(user);
     });
 }

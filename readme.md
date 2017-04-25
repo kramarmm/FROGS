@@ -4,7 +4,7 @@ It is my first project. Short but very interesting html game.
 
 Capture the world with only an army of paper frogs.
 
-<a href="http://localhost:3000" target="_blank">Try it yourself</a>
+[Try it yourself][game]
 
 ![N|Solid](./public/images/frog.png)
 
@@ -14,4 +14,4 @@ Capture the world with only an army of paper frogs.
 - mongo db
 - webpack
 
-<!--[game]: <http://localhost:3000 target="_blank">-->
+[game]: <http://localhost:3000>

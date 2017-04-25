@@ -14,4 +14,4 @@ Capture the world with only an army of paper frogs.
 - mongo db
 - webpack
 
-[game]: <http://localhost:3000{:target="_blank"}>
+[game]: <http://localhost:3000 target="_blank">

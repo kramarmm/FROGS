@@ -28,7 +28,12 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: "babel-loader",
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                    presets: ['es2015']
+                    }
+                },
                 include: path.join(__dirname, "/frontend"),            
                 exclude: "/node_modules/"
             }, {

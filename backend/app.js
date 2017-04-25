@@ -3,9 +3,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var log = require("./lib/log")(module);
 var config = require("./config");
-var mongoose = require('./lib/mongoose');
+var mongoose = require('./mongoose');
 var favicon = require('serve-favicon');
 var HttpError = require('./error').HttpError;
 
@@ -39,13 +38,13 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(function(err, req, res, next) {
 
   if (err instanceof HttpError) {
-    log.error(err.message);
+    console.log(err.message);
     res.sendHttpError(err);
   } else {
-    log.error(err);
+    console.log(err);
     err = new HttpError(500);
     res.sendHttpError(err);
   }
 });
 
-app.listen(config.get("port"), () => log.info("\nServer is on! \n \\ \/\n\ . \.\n  O"));
+app.listen(config.get("port"), () => console.log("\nServer is on! \n \\ \/\n\ . \.\n  O"));

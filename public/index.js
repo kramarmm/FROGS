@@ -74,7 +74,7 @@
 /******/ 	  document.getElementsByTagName("head")[0].appendChild(el);
 /******/ 	}());
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2658,7 +2658,8 @@ exports.default = checkAuthStatus;
 
 /***/ }),
 /* 14 */,
-/* 15 */
+/* 15 */,
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2668,11 +2669,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _loginPost = __webpack_require__(22);
+var _loginPost = __webpack_require__(23);
 
 var _loginPost2 = _interopRequireDefault(_loginPost);
 
-var _signinPost = __webpack_require__(23);
+var _signinPost = __webpack_require__(24);
 
 var _signinPost2 = _interopRequireDefault(_signinPost);
 
@@ -2702,7 +2703,7 @@ var sendAuthData = function sendAuthData() {
 exports.default = sendAuthData;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2737,17 +2738,17 @@ var toogleAuthMode = function toogleAuthMode(target, another) {
 exports.default = toogleAuthMode;
 
 /***/ }),
-/* 17 */,
 /* 18 */,
 /* 19 */,
 /* 20 */,
-/* 21 */
+/* 21 */,
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(27);
+var content = __webpack_require__(28);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(10)(content, {});
@@ -2767,7 +2768,7 @@ if(false) {
 }
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2803,7 +2804,7 @@ var loginPost = function loginPost(login, password) {
 exports.default = loginPost;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2838,20 +2839,20 @@ var signinPost = function signinPost(login, password) {
 exports.default = signinPost;
 
 /***/ }),
-/* 24 */,
-/* 25 */
+/* 25 */,
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(21);
+__webpack_require__(22);
 
-var _sendAuthData = __webpack_require__(15);
+var _sendAuthData = __webpack_require__(16);
 
 var _sendAuthData2 = _interopRequireDefault(_sendAuthData);
 
-var _toogleAuthMode = __webpack_require__(16);
+var _toogleAuthMode = __webpack_require__(17);
 
 var _toogleAuthMode2 = _interopRequireDefault(_toogleAuthMode);
 
@@ -2878,8 +2879,8 @@ function ready() {
 }
 
 /***/ }),
-/* 26 */,
-/* 27 */
+/* 27 */,
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -2893,7 +2894,6 @@ exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url("
 
 
 /***/ }),
-/* 28 */,
 /* 29 */,
 /* 30 */,
 /* 31 */,

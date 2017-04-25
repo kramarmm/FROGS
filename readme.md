@@ -6,7 +6,7 @@ Capture the world with only an army of paper frogs.
 
 [Try it yourself][game]
 
-[![N|Solid](./public/images/frog.png)]
+![N|Solid](./public/images/frog.png)
 
 # What I used
 

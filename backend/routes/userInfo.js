@@ -2,7 +2,7 @@ var User = require('../models/user').User;
 
 exports.get = (req, res, next) => {
     User.findById(req.session.user, function(err, user) {
-        if (err) console.log(err);    
+        if (err) return next(err);    
 
         res.json({
             showRules: user.showRules,
@@ -11,6 +11,7 @@ exports.get = (req, res, next) => {
             login: user.login
         });
         res.end();
+        /// !!!!!!
         console.log(user);
     });
 }

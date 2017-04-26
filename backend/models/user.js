@@ -21,7 +21,7 @@ var schema = new Schema({
   },
   points: {
     type: Number,
-    default: 9
+    default: 5
   },
   passedIslands: {
     type: Array,

@@ -36,12 +36,9 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 // ERRORS
 app.use(function(err, req, res, next) {
-
   if (err instanceof HttpError) {
-    console.log(err.message);
     res.sendHttpError(err);
   } else {
-    console.log(err);
     err = new HttpError(500);
     res.sendHttpError(err);
   }

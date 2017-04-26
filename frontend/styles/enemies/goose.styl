@@ -11,7 +11,27 @@
     border 1px solid black
 
     &:hover:before
-        content url('../../images/dol_hint.png')
+        content url('../../images/goose_hint.png')
+        position relative
+        display block
+        transform rotate(18deg)
+        top 55px
+        left 50px
+
+.goose-passed
+    width 160px
+    height 127px
+    position absolute
+    z-index 3
+    top 336px
+    left 400px
+    transform rotate(-18deg)
+    border-radius 70px
+    cursor not-allowed
+    border 1px solid black
+
+    &:hover:before
+        content url('../../images/goose_passed_hint.png')
         position relative
         display block
         transform rotate(18deg)

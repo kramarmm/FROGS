@@ -16,7 +16,7 @@ exports.post = function(req, res, next) {
     }
 
     req.session.user = user._id;
-    User.update({ _id: user._id }, { $set: { showRules: false }}, err => console.log(err));
+    User.update({ _id: user._id }, { $set: { showRules: false }}, err => err);
     res.end();
 
   });

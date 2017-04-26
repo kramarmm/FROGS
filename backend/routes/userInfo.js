@@ -11,7 +11,5 @@ exports.get = (req, res, next) => {
             login: user.login
         });
         res.end();
-        /// !!!!!!
-        console.log(user);
     });
 }

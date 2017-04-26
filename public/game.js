@@ -2769,6 +2769,7 @@ function ready() {
     var $enemiesImages = document.querySelectorAll(".image-attack");
     var $outcome = (0, _querySelector.$)(".outcome");
     var $outcomeText = (0, _querySelector.$)(".outcome-text");
+    var $pointsResult = (0, _querySelector.$)(".points-result");
 
     var $gir = (0, _querySelector.$)(".gir");
     var $lazy = (0, _querySelector.$)(".lazy");
@@ -2790,7 +2791,8 @@ function ready() {
     });
 
     // ATACK THE ISLAND
-    var showAttack = function showAttack(enemy) {
+    var showAttack = function showAttack(e) {
+        var enemy = e.currentTarget.classList[0];
         var imageToShow = null;
         $enemiesImages.forEach(function (image) {
             if (image.getAttribute("data-enemy-image") == enemy) imageToShow = image;
@@ -2801,18 +2803,10 @@ function ready() {
         (0, _showHide.show)($attack);
     };
 
-    $gir.addEventListener("click", function () {
-        return showAttack("gir");
-    });
-    $lazy.addEventListener("click", function () {
-        return showAttack("lazy");
-    });
-    $goose.addEventListener("click", function () {
-        return showAttack("goose");
-    });
-    $chi.addEventListener("click", function () {
-        return showAttack("chi");
-    });
+    $gir.addEventListener("click", showAttack);
+    $lazy.addEventListener("click", showAttack);
+    $goose.addEventListener("click", showAttack);
+    $chi.addEventListener("click", showAttack);
 
     // CHOOSE FATE OBJECT
     $fateObj.forEach(function (fate, i) {
@@ -2831,6 +2825,8 @@ function ready() {
             $attackErrorText.classList.add("visible");
             return;
         }
+
+        var enemy = $attack.getAttribute("data-enemy");
         fetch('/game', {
             credentials: 'same-origin',
             method: 'POST',
@@ -2838,10 +2834,22 @@ function ready() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                enemy: $attack.getAttribute("data-enemy"),
+                enemy: enemy,
                 fateObj: $attackBtn.getAttribute("chosen-object-number")
             })
         }).then(_checkStatus2.default).then(function (res) {
+            $points.textContent = res.headers.get("points");
+            if (res.headers.get("win") === "true") {
+                $pointsResult.textContent = "Победа!";
+                $pointsResult.classList.add("green");
+                var winedEnemy = document.getElementsByClassName(enemy)[0];
+                winedEnemy.removeEventListener("click", showAttack);
+                winedEnemy.classList.remove(enemy);
+                winedEnemy.classList.add(enemy + "-passed");
+            } else {
+                $pointsResult.textContent = "Поражение!";
+                $pointsResult.classList.remove("green");
+            }
             return res.text();
         }).then(function (text) {
             $outcomeText.textContent = text;
@@ -2897,7 +2905,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(4) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(5) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(6) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\nbody .papper {\n  height: 545px;\n  background-image: url(" + __webpack_require__(37) + ");\n  background-repeat: no-repeat;\n  background-position: center;\n  padding-top: 25px;\n}\n.rules {\n  position: absolute;\n  z-index: 2;\n}\n.rules .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(7) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.rules .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.rules .rules-image {\n  position: relative;\n  top: 4px;\n  left: 30px;\n}\n.rules .okay {\n  background-image: url(" + __webpack_require__(16) + ");\n  width: 116px;\n  height: 45px;\n  position: absolute;\n  z-index: 3;\n  top: 431px;\n  left: 417px;\n  border-radius: 10px;\n  font-family: Alabama, sans-serif;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  letter-spacing: 0.05em;\n  text-align: center;\n}\n.rules .okay:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.map {\n  position: relative;\n  top: -2px;\n}\n.map .boss-not-available {\n  width: 250px;\n  height: 190px;\n  position: absolute;\n  z-index: 3;\n  top: 120px;\n  left: 80px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: not-allowed;\n  border: 1px solid #000;\n}\n.map .boss-not-available:hover:before {\n  content: url(" + __webpack_require__(15) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-15deg);\n          transform: rotate(-15deg);\n  top: 35px;\n  left: 150px;\n}\n.map .boss {\n  width: 250px;\n  height: 190px;\n  position: absolute;\n  z-index: 3;\n  top: 120px;\n  left: 80px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .boss:hover:before {\n  content: url(" + __webpack_require__(15) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-15deg);\n          transform: rotate(-15deg);\n  top: 35px;\n  left: 150px;\n}\n.map .chi {\n  width: 180px;\n  height: 116px;\n  position: absolute;\n  z-index: 3;\n  top: 362px;\n  left: 87px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .chi:hover:before {\n  content: url(" + __webpack_require__(30) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-15deg);\n          transform: rotate(-15deg);\n  top: 55px;\n  left: 50px;\n}\n.map .goose {\n  width: 160px;\n  height: 127px;\n  position: absolute;\n  z-index: 3;\n  top: 336px;\n  left: 400px;\n  -webkit-transform: rotate(-18deg);\n          transform: rotate(-18deg);\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .goose:hover:before {\n  content: url(" + __webpack_require__(31) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(18deg);\n          transform: rotate(18deg);\n  top: 55px;\n  left: 50px;\n}\n.map .lazy {\n  width: 140px;\n  height: 107px;\n  position: absolute;\n  z-index: 3;\n  top: 147px;\n  left: 449px;\n  -webkit-transform: rotate(23deg);\n          transform: rotate(23deg);\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .lazy:hover:before {\n  content: url(" + __webpack_require__(35) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-23deg);\n          transform: rotate(-23deg);\n  top: 55px;\n  left: 50px;\n}\n.map .gir {\n  width: 126px;\n  height: 221px;\n  position: absolute;\n  z-index: 3;\n  top: 122px;\n  left: 695px;\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .gir:hover:before {\n  content: url(" + __webpack_require__(32) + ");\n  position: relative;\n  display: block;\n  top: 207px;\n  left: 35px;\n}\n.map .gir-passed {\n  width: 126px;\n  height: 221px;\n  position: absolute;\n  z-index: 3;\n  top: 122px;\n  left: 695px;\n  border-radius: 70px;\n  cursor: not-allowed;\n  border: 1px solid #000;\n}\n.map .gir-passed:hover:before {\n  content: url(" + __webpack_require__(33) + ");\n  position: relative;\n  display: block;\n  top: 207px;\n  left: 35px;\n}\n.map .plan {\n  font-size: 30px;\n  width: 389px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 30px;\n}\n.map .info {\n  width: 31px;\n  height: 31px;\n  background-image: url(" + __webpack_require__(34) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 881px;\n}\n.map .info:hover {\n  background-position: -31px 0;\n  cursor: pointer;\n}\n.map .shine_diamond {\n  position: relative;\n  top: -67px;\n  left: 141px;\n}\n.map .points {\n  display: inline-block;\n  width: 50px;\n  text-align: center;\n  position: relative;\n  left: 99px;\n  top: -46px;\n  color: #000;\n  font-size: 24px;\n}\n.map .cat {\n  position: relative;\n  left: 691px;\n  top: -51px;\n}\n.map #userName {\n  position: relative;\n  left: 650px;\n  top: -41px;\n  font-size: 13px;\n}\n.map .compass {\n  position: relative;\n  left: -808px;\n  top: -417px;\n}\n.map .islands {\n  position: relative;\n  left: 36px;\n  top: -45px;\n}\n.map .rigth-hand {\n  position: absolute;\n  left: 885px;\n  top: 220px;\n}\n.map .left-hand {\n  position: absolute;\n  left: -172px;\n  top: 220px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n.attack {\n  position: absolute;\n  z-index: 2;\n}\n.attack .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(7) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.attack .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.attack .image-attack {\n  position: relative;\n  top: 34px;\n  left: 93px;\n}\n.attack #attackBtn {\n  font-size: 30px;\n  color: #000;\n  position: relative;\n  top: -600px;\n  left: 378px;\n  height: 42px;\n  width: 100px;\n  padding-left: 19px;\n  padding-top: 8px;\n}\n.attack #attackBtn:hover {\n  color: #f65263;\n  cursor: pointer;\n  -webkit-transition: all 0.2s;\n  transition: all 0.2s;\n}\n.attack #attackBtn:active {\n  color: #000;\n  -webkit-transform: scale(0.94);\n          transform: scale(0.94);\n}\n.attack .fate-obj {\n  height: 102px;\n  width: 102px;\n  border-radius: 12px;\n  border: 2px dashed #e0e0e0;\n  position: relative;\n}\n.attack .fate-obj:hover {\n  border-color: #f65263;\n  cursor: pointer;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.attack .fate-obj:active {\n  border-color: #6a111a;\n  -webkit-transform: scale(0.96);\n          transform: scale(0.96);\n}\n.attack .choosen-fate {\n  border: 2px solid #f65263;\n}\n.attack .fate1 {\n  top: -262px;\n  left: 107px;\n}\n.attack .fate2 {\n  top: -368px;\n  left: 258px;\n}\n.attack .fate3 {\n  top: -474px;\n  left: 409px;\n}\n.attack .fate4 {\n  top: -580px;\n  left: 561px;\n}\n.attack .fate5 {\n  top: -686px;\n  left: 712px;\n}\n.attack .attack-error-text {\n  opacity: 0;\n  width: 190px;\n  color: #f65263;\n  font-size: 17px;\n  position: relative;\n  top: -622px;\n  left: 355px;\n}\n.attack .visible {\n  opacity: 1;\n}\n.outcome {\n  position: absolute;\n  z-index: 2;\n}\n.outcome .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(7) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.outcome .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.outcome .outcome-text {\n  font-size: 27px;\n  width: 500px;\n  position: relative;\n  top: 70px;\n  left: 201px;\n  text-align: center;\n}\n.outcome .points-result {\n  position: relative;\n  top: 115px;\n  left: 410px;\n  font-size: 50px;\n  color: #4d4d4d;\n}\n.outcome .big-diamond {\n  display: block;\n  position: relative;\n  top: 66px;\n  left: 505px;\n}\n.outcome .okay {\n  background-image: url(" + __webpack_require__(16) + ");\n  width: 116px;\n  height: 45px;\n  position: absolute;\n  z-index: 3;\n  top: 431px;\n  left: 417px;\n  border-radius: 10px;\n  font-family: Alabama, sans-serif;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  letter-spacing: 0.05em;\n  text-align: center;\n}\n.outcome .okay:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.github {\n  position: fixed;\n  left: 10px;\n  top: 10px;\n  height: 27px;\n  width: 28px;\n}\n.github:before {\n  content: url(" + __webpack_require__(8) + ");\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(4) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(5) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(6) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\nbody .papper {\n  height: 545px;\n  background-image: url(" + __webpack_require__(37) + ");\n  background-repeat: no-repeat;\n  background-position: center;\n  padding-top: 25px;\n}\n.rules {\n  position: absolute;\n  z-index: 2;\n}\n.rules .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(7) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.rules .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.rules .rules-image {\n  position: relative;\n  top: 4px;\n  left: 30px;\n}\n.rules .okay {\n  background-image: url(" + __webpack_require__(16) + ");\n  width: 116px;\n  height: 45px;\n  position: absolute;\n  z-index: 3;\n  top: 431px;\n  left: 396px;\n  border-radius: 10px;\n  font-family: Alabama, sans-serif;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  letter-spacing: 0.05em;\n  text-align: center;\n}\n.rules .okay:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.map {\n  position: relative;\n  top: -2px;\n}\n.map .boss-close {\n  width: 250px;\n  height: 190px;\n  position: absolute;\n  z-index: 3;\n  top: 120px;\n  left: 80px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: not-allowed;\n  border: 1px solid #000;\n}\n.map .boss-close:hover:before {\n  content: url(" + __webpack_require__(38) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-15deg);\n          transform: rotate(-15deg);\n  top: 35px;\n  left: 150px;\n}\n.map .boss {\n  width: 250px;\n  height: 190px;\n  position: absolute;\n  z-index: 3;\n  top: 120px;\n  left: 80px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .boss:hover:before {\n  content: url(" + __webpack_require__(15) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-15deg);\n          transform: rotate(-15deg);\n  top: 35px;\n  left: 150px;\n}\n.map .chi {\n  width: 180px;\n  height: 116px;\n  position: absolute;\n  z-index: 3;\n  top: 362px;\n  left: 87px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .chi:hover:before {\n  content: url(" + __webpack_require__(30) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-15deg);\n          transform: rotate(-15deg);\n  top: 55px;\n  left: 50px;\n}\n.map .chi-passed {\n  width: 180px;\n  height: 116px;\n  position: absolute;\n  z-index: 3;\n  top: 362px;\n  left: 87px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: not-allowed;\n  border: 1px solid #000;\n}\n.map .chi-passed:hover:before {\n  content: url(" + __webpack_require__(39) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-15deg);\n          transform: rotate(-15deg);\n  top: 55px;\n  left: 50px;\n}\n.map .goose {\n  width: 160px;\n  height: 127px;\n  position: absolute;\n  z-index: 3;\n  top: 336px;\n  left: 400px;\n  -webkit-transform: rotate(-18deg);\n          transform: rotate(-18deg);\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .goose:hover:before {\n  content: url(" + __webpack_require__(40) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(18deg);\n          transform: rotate(18deg);\n  top: 55px;\n  left: 50px;\n}\n.map .goose-passed {\n  width: 160px;\n  height: 127px;\n  position: absolute;\n  z-index: 3;\n  top: 336px;\n  left: 400px;\n  -webkit-transform: rotate(-18deg);\n          transform: rotate(-18deg);\n  border-radius: 70px;\n  cursor: not-allowed;\n  border: 1px solid #000;\n}\n.map .goose-passed:hover:before {\n  content: url(" + __webpack_require__(41) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(18deg);\n          transform: rotate(18deg);\n  top: 55px;\n  left: 50px;\n}\n.map .lazy {\n  width: 140px;\n  height: 107px;\n  position: absolute;\n  z-index: 3;\n  top: 147px;\n  left: 449px;\n  -webkit-transform: rotate(23deg);\n          transform: rotate(23deg);\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .lazy:hover:before {\n  content: url(" + __webpack_require__(35) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-23deg);\n          transform: rotate(-23deg);\n  top: 55px;\n  left: 50px;\n}\n.map .lazy-passed {\n  width: 140px;\n  height: 107px;\n  position: absolute;\n  z-index: 3;\n  top: 147px;\n  left: 449px;\n  -webkit-transform: rotate(23deg);\n          transform: rotate(23deg);\n  border-radius: 70px;\n  cursor: not-allowed;\n  border: 1px solid #000;\n}\n.map .lazy-passed:hover:before {\n  content: url(" + __webpack_require__(42) + ");\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-23deg);\n          transform: rotate(-23deg);\n  top: 55px;\n  left: 50px;\n}\n.map .gir {\n  width: 126px;\n  height: 221px;\n  position: absolute;\n  z-index: 3;\n  top: 122px;\n  left: 695px;\n  border-radius: 70px;\n  cursor: pointer;\n  border: 1px solid #000;\n}\n.map .gir:hover:before {\n  content: url(" + __webpack_require__(32) + ");\n  position: relative;\n  display: block;\n  top: 207px;\n  left: 35px;\n}\n.map .gir-passed {\n  width: 126px;\n  height: 221px;\n  position: absolute;\n  z-index: 3;\n  top: 122px;\n  left: 695px;\n  border-radius: 70px;\n  cursor: not-allowed;\n  border: 1px solid #000;\n}\n.map .gir-passed:hover:before {\n  content: url(" + __webpack_require__(33) + ");\n  position: relative;\n  display: block;\n  top: 207px;\n  left: 35px;\n}\n.map .plan {\n  font-size: 30px;\n  width: 389px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 30px;\n}\n.map .info {\n  width: 31px;\n  height: 31px;\n  background-image: url(" + __webpack_require__(34) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 881px;\n}\n.map .info:hover {\n  background-position: -31px 0;\n  cursor: pointer;\n}\n.map .shine_diamond {\n  position: relative;\n  top: -67px;\n  left: 141px;\n}\n.map .points {\n  display: inline-block;\n  width: 50px;\n  text-align: center;\n  position: relative;\n  left: 99px;\n  top: -46px;\n  color: #000;\n  font-size: 24px;\n}\n.map .cat {\n  position: relative;\n  left: 691px;\n  top: -51px;\n}\n.map #userName {\n  position: relative;\n  left: 650px;\n  top: -41px;\n  font-size: 13px;\n}\n.map .compass {\n  position: relative;\n  left: -808px;\n  top: -417px;\n}\n.map .islands {\n  position: relative;\n  left: 36px;\n  top: -45px;\n}\n.map .rigth-hand {\n  position: absolute;\n  left: 885px;\n  top: 220px;\n}\n.map .left-hand {\n  position: absolute;\n  left: -172px;\n  top: 220px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n.attack {\n  position: absolute;\n  z-index: 2;\n}\n.attack .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(7) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.attack .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.attack .image-attack {\n  position: relative;\n  top: 34px;\n  left: 93px;\n}\n.attack #attackBtn {\n  font-size: 30px;\n  color: #000;\n  position: relative;\n  top: -600px;\n  left: 378px;\n  height: 42px;\n  width: 100px;\n  padding-left: 19px;\n  padding-top: 8px;\n}\n.attack #attackBtn:hover {\n  color: #f65263;\n  cursor: pointer;\n  -webkit-transition: all 0.2s;\n  transition: all 0.2s;\n}\n.attack #attackBtn:active {\n  color: #000;\n  -webkit-transform: scale(0.94);\n          transform: scale(0.94);\n}\n.attack .fate-obj {\n  height: 102px;\n  width: 102px;\n  border-radius: 12px;\n  border: 2px dashed #e0e0e0;\n  position: relative;\n}\n.attack .fate-obj:hover {\n  border-color: #f65263;\n  cursor: pointer;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.attack .fate-obj:active {\n  border-color: #6a111a;\n  -webkit-transform: scale(0.96);\n          transform: scale(0.96);\n}\n.attack .choosen-fate {\n  border: 2px solid #f65263;\n}\n.attack .fate1 {\n  top: -262px;\n  left: 107px;\n}\n.attack .fate2 {\n  top: -368px;\n  left: 258px;\n}\n.attack .fate3 {\n  top: -474px;\n  left: 409px;\n}\n.attack .fate4 {\n  top: -580px;\n  left: 561px;\n}\n.attack .fate5 {\n  top: -686px;\n  left: 712px;\n}\n.attack .attack-error-text {\n  opacity: 0;\n  width: 190px;\n  color: #f65263;\n  font-size: 17px;\n  position: relative;\n  top: -622px;\n  left: 355px;\n}\n.attack .visible {\n  opacity: 1;\n}\n.outcome {\n  position: absolute;\n  z-index: 2;\n}\n.outcome .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(7) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.outcome .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.outcome .outcome-text {\n  font-size: 20px;\n  width: 600px;\n  position: relative;\n  text-align: center;\n  display: table-cell;\n  margin: 0;\n  padding: 205px 170px;\n  vertical-align: middle;\n}\n.outcome .points-result {\n  position: absolute;\n  width: 930px;\n  top: 33px;\n  font-size: 50px;\n  text-align: center;\n  color: #f65263;\n}\n.outcome .green {\n  color: #5ea27d;\n}\n.outcome .okay {\n  background-image: url(" + __webpack_require__(16) + ");\n  width: 116px;\n  height: 45px;\n  position: absolute;\n  z-index: 3;\n  top: 431px;\n  left: 396px;\n  border-radius: 10px;\n  font-family: Alabama, sans-serif;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  letter-spacing: 0.05em;\n  text-align: center;\n}\n.outcome .okay:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.github {\n  position: fixed;\n  left: 10px;\n  top: 10px;\n  height: 27px;\n  width: 28px;\n}\n.github:before {\n  content: url(" + __webpack_require__(8) + ");\n}\n", ""]);
 
 // exports
 
@@ -2910,12 +2918,7 @@ exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url("
 module.exports = __webpack_require__.p + "images/chi_hint.png";
 
 /***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/dol_hint.png";
-
-/***/ }),
+/* 31 */,
 /* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2945,6 +2948,36 @@ module.exports = __webpack_require__.p + "images/lazy_hint.png";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/papper.png";
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/boss_close_hint.png";
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/chi_passed_hint.png";
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/goose_hint.png";
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/goose_passed_hint.png";
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/lazy_passed_hint.png";
 
 /***/ })
 /******/ ]);

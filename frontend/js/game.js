@@ -20,6 +20,7 @@ function ready () {
     let $enemiesImages = document.querySelectorAll(".image-attack");
     let $outcome = $(".outcome");
     let $outcomeText = $(".outcome-text");
+    let $pointsResult = $(".points-result");
 
     let $gir = $(".gir");
     let $lazy = $(".lazy");
@@ -43,7 +44,8 @@ function ready () {
 
 
     // ATACK THE ISLAND
-    let showAttack = function(enemy) {
+    let showAttack = function(e) {
+        let enemy = e.currentTarget.classList[0];
         let imageToShow = null;
         $enemiesImages.forEach((image) => {
             if (image.getAttribute("data-enemy-image") == enemy) imageToShow = image;
@@ -54,10 +56,10 @@ function ready () {
         show($attack);
     }
 
-    $gir.addEventListener("click", () => showAttack("gir"));   
-    $lazy.addEventListener("click", () => showAttack("lazy"));   
-    $goose.addEventListener("click", () => showAttack("goose"));   
-    $chi.addEventListener("click", () => showAttack("chi"));   
+    $gir.addEventListener("click", showAttack);   
+    $lazy.addEventListener("click", showAttack);   
+    $goose.addEventListener("click", showAttack);   
+    $chi.addEventListener("click", showAttack);   
 
     // CHOOSE FATE OBJECT
     $fateObj.forEach((fate, i) => fate.addEventListener("click", () => {     
@@ -72,6 +74,8 @@ function ready () {
             $attackErrorText.classList.add("visible");
             return;
         }
+
+        let enemy = $attack.getAttribute("data-enemy");
         fetch('/game', {
             credentials: 'same-origin',
             method: 'POST',
@@ -79,16 +83,30 @@ function ready () {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                enemy: $attack.getAttribute("data-enemy"),
+                enemy: enemy,
                 fateObj: $attackBtn.getAttribute("chosen-object-number")
             })
         })
         .then(checkStatus)
-        .then(res => res.text())
+        .then(res => {
+            $points.textContent = res.headers.get("points");
+            if (res.headers.get("win") === "true") {
+                $pointsResult.textContent = "Победа!";
+                $pointsResult.classList.add("green");
+                let winedEnemy = document.getElementsByClassName(enemy)[0];
+                winedEnemy.removeEventListener("click", showAttack);
+                winedEnemy.classList.remove(enemy); 
+                winedEnemy.classList.add(enemy + "-passed");
+            } else {
+                $pointsResult.textContent = "Поражение!";
+                $pointsResult.classList.remove("green");
+            }
+            return res.text()
+        })
         .then(text => {
             $outcomeText.textContent = text;
             hide($attack);
-            show($outcome);  
+            show($outcome); 
         })
         .then( () => {
             $fateObj.forEach(fate => fate.classList.remove("choosen-fate"));

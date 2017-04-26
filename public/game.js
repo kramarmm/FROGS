@@ -2786,6 +2786,9 @@ function ready() {
         json.showRules ? (0, _showHide.show)($rules) : (0, _showHide.show)($map);
         $points.textContent = json.points;
         $userName.textContent = json.login;
+        json.passedIslands.forEach(function (island) {
+            return removeE(island);
+        });
     }).catch(function (error) {
         return console.log(error);
     });
@@ -2839,13 +2842,12 @@ function ready() {
             })
         }).then(_checkStatus2.default).then(function (res) {
             $points.textContent = res.headers.get("points");
+
             if (res.headers.get("win") === "true") {
                 $pointsResult.textContent = "Победа!";
                 $pointsResult.classList.add("green");
-                var winedEnemy = document.getElementsByClassName(enemy)[0];
-                winedEnemy.removeEventListener("click", showAttack);
-                winedEnemy.classList.remove(enemy);
-                winedEnemy.classList.add(enemy + "-passed");
+
+                removeE(enemy);
             } else {
                 $pointsResult.textContent = "Поражение!";
                 $pointsResult.classList.remove("green");
@@ -2868,6 +2870,14 @@ function ready() {
             return console.log(error);
         });
     });
+
+    // REMOVE EVENT LISTENERS FROM WINED ENEMIES
+    var removeE = function removeE(enemy) {
+        var winedEnemy = document.getElementsByClassName(enemy)[0];
+        winedEnemy.removeEventListener("click", showAttack);
+        winedEnemy.classList.remove(enemy);
+        winedEnemy.classList.add(enemy + "-passed");
+    };
 
     // CLOSE AND OKAY BUTTONS
     var close = function close(elem, num) {

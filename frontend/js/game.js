@@ -39,6 +39,7 @@ function ready () {
         json.showRules ? show($rules) : show($map);
         $points.textContent = json.points;
         $userName.textContent = json.login;
+        json.passedIslands.forEach(island => removeE(island));
     })
     .catch(error => console.log(error));
 
@@ -90,13 +91,13 @@ function ready () {
         .then(checkStatus)
         .then(res => {
             $points.textContent = res.headers.get("points");
+
             if (res.headers.get("win") === "true") {
                 $pointsResult.textContent = "Победа!";
                 $pointsResult.classList.add("green");
-                let winedEnemy = document.getElementsByClassName(enemy)[0];
-                winedEnemy.removeEventListener("click", showAttack);
-                winedEnemy.classList.remove(enemy); 
-                winedEnemy.classList.add(enemy + "-passed");
+
+                removeE(enemy);
+
             } else {
                 $pointsResult.textContent = "Поражение!";
                 $pointsResult.classList.remove("green");
@@ -116,6 +117,14 @@ function ready () {
         })
         .catch(error => console.log(error))
     });
+
+    // REMOVE EVENT LISTENERS FROM WINED ENEMIES
+    let removeE = (enemy) => {
+        let winedEnemy = document.getElementsByClassName(enemy)[0];
+        winedEnemy.removeEventListener("click", showAttack);
+        winedEnemy.classList.remove(enemy); 
+        winedEnemy.classList.add(enemy + "-passed");
+    }
 
     // CLOSE AND OKAY BUTTONS
     let close = (elem, num) => {

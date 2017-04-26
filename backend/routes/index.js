@@ -9,6 +9,6 @@ app.post('/signin', require("./signin").post);
 app.get("/game", checkAuth, require("./game").get);
 app.post("/game", require("./game").post);
 app.put("/game", require("./game").put);
-app.get("/user/info", checkAuth, require("./userInfo").get);
+app.get("/user/info", checkAuth, require("./user_info").get);
 
 }

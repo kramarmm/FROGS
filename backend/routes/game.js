@@ -3,10 +3,12 @@ var outcome = require('./outcome.json');
 var checkWin = require('../middleware/checkWin');
 var User = require('../models/user').User;
 
+// GET GAME PAGE
 exports.get = (req, res, next) => {
     res.sendFile(path.join(__dirname, '../../public', "game.html"));    
 }
 
+// POST USER CHOICE AND CHECK IT FOR WIN
 exports.post = (req, res, next) => {
     User.findById(req.session.user, function(err, user) {
         if (err) return next(err); 
@@ -28,5 +30,10 @@ exports.put = (req, res, next) => {
         if (err) return next(err); 
         User.update({ _id: user._id }, { $set: { points: 3 }}, err => err);
     });
+    res.json({points: user.points});
+    res.end();
 }
-    
+
+
+
+

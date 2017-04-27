@@ -26,6 +26,7 @@ function ready () {
     let $lazy = $(".lazy");
     let $goose = $(".goose");
     let $chi = $(".chi");    
+    let $boss = $(".boss-close");    
     
 
     // GET USER DATA
@@ -57,6 +58,8 @@ function ready () {
         show($attack);
     }
 
+    // EVENT LISTENERS FOR ALL ISLANDS    
+    let eventCounter = 4;
     $gir.addEventListener("click", showAttack);   
     $lazy.addEventListener("click", showAttack);   
     $goose.addEventListener("click", showAttack);   
@@ -92,12 +95,14 @@ function ready () {
         .then(res => {
             $points.textContent = res.headers.get("points");
 
+            // WIN 
             if (res.headers.get("win") === "true") {
                 $pointsResult.textContent = "Победа!";
                 $pointsResult.classList.add("green");
 
                 removeE(enemy);
 
+            // LOSE
             } else {
                 $pointsResult.textContent = "Поражение!";
                 $pointsResult.classList.remove("green");
@@ -110,6 +115,7 @@ function ready () {
             show($outcome); 
         })
         .then( () => {
+            // CLEAR PREVIOUS ATTACK CHOISE
             $fateObj.forEach(fate => fate.classList.remove("choosen-fate"));
             $attackBtn.setAttribute("chosen-object-number", "");
             $attackErrorText.classList.remove("visible");
@@ -124,10 +130,33 @@ function ready () {
         winedEnemy.removeEventListener("click", showAttack);
         winedEnemy.classList.remove(enemy); 
         winedEnemy.classList.add(enemy + "-passed");
+    // CHECK IF BOSS IS AVAILABLE 
+        eventCounter--;
+        if (!eventCounter) showBoss();
+    }
+
+    // SHOW BOSS 
+    let showBoss = () => {
+        $boss.classList.remove("boss-close");
+        $boss.classList.add("boss");
+
+        $boss.addEventListener("click", () => {
+            fetch('/game/boss', {
+                credentials: 'same-origin',
+                method: 'POST'        
+            })
+            .then(checkStatus)
+            .then(res => {
+                hide($map);
+                return res.text();
+            })
+            .then(text => console.log(text))
+            .catch(error => console.log(error));            
+        }); 
     }
 
     // CLOSE AND OKAY BUTTONS
-    let close = (elem, num) => {
+    let close = elem => {
         if (elem.parentElement === $attack) $enemiesImages.forEach(image => hide(image));
         hide(elem.parentElement);
         show($map);

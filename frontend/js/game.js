@@ -20,7 +20,9 @@ function ready () {
     let $enemiesImages = document.querySelectorAll(".image-attack");
     let $outcome = $(".outcome");
     let $outcomeText = $(".outcome-text");
-    let $pointsResult = $(".points-result");
+    let $attackResult = $(".attack-result");
+    let $dimondsEnd = $(".dimonds-end");
+    let $secconds = $("#secconds");
 
     let $gir = $(".gir");
     let $lazy = $(".lazy");
@@ -46,10 +48,10 @@ function ready () {
 
 
     // ATACK THE ISLAND
-    let showAttack = function(e) {
+    let showAttack = e => {
         let enemy = e.currentTarget.classList[0];
         let imageToShow = null;
-        $enemiesImages.forEach((image) => {
+        $enemiesImages.forEach(image => {
             if (image.getAttribute("data-enemy-image") == enemy) imageToShow = image;
         });
         $attack.setAttribute("data-enemy", enemy);
@@ -77,7 +79,7 @@ function ready () {
         if (!$attackBtn.getAttribute("chosen-object-number")) {
             $attackErrorText.classList.add("visible");
             return;
-        }
+        }        
 
         let enemy = $attack.getAttribute("data-enemy");
         fetch('/game', {
@@ -93,19 +95,20 @@ function ready () {
         })
         .then(checkStatus)
         .then(res => {
-            $points.textContent = res.headers.get("points");
 
             // WIN 
             if (res.headers.get("win") === "true") {
-                $pointsResult.textContent = "Победа!";
-                $pointsResult.classList.add("green");
+                $attackResult.textContent = "Победа!";
+                $attackResult.classList.add("green");
+                $points.textContent = ++$points.textContent;
 
                 removeE(enemy);
 
             // LOSE
             } else {
-                $pointsResult.textContent = "Поражение!";
-                $pointsResult.classList.remove("green");
+                $attackResult.textContent = "Поражение!";
+                $attackResult.classList.remove("green");
+                $points.textContent = --$points.textContent;
             }
             return res.text()
         })
@@ -121,8 +124,39 @@ function ready () {
             $attackErrorText.classList.remove("visible");
             $enemiesImages.forEach(image => hide(image));
         })
+        .then( () => {
+            // DIMONDS IS END
+            if ($points.textContent <= "0") {
+                $(".outcome>.close").addEventListener("click", blockGame);                
+                $(".outcome>.okay").addEventListener("click", blockGame);                        
+            } 
+        })
         .catch(error => console.log(error))
     });
+
+    // BLOCK GAME PROCESS 
+    let blockGame = e => {
+        hide($map);
+        show($dimondsEnd);
+        var timer = self.setInterval(() => {
+            --$secconds.textContent;
+            if ($secconds.textContent == "0") {
+                window.clearInterval(timer);
+                $(".outcome>.close").removeEventListener("click", blockGame);                
+                $(".outcome>.okay").removeEventListener("click", blockGame);
+                $points.textContent = 3;
+                show($map);
+                hide($dimondsEnd);
+
+                // MAKE UPDATING USER POINTS IN DB
+                fetch('/game', {
+                    credentials: 'same-origin',
+                    method: 'PUT'        
+                })
+                .catch(error => console.log(error));       
+            }                    
+        }, 1000); 
+    }
 
     // REMOVE EVENT LISTENERS FROM WINED ENEMIES
     let removeE = (enemy) => {
@@ -143,7 +177,7 @@ function ready () {
         $boss.addEventListener("click", () => {
             fetch('/game/boss', {
                 credentials: 'same-origin',
-                method: 'POST'        
+                method: 'GET'        
             })
             .then(checkStatus)
             .then(res => {
@@ -154,6 +188,7 @@ function ready () {
             .catch(error => console.log(error));            
         }); 
     }
+
 
     // CLOSE AND OKAY BUTTONS
     let close = elem => {

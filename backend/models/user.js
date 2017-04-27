@@ -30,6 +30,10 @@ var schema = new Schema({
   showRules: {
     type: Boolean,
     default: true
+  },
+  bossWasSeen: {
+    type: Boolean,
+    default: false
   }
 });
 

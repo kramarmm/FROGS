@@ -11,12 +11,13 @@ exports.get = (req, res, next) => {
 // POST USER CHOICE AND CHECK IT FOR WIN
 exports.post = (req, res, next) => {
     User.findById(req.session.user, function(err, user) {
-        if (err) return next(err); 
-
-        User.update({ _id: user._id }, {$set: { points: --user.points }}, err => err); 
+        if (err) return next(err);          
 
         if (checkWin(req.body.enemy, req.body.fateObj)) {
-            User.update({ _id: user._id }, {$push: { passedIslands: req.body.enemy }}, err => err); 
+            User.update({ _id: user._id }, {$push: { passedIslands: req.body.enemy }}, err => err);
+            User.update({ _id: user._id }, {$set: { points: ++user.points }}, err => err); 
+        } else {
+            User.update({ _id: user._id }, {$set: { points: --user.points }}, err => err);
         }
 
         res.set("win", checkWin(req.body.enemy, req.body.fateObj));
@@ -25,13 +26,13 @@ exports.post = (req, res, next) => {
     });
 }
 
+// UPDATE USER POINTS +3
 exports.put = (req, res, next) => {
     User.findById(req.session.user, function(err, user) {
         if (err) return next(err); 
-        User.update({ _id: user._id }, { $set: { points: 3 }}, err => err);
-    });
-    res.json({points: user.points});
-    res.end();
+
+        User.update({ _id: user._id }, { $set: { points: 3 }}, err => err);    
+    });   
 }
 
 

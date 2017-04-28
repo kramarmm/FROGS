@@ -1,4 +1,4 @@
-import checkAuthStatus from "../helper/checkAuthStatus";
+import checkAuthStatus from "./checkAuthStatus";
 
 let signinPost = (login, password) => {
 fetch('/signin', {

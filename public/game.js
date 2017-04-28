@@ -2780,6 +2780,17 @@ function ready() {
     var $chi = (0, _querySelector.$)(".chi");
     var $boss = (0, _querySelector.$)(".boss-close");
 
+    // SOUNDS  
+    var $succesAuth = (0, _querySelector.$)(".succes-auth");
+    var $loseSound = (0, _querySelector.$)(".lose-sound");
+    var $winSound = (0, _querySelector.$)(".win-sound");
+    var $buttonsSound = (0, _querySelector.$)(".buttons-sound");
+    var $islandSound = (0, _querySelector.$)(".island-sound");
+    var $dimondsSound = (0, _querySelector.$)(".dimonds-sound");
+    var $bossSound = (0, _querySelector.$)(".boss-sound");
+
+    $succesAuth.play();
+
     // GET USER DATA
     fetch('/user/info', {
         credentials: 'same-origin',
@@ -2803,6 +2814,8 @@ function ready() {
 
     // ATACK THE ISLAND
     var showAttack = function showAttack(e) {
+        $islandSound.play();
+
         var enemy = e.currentTarget.classList[0];
         var imageToShow = null;
         $enemiesImages.forEach(function (image) {
@@ -2824,6 +2837,8 @@ function ready() {
     // CHOOSE FATE OBJECT
     $fateObj.forEach(function (fate, i) {
         return fate.addEventListener("click", function () {
+            $buttonsSound.play();
+
             $fateObj.forEach(function (fate) {
                 return fate.classList.remove("choosen-fate");
             });
@@ -2854,6 +2869,7 @@ function ready() {
 
             // WIN 
             if (res.headers.get("win") === "true") {
+                $winSound.play();
                 $attackResult.textContent = "Победа!";
                 $attackResult.classList.add("green");
                 $points.textContent = ++$points.textContent;
@@ -2862,6 +2878,7 @@ function ready() {
 
                 // LOSE
             } else {
+                $loseSound.play();
                 $attackResult.textContent = "Поражение!";
                 $attackResult.classList.remove("green");
                 $points.textContent = --$points.textContent;
@@ -2894,7 +2911,9 @@ function ready() {
 
     // BLOCK GAME PROCESS 
     var blockGame = function blockGame(e) {
+        $dimondsSound.play();
         (0, _showHide.show)($dimondsEnd);
+
         var timer = self.setInterval(function () {
             --$secconds.textContent;
 
@@ -2904,6 +2923,7 @@ function ready() {
                 (0, _querySelector.$)(".outcome>.okay").removeEventListener("click", blockGame);
                 $points.textContent = 3;
                 (0, _showHide.hide)($dimondsEnd);
+                $secconds.textContent = 30;
 
                 // MAKE UPDATING USER POINTS IN DB
                 fetch('/game', {
@@ -2953,6 +2973,8 @@ function ready() {
 
     // CLOSE AND OKAY BUTTONS
     var close = function close(e) {
+        $buttonsSound.play();
+
         if (e.currentTarget.parentElement === $attack) $enemiesImages.forEach(function (image) {
             return (0, _showHide.hide)(image);
         });
@@ -2974,6 +2996,7 @@ function ready() {
 
     // INFO BUTTON
     $info.addEventListener("click", function () {
+        $buttonsSound.play();
         (0, _showHide.hide)($map);
         (0, _showHide.show)($rules);
     });

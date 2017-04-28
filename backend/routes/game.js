@@ -31,7 +31,8 @@ exports.put = (req, res, next) => {
     User.findById(req.session.user, function(err, user) {
         if (err) return next(err); 
 
-        User.update({ _id: user._id }, { $set: { points: 3 }}, err => err);    
+        User.update({ _id: user._id }, { $set: { points: 3 }}, err => err);   
+        res.end(); 
     });   
 }
 

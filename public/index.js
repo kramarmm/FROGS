@@ -2629,41 +2629,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var checkAuthStatus = function checkAuthStatus(res) {
-    if (res.status === 403) {
-        var errorsOutput = document.querySelector(".invalid-data");
-        switch (res.headers.get("errorMessage")) {
-            case "Incorrect password":
-                errorsOutput.textContent = "Неверный пароль";
-                break;
-            case "No such user":
-                errorsOutput.textContent = "Нет пользовтеля с таким логином";
-                break;
-            case "Login is already in use":
-                errorsOutput.textContent = "Логин уже используется";
-                break;
-        }
-        return;
-    }
-    if (res.status === 200) {
-        document.location.href = "/game";
-    } else {
-        return err;
-    }
-};
-
-exports.default = checkAuthStatus;
-
-/***/ }),
+/* 15 */,
 /* 16 */,
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -2784,7 +2750,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _checkAuthStatus = __webpack_require__(15);
+var _checkAuthStatus = __webpack_require__(39);
 
 var _checkAuthStatus2 = _interopRequireDefault(_checkAuthStatus);
 
@@ -2820,7 +2786,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _checkAuthStatus = __webpack_require__(15);
+var _checkAuthStatus = __webpack_require__(39);
 
 var _checkAuthStatus2 = _interopRequireDefault(_checkAuthStatus);
 
@@ -2911,6 +2877,42 @@ exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url("
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/login_btn.png";
+
+/***/ }),
+/* 38 */,
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var checkAuthStatus = function checkAuthStatus(res) {
+    if (res.status === 403) {
+        var errorsOutput = document.querySelector(".invalid-data");
+        switch (res.headers.get("errorMessage")) {
+            case "Incorrect password":
+                errorsOutput.textContent = "Неверный пароль";
+                break;
+            case "No such user":
+                errorsOutput.textContent = "Нет пользовтеля с таким логином";
+                break;
+            case "Login is already in use":
+                errorsOutput.textContent = "Логин уже используется";
+                break;
+        }
+        return;
+    }
+    if (res.status === 200) {
+        document.location.href = "/game";
+    } else {
+        return err;
+    }
+};
+
+exports.default = checkAuthStatus;
 
 /***/ })
 /******/ ]);

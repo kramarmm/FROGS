@@ -29,8 +29,18 @@ function ready () {
     let $lazy = $(".lazy");
     let $goose = $(".goose");
     let $chi = $(".chi");    
-    let $boss = $(".boss-close");    
-    
+    let $boss = $(".boss-close"); 
+
+    // SOUNDS  
+    let $succesAuth = $(".succes-auth");    
+    let $loseSound = $(".lose-sound");    
+    let $winSound = $(".win-sound");    
+    let $buttonsSound = $(".buttons-sound");    
+    let $islandSound = $(".island-sound");    
+    let $dimondsSound = $(".dimonds-sound");    
+    let $bossSound = $(".boss-sound");       
+
+    $succesAuth.play();
 
     // GET USER DATA
     fetch('/user/info', {
@@ -54,6 +64,8 @@ function ready () {
 
     // ATACK THE ISLAND
     let showAttack = e => {
+        $islandSound.play();
+
         let enemy = e.currentTarget.classList[0];
         let imageToShow = null;
         $enemiesImages.forEach(image => {
@@ -74,6 +86,8 @@ function ready () {
 
     // CHOOSE FATE OBJECT
     $fateObj.forEach((fate, i) => fate.addEventListener("click", () => {     
+        $buttonsSound.play();
+
         $fateObj.forEach(fate => fate.classList.remove("choosen-fate"));
         fate.classList.add("choosen-fate");
         $attackBtn.setAttribute("chosen-object-number", i);
@@ -85,7 +99,7 @@ function ready () {
             $attackErrorText.classList.add("visible");
             return;
         }        
-
+        
         let enemy = $attack.getAttribute("data-enemy");
         fetch('/game', {
             credentials: 'same-origin',
@@ -103,6 +117,7 @@ function ready () {
 
             // WIN 
             if (res.headers.get("win") === "true") {
+                $winSound.play();
                 $attackResult.textContent = "Победа!";
                 $attackResult.classList.add("green");
                 $points.textContent = ++$points.textContent;
@@ -110,7 +125,8 @@ function ready () {
                 removeE(enemy);
 
             // LOSE
-            } else {
+        } else {
+                $loseSound.play();
                 $attackResult.textContent = "Поражение!";
                 $attackResult.classList.remove("green");
                 $points.textContent = --$points.textContent;
@@ -141,7 +157,9 @@ function ready () {
 
     // BLOCK GAME PROCESS 
     let blockGame = e => {
+        $dimondsSound.play();
         show($dimondsEnd);
+
         var timer = self.setInterval(() => {
             --$secconds.textContent;
 
@@ -151,6 +169,7 @@ function ready () {
                 $(".outcome>.okay").removeEventListener("click", blockGame);
                 $points.textContent = 3;
                 hide($dimondsEnd);
+                $secconds.textContent = 30;
 
                 // MAKE UPDATING USER POINTS IN DB
                 fetch('/game', {
@@ -200,6 +219,8 @@ function ready () {
 
     // CLOSE AND OKAY BUTTONS
     let close = e => {
+        $buttonsSound.play();
+
         if (e.currentTarget.parentElement === $attack) $enemiesImages.forEach(image => hide(image));
         hide(e.currentTarget.parentElement);
         show($map);
@@ -213,6 +234,7 @@ function ready () {
 
     // INFO BUTTON
     $info.addEventListener("click", () => {
+        $buttonsSound.play();
         hide($map);
         show($rules);        
     });

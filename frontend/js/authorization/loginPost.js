@@ -1,4 +1,4 @@
-import checkAuthStatus from "../helper/checkAuthStatus";
+import checkAuthStatus from "./checkAuthStatus";
 
 let $invalidData = document.querySelector(".invalid-data");
 let loginPost = (login, password) => {

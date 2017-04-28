@@ -42,7 +42,7 @@ module.exports = {
                 exclude: "/node_modules/"
             },            
             {
-                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+                test: /\.(png|cur|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
                 loader: "file-loader?name=[path][name].[ext]", 
                 exclude: "/node_modules/"
             }

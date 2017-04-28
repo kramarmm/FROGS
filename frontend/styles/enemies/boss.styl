@@ -7,16 +7,9 @@
     left 108px
     transform rotate(15deg)
     border-radius 70px
-    cursor not-allowed
+    cursor url(../../images/cursor_no.png), not-allowed
     border 1px solid black
 
-    &:hover:before
-        content url('../../images/boss_close_hint.png')
-        position relative
-        display block
-        transform rotate(-15deg)
-        top -63px
-        left 150px
 
 .boss
     width 250px
@@ -29,11 +22,3 @@
     border-radius 70px
     cursor pointer
     border 1px solid black
-
-    &:hover:before
-        content url('../../images/boss_hint.png')
-        position relative
-        display block
-        transform rotate(-15deg)
-        top -63px
-        left 150px

@@ -23,6 +23,7 @@ function ready () {
     let $attackResult = $(".attack-result");
     let $dimondsEnd = $(".dimonds-end");
     let $secconds = $("#secconds");
+    let $theEnd = $(".the-end");
 
     let $gir = $(".gir");
     let $lazy = $(".lazy");
@@ -39,6 +40,10 @@ function ready () {
     .then(checkStatus)
     .then(res => res.json())
     .then(json => {
+        if (json.bossWasSeen) {
+            getBossOutcome();
+            return;
+        }
         json.showRules ? show($rules) : show($map);
         $points.textContent = json.points;
         $userName.textContent = json.login;
@@ -136,16 +141,15 @@ function ready () {
 
     // BLOCK GAME PROCESS 
     let blockGame = e => {
-        hide($map);
         show($dimondsEnd);
         var timer = self.setInterval(() => {
             --$secconds.textContent;
-            if ($secconds.textContent == "0") {
+
+            if (parseInt($secconds.textContent) <= 0) {
                 window.clearInterval(timer);
                 $(".outcome>.close").removeEventListener("click", blockGame);                
                 $(".outcome>.okay").removeEventListener("click", blockGame);
                 $points.textContent = 3;
-                show($map);
                 hide($dimondsEnd);
 
                 // MAKE UPDATING USER POINTS IN DB
@@ -174,30 +178,38 @@ function ready () {
         $boss.classList.remove("boss-close");
         $boss.classList.add("boss");
 
-        $boss.addEventListener("click", () => {
-            fetch('/game/boss', {
-                credentials: 'same-origin',
-                method: 'GET'        
-            })
-            .then(checkStatus)
-            .then(res => {
-                hide($map);
-                return res.text();
-            })
-            .then(text => console.log(text))
-            .catch(error => console.log(error));            
-        }); 
+        $boss.addEventListener("click", getBossOutcome);        
     }
+
+    let getBossOutcome = () => {
+        fetch('/game/boss', {
+            credentials: 'same-origin',
+            method: 'GET'        
+        })
+        .then(checkStatus)
+        .then(res => res.text())
+        .then(text => {
+            console.log(text);
+            hide($map);
+            $theEnd.innerHTML = text;
+            show($theEnd);
+        })
+        .catch(error => console.log(error));  
+    }  
 
 
     // CLOSE AND OKAY BUTTONS
-    let close = elem => {
-        if (elem.parentElement === $attack) $enemiesImages.forEach(image => hide(image));
-        hide(elem.parentElement);
+    let close = e => {
+        if (e.currentTarget.parentElement === $attack) $enemiesImages.forEach(image => hide(image));
+        hide(e.currentTarget.parentElement);
         show($map);
+        // CLEAR PREVIOUS FATE OBJECT CHOICE
+        $attackErrorText.classList.remove("visible");
+        $fateObj.forEach(fate => fate.classList.remove("choosen-fate"));
     }
-    $close.forEach(closeBtn => closeBtn.addEventListener("click", () => close(closeBtn)));
-    $okay.forEach(okayBtn => okayBtn.addEventListener("click", () => close(okayBtn)));
+    
+    $close.forEach(closeBtn => closeBtn.addEventListener("click", close));
+    $okay.forEach(okayBtn => okayBtn.addEventListener("click", close));
 
     // INFO BUTTON
     $info.addEventListener("click", () => {

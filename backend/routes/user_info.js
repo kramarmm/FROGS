@@ -7,6 +7,7 @@ exports.get = (req, res, next) => {
         res.json({
             showRules: user.showRules,
             passedIslands: user.passedIslands,
+            bossWasSeen: user.bossWasSeen,
             points: user.points,
             login: user.login
         });

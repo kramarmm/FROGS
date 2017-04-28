@@ -2766,6 +2766,7 @@ function ready() {
     var $attackResult = (0, _querySelector.$)(".attack-result");
     var $dimondsEnd = (0, _querySelector.$)(".dimonds-end");
     var $secconds = (0, _querySelector.$)("#secconds");
+    var $theEnd = (0, _querySelector.$)(".the-end");
 
     var $gir = (0, _querySelector.$)(".gir");
     var $lazy = (0, _querySelector.$)(".lazy");
@@ -2780,6 +2781,10 @@ function ready() {
     }).then(_checkStatus2.default).then(function (res) {
         return res.json();
     }).then(function (json) {
+        if (json.bossWasSeen) {
+            getBossOutcome();
+            return;
+        }
         json.showRules ? (0, _showHide.show)($rules) : (0, _showHide.show)($map);
         $points.textContent = json.points;
         $userName.textContent = json.login;
@@ -2883,16 +2888,15 @@ function ready() {
 
     // BLOCK GAME PROCESS 
     var blockGame = function blockGame(e) {
-        (0, _showHide.hide)($map);
         (0, _showHide.show)($dimondsEnd);
         var timer = self.setInterval(function () {
             --$secconds.textContent;
-            if ($secconds.textContent == "0") {
+
+            if (parseInt($secconds.textContent) <= 0) {
                 window.clearInterval(timer);
                 (0, _querySelector.$)(".outcome>.close").removeEventListener("click", blockGame);
                 (0, _querySelector.$)(".outcome>.okay").removeEventListener("click", blockGame);
                 $points.textContent = 3;
-                (0, _showHide.show)($map);
                 (0, _showHide.hide)($dimondsEnd);
 
                 // MAKE UPDATING USER POINTS IN DB
@@ -2922,38 +2926,44 @@ function ready() {
         $boss.classList.remove("boss-close");
         $boss.classList.add("boss");
 
-        $boss.addEventListener("click", function () {
-            fetch('/game/boss', {
-                credentials: 'same-origin',
-                method: 'GET'
-            }).then(_checkStatus2.default).then(function (res) {
-                (0, _showHide.hide)($map);
-                return res.text();
-            }).then(function (text) {
-                return console.log(text);
-            }).catch(function (error) {
-                return console.log(error);
-            });
+        $boss.addEventListener("click", getBossOutcome);
+    };
+
+    var getBossOutcome = function getBossOutcome() {
+        fetch('/game/boss', {
+            credentials: 'same-origin',
+            method: 'GET'
+        }).then(_checkStatus2.default).then(function (res) {
+            return res.text();
+        }).then(function (text) {
+            console.log(text);
+            (0, _showHide.hide)($map);
+            $theEnd.innerHTML = text;
+            (0, _showHide.show)($theEnd);
+        }).catch(function (error) {
+            return console.log(error);
         });
     };
 
     // CLOSE AND OKAY BUTTONS
-    var close = function close(elem) {
-        if (elem.parentElement === $attack) $enemiesImages.forEach(function (image) {
+    var close = function close(e) {
+        if (e.currentTarget.parentElement === $attack) $enemiesImages.forEach(function (image) {
             return (0, _showHide.hide)(image);
         });
-        (0, _showHide.hide)(elem.parentElement);
+        (0, _showHide.hide)(e.currentTarget.parentElement);
         (0, _showHide.show)($map);
-    };
-    $close.forEach(function (closeBtn) {
-        return closeBtn.addEventListener("click", function () {
-            return close(closeBtn);
+        // CLEAR PREVIOUS FATE OBJECT CHOICE
+        $attackErrorText.classList.remove("visible");
+        $fateObj.forEach(function (fate) {
+            return fate.classList.remove("choosen-fate");
         });
+    };
+
+    $close.forEach(function (closeBtn) {
+        return closeBtn.addEventListener("click", close);
     });
     $okay.forEach(function (okayBtn) {
-        return okayBtn.addEventListener("click", function () {
-            return close(okayBtn);
-        });
+        return okayBtn.addEventListener("click", close);
     });
 
     // INFO BUTTON

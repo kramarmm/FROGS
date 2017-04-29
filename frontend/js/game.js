@@ -60,15 +60,18 @@ function ready () {
             getBossOutcome();
             return;
         }
-        $succesAuth.play();
+        if (localStorage.secconds > 0) {
+            $secconds.textContent = localStorage.secconds;
+            blockGame();
+        } else {
+            $succesAuth.play();
+        }
+        
         json.showRules ? show($rules) : show($map);
         $points.textContent = json.points;
         $userName.textContent = json.login;
         json.passedIslands.forEach(island => removeE(island));
-        if (localStorage.secconds) {
-            $secconds.textContent = localStorage.secconds;
-            blockGame();
-        } 
+ 
     })
     .catch(error => console.log(error));
 
@@ -204,7 +207,10 @@ function ready () {
                 --$secconds.textContent;
                 localStorage.secconds = $secconds.textContent;
 
-                if (parseInt($secconds.textContent) <= 0) {                    
+                if (parseInt($secconds.textContent) <= 0) { 
+                    $dimondsSound.pause();    
+                    $succesAuth.play();
+                                   
                     window.clearInterval(timer);
                     $(".outcome>.close").removeEventListener("click", blockGame);                
                     $(".outcome>.okay").removeEventListener("click", blockGame);

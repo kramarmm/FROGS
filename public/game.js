@@ -2807,17 +2807,19 @@ function ready() {
             getBossOutcome();
             return;
         }
-        $succesAuth.play();
+        if (localStorage.secconds > 0) {
+            $secconds.textContent = localStorage.secconds;
+            blockGame();
+        } else {
+            $succesAuth.play();
+        }
+
         json.showRules ? (0, _showHide.show)($rules) : (0, _showHide.show)($map);
         $points.textContent = json.points;
         $userName.textContent = json.login;
         json.passedIslands.forEach(function (island) {
             return removeE(island);
         });
-        if (localStorage.secconds) {
-            $secconds.textContent = localStorage.secconds;
-            blockGame();
-        }
     }).catch(function (error) {
         return console.log(error);
     });
@@ -2962,6 +2964,9 @@ function ready() {
                 localStorage.secconds = $secconds.textContent;
 
                 if (parseInt($secconds.textContent) <= 0) {
+                    $dimondsSound.pause();
+                    $succesAuth.play();
+
                     window.clearInterval(timer);
                     (0, _querySelector.$)(".outcome>.close").removeEventListener("click", blockGame);
                     (0, _querySelector.$)(".outcome>.okay").removeEventListener("click", blockGame);

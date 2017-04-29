@@ -10,13 +10,15 @@
     cursor pointer
     border 1px solid black
 
-    &:hover:before
-        content url('../../images/lazy_hint.png')
-        position relative
-        display block
-        transform rotate(-23deg)
-        top -34px
-        left -64px
+.lazy-hint
+    background-image url('../../images/lazy_hint.png')
+    position relative
+    z-index 3
+    display block 
+    top 21px
+    left 539px
+    width 149px
+    height 70px
 
 
 .lazy-passed

@@ -25,9 +25,13 @@ function ready () {
     let $secconds = $("#secconds");
     let $theEnd = $(".the-end");
 
+    // ISLANDS
     let $gir = $(".gir");
     let $lazy = $(".lazy");
+
     let $goose = $(".goose");
+    let $gooseHint = $(".goose-hint");
+
     let $chi = $(".chi");    
     let $boss = $(".boss-close"); 
 
@@ -61,6 +65,14 @@ function ready () {
     })
     .catch(error => console.log(error));
 
+    // MOUSEOVER
+    let mouseover = e => {
+        $("." + e.currentTarget.classList[0] + "-hint").classList.remove("transparent");   
+    }
+    // MOUSEOUT
+    let mouseout = e => {
+        $("." + e.currentTarget.classList[0] + "-hint").classList.add("transparent");     
+    }
 
     // ATACK THE ISLAND
     let showAttack = e => {
@@ -78,11 +90,23 @@ function ready () {
     }
 
     // EVENT LISTENERS FOR ALL ISLANDS    
+    let islandEventListeners = (toogle, ...theElems) => {
+        if (toogle === "add") {
+            theElems.forEach(elem => {
+                elem.addEventListener("click", showAttack);    
+                elem.addEventListener("mouseover", mouseover);    
+                elem.addEventListener("mouseout", mouseout);
+            })
+        } else if (toogle === "remove") {
+            theElems.forEach(elem => {
+                elem.removeEventListener("click", showAttack);    
+                elem.removeEventListener("mouseover", mouseover);    
+                elem.removeEventListener("mouseout", mouseout);
+            })
+        }
+    }
+    islandEventListeners("add",$gir, $lazy, $goose, $chi);
     let eventCounter = 4;
-    $gir.addEventListener("click", showAttack);   
-    $lazy.addEventListener("click", showAttack);   
-    $goose.addEventListener("click", showAttack);   
-    $chi.addEventListener("click", showAttack);   
 
     // CHOOSE FATE OBJECT
     $fateObj.forEach((fate, i) => fate.addEventListener("click", () => {     
@@ -184,7 +208,7 @@ function ready () {
     // REMOVE EVENT LISTENERS FROM WINED ENEMIES
     let removeE = (enemy) => {
         let winedEnemy = document.getElementsByClassName(enemy)[0];
-        winedEnemy.removeEventListener("click", showAttack);
+        islandEventListeners("remove", winedEnemy);
         winedEnemy.classList.remove(enemy); 
         winedEnemy.classList.add(enemy + "-passed");
     // CHECK IF BOSS IS AVAILABLE 

@@ -9,7 +9,8 @@ exports.get = (req, res, next) => {
             User.update({ _id: user._id }, {$set: { bossWasSeen: true }}, err => err);
         }
 
-        res.send('<img src="../images/boss_outcome.png" class="boss-image"/>');
+        res.write('<img src="../images/boss_outcome.png" class="boss-image"/>');
+        res.write('<img src="../images/boss_levitation.png" class="boss_levitation"/>');
         res.end();
     });
     

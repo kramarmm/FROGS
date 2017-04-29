@@ -23,6 +23,7 @@ function ready () {
     let $attackResult = $(".attack-result");
     let $dimondsEnd = $(".dimonds-end");
     let $secconds = $("#secconds");
+    let $accentOnBoss = $(".accent-on-boss");
     let $theEnd = $(".the-end");
 
     // ISLANDS
@@ -40,11 +41,12 @@ function ready () {
     let $loseSound = $(".lose-sound");    
     let $winSound = $(".win-sound");    
     let $buttonsSound = $(".buttons-sound");    
+    let $hintSound = $(".hint-sound");    
     let $islandSound = $(".island-sound");    
     let $dimondsSound = $(".dimonds-sound");    
-    let $bossSound = $(".boss-sound");       
+    let $bossSound = $(".boss-sound");
+    let $errorSound = $(".error-sound");      
 
-    $succesAuth.play();
 
     // GET USER DATA
     fetch('/user/info', {
@@ -58,15 +60,21 @@ function ready () {
             getBossOutcome();
             return;
         }
+        $succesAuth.play();
         json.showRules ? show($rules) : show($map);
         $points.textContent = json.points;
         $userName.textContent = json.login;
         json.passedIslands.forEach(island => removeE(island));
+        if (localStorage.secconds) {
+            $secconds.textContent = localStorage.secconds;
+            blockGame();
+        } 
     })
     .catch(error => console.log(error));
 
     // MOUSEOVER
     let mouseover = e => {
+        $hintSound.play();
         $("." + e.currentTarget.classList[0] + "-hint").classList.remove("transparent");   
     }
     // MOUSEOUT
@@ -115,11 +123,13 @@ function ready () {
         $fateObj.forEach(fate => fate.classList.remove("choosen-fate"));
         fate.classList.add("choosen-fate");
         $attackBtn.setAttribute("chosen-object-number", i);
+        $attackErrorText.classList.remove("visible");
     }));
 
     // POST ATTACK
     $attackBtn.addEventListener("click" , () => {
         if (!$attackBtn.getAttribute("chosen-object-number")) {
+            $errorSound.play();
             $attackErrorText.classList.add("visible");
             return;
         }        
@@ -183,26 +193,28 @@ function ready () {
     let blockGame = e => {
         $dimondsSound.play();
         show($dimondsEnd);
+        
+        // MAKE UPDATING USER POINTS IN DB
+        fetch('/game', {
+            credentials: 'same-origin',
+            method: 'PUT'        
+        })
+        .then( () => {
+            var timer = self.setInterval(() => {
+                --$secconds.textContent;
+                localStorage.secconds = $secconds.textContent;
 
-        var timer = self.setInterval(() => {
-            --$secconds.textContent;
-
-            if (parseInt($secconds.textContent) <= 0) {
-                window.clearInterval(timer);
-                $(".outcome>.close").removeEventListener("click", blockGame);                
-                $(".outcome>.okay").removeEventListener("click", blockGame);
-                $points.textContent = 3;
-                hide($dimondsEnd);
-                $secconds.textContent = 30;
-
-                // MAKE UPDATING USER POINTS IN DB
-                fetch('/game', {
-                    credentials: 'same-origin',
-                    method: 'PUT'        
-                })
-                .catch(error => console.log(error));       
-            }                    
-        }, 1000); 
+                if (parseInt($secconds.textContent) <= 0) {                    
+                    window.clearInterval(timer);
+                    $(".outcome>.close").removeEventListener("click", blockGame);                
+                    $(".outcome>.okay").removeEventListener("click", blockGame);
+                    $points.textContent = 3;
+                    hide($dimondsEnd);
+                    $secconds.textContent = 30;                       
+                }                    
+            }, 1000);
+        })
+        .catch(error => console.log(error)); 
     }
 
     // REMOVE EVENT LISTENERS FROM WINED ENEMIES
@@ -218,6 +230,7 @@ function ready () {
 
     // SHOW BOSS 
     let showBoss = () => {
+        show($accentOnBoss);
         $boss.classList.remove("boss-close");
         $boss.classList.add("boss");
 
@@ -225,6 +238,7 @@ function ready () {
     }
 
     let getBossOutcome = () => {
+        hide($accentOnBoss);
         fetch('/game/boss', {
             credentials: 'same-origin',
             method: 'GET'        
@@ -232,7 +246,8 @@ function ready () {
         .then(checkStatus)
         .then(res => res.text())
         .then(text => {
-            console.log(text);
+            $bossSound.setAttribute("loop", "");
+            $bossSound.play();
             hide($map);
             $theEnd.innerHTML = text;
             show($theEnd);
@@ -251,6 +266,7 @@ function ready () {
         // CLEAR PREVIOUS FATE OBJECT CHOICE
         $attackErrorText.classList.remove("visible");
         $fateObj.forEach(fate => fate.classList.remove("choosen-fate"));
+        $attackBtn.setAttribute("chosen-object-number", "");
     }
     
     $close.forEach(closeBtn => closeBtn.addEventListener("click", close));

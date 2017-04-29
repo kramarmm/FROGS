@@ -1,6 +1,9 @@
 var webpack = require("webpack"),
     path = require("path"),
     LiveReloadPlugin = require('webpack-livereload-plugin');
+    process.env.PRODUCTION = 0;
+
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
     context: __dirname + "/frontend",
@@ -16,13 +19,13 @@ module.exports = {
         filename: "[name].js"
     },
 
-    watch: true,
+    watch: NODE_ENV == 'development',
 
     watchOptions: {
         aggregateTimeout: 100
     },
 
-    devtool: "source-map",
+    devtool: NODE_ENV == 'development' ? "source-map" : false,
 
     module: {
         loaders: [
@@ -51,9 +54,27 @@ module.exports = {
 
     
     plugins: [
-        new webpack.NoEmitOnErrorsPlugin(),
-        new LiveReloadPlugin({
-            appendScriptTag: true
-         })
+        new webpack.NoEmitOnErrorsPlugin()
     ]
+}
+
+if (NODE_ENV == 'develipment') {
+  module.exports.plugins.push(
+      new LiveReloadPlugin({
+          appendScriptTag: true
+      })
+  )
+}
+
+if (NODE_ENV == 'production') {
+    module.exports.plugins.push(
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+            // don't show unreachable variables etc
+            warnings:     false,
+            drop_console: true,
+            unsafe:       true
+            }
+        })
+    )
 }

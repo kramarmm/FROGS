@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./backend/app.js",
-    "webpack-production": " NODE_ENV=production webpack",
-    "production": "nodejs ./backend/app.js"
+    "heroku-postbuild": " NODE_ENV=production webpack",
+    "start": "nodejs ./backend/app.js"
   },
   "author": "masha",
   "license": "ISC",

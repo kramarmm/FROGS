@@ -1,7 +1,7 @@
 import checkAuthStatus from "./checkAuthStatus";
 
-let signinPost = (login, password) => {
-fetch('/signin', {
+let signUpPost = (login, password) => {
+fetch('/signUp', {
         credentials: 'same-origin',
         method: 'POST',
         headers: {
@@ -14,7 +14,6 @@ fetch('/signin', {
     })
     .then(checkAuthStatus)
     .catch(error => console.log(error));
-
 }
 
-export default signinPost;
+export default signUpPost;

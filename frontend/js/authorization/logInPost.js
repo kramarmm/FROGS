@@ -1,8 +1,7 @@
 import checkAuthStatus from "./checkAuthStatus";
 
-let $invalidData = document.querySelector(".invalid-data");
-let loginPost = (login, password) => {
-fetch('/login', {
+let logInPost = (login, password) => {
+fetch('/logIn', {
         credentials: 'same-origin',
         method: 'POST',
         headers: {
@@ -17,4 +16,4 @@ fetch('/login', {
     .catch(error => console.log(error));
 }
 
-export default loginPost;
+export default logInPost;

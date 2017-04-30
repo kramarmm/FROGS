@@ -1,23 +1,24 @@
-import loginPost from './loginPost';
-import signinPost from './signinPost';
+import logInPost from './logInPost';
+import signUpPost from './signUpPost';
 
 let sendAuthData = () => {
     let login = document.querySelector("[name='login']"),
         password = document.querySelector("[name='password']"),
-        $loginBtn = document.querySelector("#loginBtn"); 
+        $authBtn = document.querySelector("#authBtn"); 
 
     if( !login.value || !password.value ) {
         login.classList.add("empty-value");
         password.classList.add("empty-value");
         return;
     }
+    console.log($authBtn.getAttribute("mode"));
 
-    switch ($loginBtn.getAttribute("mode")) {
-        case "log_in": 
-            loginPost(login, password);
+    switch ($authBtn.getAttribute("mode")) {
+        case "log-in": 
+            logInPost(login, password);
             break;
-        case "sign_in":
-            signinPost(login, password);
+        case "sign-up":
+            signUpPost(login, password);
             break;
     }
 }

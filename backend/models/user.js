@@ -55,7 +55,7 @@ schema.methods.checkPassword = function(password) {
 };
 
 // LOGIN
-schema.statics.login = function(login, password, callback) {
+schema.statics.logIn = function(login, password, callback) {
   var User = this;
 
   async.waterfall([
@@ -78,7 +78,7 @@ schema.statics.login = function(login, password, callback) {
 
 
 // SIGNIN
-schema.statics.signin = function(login, password, callback) {
+schema.statics.signUp = function(login, password, callback) {
   var User = this;
 
   async.waterfall([

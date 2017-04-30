@@ -1,8 +1,10 @@
 let checkAuthStatus = res => {
     let $errorSound = document.querySelector(".error-sound");
+
     if (res.status === 403) {
         let errorsOutput = document.querySelector(".invalid-data");
         $errorSound.play();
+
         switch (res.headers.get("errorMessage")) {
             case "Incorrect password":
                 errorsOutput.textContent = "Неверный пароль"
@@ -20,7 +22,7 @@ let checkAuthStatus = res => {
         localStorage.clear();
         document.location.href = "/game";
     } else {
-    return err;
+        return err;
     }
 }
 

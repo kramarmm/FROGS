@@ -74,11 +74,17 @@
 /******/ 	  document.getElementsByTagName("head")[0].appendChild(el);
 /******/ 	}());
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 27);
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/Alabama.ttf";
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -199,7 +205,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -213,9 +219,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(0)
-var ieee754 = __webpack_require__(4)
-var isArray = __webpack_require__(5)
+var base64 = __webpack_require__(1)
+var ieee754 = __webpack_require__(8)
+var isArray = __webpack_require__(9)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -1993,10 +1999,10 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -2075,16 +2081,34 @@ function toComment(sourceMap) {
   return '/*# ' + data + ' */';
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "fonts/Alabama.ttf";
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).Buffer))
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/Alabama.eot";
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/Alabama.woff";
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/cell.png";
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/github.png";
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -2174,7 +2198,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 5 */
+/* 9 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -2185,7 +2209,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 6 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2222,7 +2246,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(7);
+	fixUrls = __webpack_require__(11);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -2481,7 +2505,7 @@ function updateLink(linkElement, options, obj) {
 
 
 /***/ }),
-/* 7 */
+/* 11 */
 /***/ (function(module, exports) {
 
 
@@ -2576,7 +2600,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 8 */
+/* 12 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2603,44 +2627,32 @@ module.exports = g;
 
 
 /***/ }),
-/* 9 */,
-/* 10 */,
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "fonts/Alabama.eot";
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "fonts/Alabama.woff";
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/cell.png";
-
-/***/ }),
+/* 13 */,
 /* 14 */,
-/* 15 */,
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/login_btn.png";
+
+/***/ }),
 /* 16 */,
 /* 17 */,
 /* 18 */,
 /* 19 */,
 /* 20 */,
 /* 21 */,
-/* 22 */
+/* 22 */,
+/* 23 */,
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(30);
+var content = __webpack_require__(32);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, {});
+var update = __webpack_require__(10)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2657,51 +2669,36 @@ if(false) {
 }
 
 /***/ }),
-/* 23 */,
-/* 24 */,
 /* 25 */,
 /* 26 */,
-/* 27 */
+/* 27 */,
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(22);
+__webpack_require__(24);
 
 document.addEventListener("DOMContentLoaded", ready);
 function ready() {}
 
 /***/ }),
-/* 28 */,
 /* 29 */,
-/* 30 */
+/* 30 */,
+/* 31 */,
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(3) + ");\n  src: url(" + __webpack_require__(11) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(12) + ") format('woff'), url(" + __webpack_require__(3) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(13) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n  overflow-y: hidden;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\ninput {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 307px;\n  margin-bottom: 25px;\n  margin-top: -25px;\n}\ninput:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ninput::-webkit-input-placeholder {\n  color: #909090;\n}\ninput::-moz-placeholder {\n  color: #909090;\n}\ninput:-moz-placeholder {\n  color: #909090;\n}\ninput:-ms-input-placeholder {\n  color: #909090;\n}\n.empty-value::-webkit-input-placeholder {\n  color: #f65263;\n}\n.empty-value::-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-ms-input-placeholder {\n  color: #f65263;\n}\n#sendComment {\n  background-image: url(" + __webpack_require__(40) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n}\n#sendComment:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#sendComment:focus {\n  outline: none;\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(4) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(5) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(6) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n  overflow-y: hidden;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\nbody .github {\n  position: fixed;\n  left: 10px;\n  top: 10px;\n  height: 27px;\n  width: 28px;\n}\nbody .github:before {\n  content: url(" + __webpack_require__(7) + ");\n}\ninput {\n  font-family: Alabama;\n  font-size: 17px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 375px;\n  margin-left: 307px;\n  margin-bottom: 25px;\n  margin-top: -25px;\n}\ninput:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ninput::-webkit-input-placeholder {\n  color: #909090;\n}\ninput::-moz-placeholder {\n  color: #909090;\n}\ninput:-moz-placeholder {\n  color: #909090;\n}\ninput:-ms-input-placeholder {\n  color: #909090;\n}\n.empty-value::-webkit-input-placeholder {\n  color: #f65263;\n}\n.empty-value::-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-ms-input-placeholder {\n  color: #f65263;\n}\n#sendComment {\n  background-image: url(" + __webpack_require__(15) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n}\n#sendComment:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#sendComment:focus {\n  outline: none;\n}\n", ""]);
 
 // exports
 
-
-/***/ }),
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/login_btn.png";
 
 /***/ })
 /******/ ]);

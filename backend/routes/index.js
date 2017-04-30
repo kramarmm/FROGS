@@ -2,8 +2,8 @@ var checkAuth = require("../middleware/checkAuth");
 
 module.exports = (app) => {
 
-    app.post("/login", require("./login").post);
-    app.post("/signin", require("./signin").post);
+    app.post("/logIn", require("./logIn").post);
+    app.post("/signUp", require("./signUp").post);
 
     app.get("/user/info", checkAuth, require("./user_info").get);
 

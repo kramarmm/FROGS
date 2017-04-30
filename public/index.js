@@ -74,11 +74,17 @@
 /******/ 	  document.getElementsByTagName("head")[0].appendChild(el);
 /******/ 	}());
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 29);
+/******/ 	return __webpack_require__(__webpack_require__.s = 30);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/Alabama.ttf";
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -199,7 +205,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -213,9 +219,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(0)
-var ieee754 = __webpack_require__(4)
-var isArray = __webpack_require__(5)
+var base64 = __webpack_require__(1)
+var ieee754 = __webpack_require__(8)
+var isArray = __webpack_require__(9)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -1993,10 +1999,10 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -2075,16 +2081,34 @@ function toComment(sourceMap) {
   return '/*# ' + data + ' */';
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "fonts/Alabama.ttf";
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).Buffer))
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/Alabama.eot";
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/Alabama.woff";
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/cell.png";
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/github.png";
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -2174,7 +2198,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 5 */
+/* 9 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -2185,7 +2209,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 6 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2222,7 +2246,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(7);
+	fixUrls = __webpack_require__(11);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -2481,7 +2505,7 @@ function updateLink(linkElement, options, obj) {
 
 
 /***/ }),
-/* 7 */
+/* 11 */
 /***/ (function(module, exports) {
 
 
@@ -2576,7 +2600,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 8 */
+/* 12 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2603,33 +2627,15 @@ module.exports = g;
 
 
 /***/ }),
-/* 9 */,
-/* 10 */,
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "fonts/Alabama.eot";
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "fonts/Alabama.woff";
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/cell.png";
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/github.png";
-
-/***/ }),
+/* 13 */,
+/* 14 */,
 /* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/login_btn.png";
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2640,9 +2646,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 var checkAuthStatus = function checkAuthStatus(res) {
     var $errorSound = document.querySelector(".error-sound");
+
     if (res.status === 403) {
         var errorsOutput = document.querySelector(".invalid-data");
         $errorSound.play();
+
         switch (res.headers.get("errorMessage")) {
             case "Incorrect password":
                 errorsOutput.textContent = "Неверный пароль";
@@ -2667,51 +2675,7 @@ var checkAuthStatus = function checkAuthStatus(res) {
 exports.default = checkAuthStatus;
 
 /***/ }),
-/* 16 */,
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _loginPost = __webpack_require__(25);
-
-var _loginPost2 = _interopRequireDefault(_loginPost);
-
-var _signinPost = __webpack_require__(26);
-
-var _signinPost2 = _interopRequireDefault(_signinPost);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var sendAuthData = function sendAuthData() {
-    var login = document.querySelector("[name='login']"),
-        password = document.querySelector("[name='password']"),
-        $loginBtn = document.querySelector("#loginBtn");
-
-    if (!login.value || !password.value) {
-        login.classList.add("empty-value");
-        password.classList.add("empty-value");
-        return;
-    }
-
-    switch ($loginBtn.getAttribute("mode")) {
-        case "log_in":
-            (0, _loginPost2.default)(login, password);
-            break;
-        case "sign_in":
-            (0, _signinPost2.default)(login, password);
-            break;
-    }
-};
-
-exports.default = sendAuthData;
-
-/***/ }),
+/* 17 */,
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2721,54 +2685,89 @@ exports.default = sendAuthData;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var toogleAuthMode = function toogleAuthMode(target, another) {
-    var $logIn = document.querySelector("#logIn"),
-        $signIn = document.querySelector("#signIn"),
-        $loginBtn = document.querySelector("#loginBtn");
 
-    var mode = "log in";
+var _logInPost = __webpack_require__(26);
+
+var _logInPost2 = _interopRequireDefault(_logInPost);
+
+var _signUpPost = __webpack_require__(27);
+
+var _signUpPost2 = _interopRequireDefault(_signUpPost);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var sendAuthData = function sendAuthData() {
+    var login = document.querySelector("[name='login']"),
+        password = document.querySelector("[name='password']"),
+        $authBtn = document.querySelector("#authBtn");
+
+    if (!login.value || !password.value) {
+        login.classList.add("empty-value");
+        password.classList.add("empty-value");
+        return;
+    }
+    console.log($authBtn.getAttribute("mode"));
+
+    switch ($authBtn.getAttribute("mode")) {
+        case "log-in":
+            (0, _logInPost2.default)(login, password);
+            break;
+        case "sign-up":
+            (0, _signUpPost2.default)(login, password);
+            break;
+    }
+};
+
+exports.default = sendAuthData;
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var toogleAuthMode = function toogleAuthMode(target, another) {
+    var $authBtn = document.querySelector("#authBtn");
 
     target.classList.add("choosen-auth");
     another.classList.remove("choosen-auth");
 
     if (target.textContent === "вход") {
-        mode = "log_in";
-        $loginBtn.textContent = "войти";
-        $loginBtn.setAttribute("mode", "log_in");
+        $authBtn.textContent = "войти";
+        $authBtn.setAttribute("mode", "log-in");
     } else {
-        mode = "sign_in";
-        $loginBtn.textContent = "зарегистрироваться";
-        $loginBtn.setAttribute("mode", "sign_in");
+        $authBtn.textContent = "зарегистрироваться";
+        $authBtn.setAttribute("mode", "sign-up");
     }
-
-    return mode;
 };
 
 exports.default = toogleAuthMode;
 
 /***/ }),
-/* 19 */,
 /* 20 */,
 /* 21 */,
 /* 22 */,
-/* 23 */,
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(32);
+var content = __webpack_require__(31);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, {});
+var update = __webpack_require__(10)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js?importLoaders=1!../../../node_modules/postcss-loader/index.js!../../../node_modules/stylus-loader/index.js?resolve url!./login.styl", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js?importLoaders=1!../../../node_modules/postcss-loader/index.js!../../../node_modules/stylus-loader/index.js?resolve url!./login.styl");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js?importLoaders=1!../../../node_modules/postcss-loader/index.js!../../../node_modules/stylus-loader/index.js?resolve url!./auth.styl", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js?importLoaders=1!../../../node_modules/postcss-loader/index.js!../../../node_modules/stylus-loader/index.js?resolve url!./auth.styl");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -2778,42 +2777,8 @@ if(false) {
 }
 
 /***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _checkAuthStatus = __webpack_require__(15);
-
-var _checkAuthStatus2 = _interopRequireDefault(_checkAuthStatus);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var $invalidData = document.querySelector(".invalid-data");
-var loginPost = function loginPost(login, password) {
-    fetch('/login', {
-        credentials: 'same-origin',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            login: login.value,
-            password: password.value
-        })
-    }).then(_checkAuthStatus2.default).catch(function (error) {
-        return console.log(error);
-    });
-};
-
-exports.default = loginPost;
-
-/***/ }),
+/* 24 */,
+/* 25 */,
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2824,14 +2789,14 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _checkAuthStatus = __webpack_require__(15);
+var _checkAuthStatus = __webpack_require__(16);
 
 var _checkAuthStatus2 = _interopRequireDefault(_checkAuthStatus);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var signinPost = function signinPost(login, password) {
-    fetch('/signin', {
+var logInPost = function logInPost(login, password) {
+    fetch('/logIn', {
         credentials: 'same-origin',
         method: 'POST',
         headers: {
@@ -2846,24 +2811,59 @@ var signinPost = function signinPost(login, password) {
     });
 };
 
-exports.default = signinPost;
+exports.default = logInPost;
 
 /***/ }),
-/* 27 */,
-/* 28 */,
-/* 29 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(24);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-var _sendAuthData = __webpack_require__(17);
+var _checkAuthStatus = __webpack_require__(16);
+
+var _checkAuthStatus2 = _interopRequireDefault(_checkAuthStatus);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var signUpPost = function signUpPost(login, password) {
+    fetch('/signUp', {
+        credentials: 'same-origin',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            login: login.value,
+            password: password.value
+        })
+    }).then(_checkAuthStatus2.default).catch(function (error) {
+        return console.log(error);
+    });
+};
+
+exports.default = signUpPost;
+
+/***/ }),
+/* 28 */,
+/* 29 */,
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(23);
+
+var _sendAuthData = __webpack_require__(18);
 
 var _sendAuthData2 = _interopRequireDefault(_sendAuthData);
 
-var _toogleAuthMode = __webpack_require__(18);
+var _toogleAuthMode = __webpack_require__(19);
 
 var _toogleAuthMode2 = _interopRequireDefault(_toogleAuthMode);
 
@@ -2872,51 +2872,37 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 document.addEventListener("DOMContentLoaded", ready);
 function ready() {
 
-    var $logIn = document.querySelector("#logIn"),
-        $signIn = document.querySelector("#signIn");
+    var $logIn = document.querySelector("#logIn");
+    var $signUp = document.querySelector("#signUp");
+
+    var $authBtn = document.querySelector("#authBtn");
 
     $logIn.addEventListener("click", function () {
-        return (0, _toogleAuthMode2.default)($logIn, $signIn);
+        return (0, _toogleAuthMode2.default)($logIn, $signUp);
     });
-    $signIn.addEventListener("click", function () {
-        return (0, _toogleAuthMode2.default)($signIn, $logIn);
+    $signUp.addEventListener("click", function () {
+        return (0, _toogleAuthMode2.default)($signUp, $logIn);
     });
 
-    var $loginBtn = document.querySelector("#loginBtn");
-    $loginBtn.addEventListener("click", _sendAuthData2.default);
+    $authBtn.addEventListener("click", _sendAuthData2.default);
     document.addEventListener("keypress", function (e) {
         if (e.keyCode == 13) (0, _sendAuthData2.default)();
     });
 }
 
 /***/ }),
-/* 30 */,
-/* 31 */,
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(3) + ");\n  src: url(" + __webpack_require__(11) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(12) + ") format('woff'), url(" + __webpack_require__(3) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(13) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n  overflow-y: hidden;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\n@-webkit-keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@-webkit-keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n@keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n.table-frogs {\n  width: 648px;\n  height: 296px;\n  position: relative;\n  top: -26px;\n  left: 142px;\n}\n.login-toogle {\n  width: 311px;\n  position: relative;\n  top: -35px;\n  left: 307px;\n  margin-left: 16px;\n}\n.login-toogle .log-sign {\n  display: inline-block;\n  color: #909090;\n  letter-spacing: 0.07em;\n  padding: 1px 25px 3px;\n}\n.login-toogle .log-sign:hover {\n  cursor: pointer;\n  color: #000;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.login-toogle .choosen-auth {\n  background-color: rgba(94,162,125,0.3);\n  border-radius: 10px;\n  color: #000;\n}\n.login-toogle #logIn {\n  width: 37px;\n}\n.login-toogle #signIn {\n  margin-left: 22px;\n  width: 106px;\n}\ninput {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 307px;\n  margin-bottom: 25px;\n  margin-top: -25px;\n}\ninput:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ninput::-webkit-input-placeholder {\n  color: #909090;\n}\ninput::-moz-placeholder {\n  color: #909090;\n}\ninput:-moz-placeholder {\n  color: #909090;\n}\ninput:-ms-input-placeholder {\n  color: #909090;\n}\n.empty-value::-webkit-input-placeholder {\n  color: #f65263;\n}\n.empty-value::-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-ms-input-placeholder {\n  color: #f65263;\n}\n.invalid-data {\n  display: inline-block;\n  width: 140px;\n  color: #f65263;\n  text-align: center;\n  vertical-align: middle;\n  margin-left: 15px;\n}\n#loginBtn {\n  background-image: url(" + __webpack_require__(40) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n}\n#loginBtn:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#loginBtn:focus {\n  outline: none;\n}\n.fish {\n  display: block;\n  position: relative;\n  width: 156px;\n  height: 95px;\n  top: -125px;\n  -webkit-animation: swimming 15s infinite linear;\n          animation: swimming 15s infinite linear;\n}\n.fish1 {\n  -webkit-animation: upDown 1s infinite linear;\n          animation: upDown 1s infinite linear;\n}\n.plant1 {\n  position: relative;\n  top: -10px;\n  left: -40px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n.plant2 {\n  position: relative;\n  left: 750px;\n  bottom: 10px;\n}\n.github {\n  position: fixed;\n  left: 10px;\n  top: 10px;\n  height: 27px;\n  width: 28px;\n}\n.github:before {\n  content: url(" + __webpack_require__(14) + ");\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(4) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(5) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(6) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n  overflow-y: hidden;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\nbody .github {\n  position: fixed;\n  left: 10px;\n  top: 10px;\n  height: 27px;\n  width: 28px;\n}\nbody .github:before {\n  content: url(" + __webpack_require__(7) + ");\n}\n@-webkit-keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@-webkit-keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n@keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n.table-frogs {\n  width: 648px;\n  height: 296px;\n  position: relative;\n  top: -26px;\n  left: 142px;\n}\n.login-toogle {\n  width: 311px;\n  position: relative;\n  top: -35px;\n  left: 307px;\n  margin-left: 16px;\n}\n.login-toogle .log-sign {\n  display: inline-block;\n  color: #909090;\n  letter-spacing: 0.07em;\n  padding: 1px 25px 3px;\n}\n.login-toogle .log-sign:hover {\n  cursor: pointer;\n  color: #000;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.login-toogle .choosen-auth {\n  background-color: rgba(94,162,125,0.3);\n  border-radius: 10px;\n  color: #000;\n}\n.login-toogle #logIn {\n  width: 37px;\n}\n.login-toogle #signUp {\n  margin-left: 22px;\n  width: 106px;\n}\ninput {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 307px;\n  margin-bottom: 25px;\n  margin-top: -25px;\n}\ninput:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ninput::-webkit-input-placeholder {\n  color: #909090;\n}\ninput::-moz-placeholder {\n  color: #909090;\n}\ninput:-moz-placeholder {\n  color: #909090;\n}\ninput:-ms-input-placeholder {\n  color: #909090;\n}\n.empty-value::-webkit-input-placeholder {\n  color: #f65263;\n}\n.empty-value::-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-ms-input-placeholder {\n  color: #f65263;\n}\n.invalid-data {\n  display: inline-block;\n  width: 140px;\n  color: #f65263;\n  text-align: center;\n  vertical-align: middle;\n  margin-left: 15px;\n}\n#authBtn {\n  background-image: url(" + __webpack_require__(15) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n}\n#authBtn:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#authBtn:focus {\n  outline: none;\n}\n.fish {\n  display: block;\n  position: relative;\n  width: 156px;\n  height: 95px;\n  top: -125px;\n  -webkit-animation: swimming 15s infinite linear;\n          animation: swimming 15s infinite linear;\n}\n.fish1 {\n  -webkit-animation: upDown 1s infinite linear;\n          animation: upDown 1s infinite linear;\n}\n.plant1 {\n  position: relative;\n  top: -10px;\n  left: -40px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n.plant2 {\n  position: relative;\n  left: 750px;\n  bottom: 10px;\n}\n", ""]);
 
 // exports
 
-
-/***/ }),
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/login_btn.png";
 
 /***/ })
 /******/ ]);

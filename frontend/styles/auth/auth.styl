@@ -81,7 +81,15 @@
     .empty-value:-ms-input-placeholder
         color pink 
 
-
+    input:focus::-webkit-input-placeholder{
+    color: transparent!important
+    }
+    input:focus::-moz-placeholder{
+        color: transparent!important
+    }
+    input:focus:-moz-placeholder{
+        color: transparent!important
+    }
     
     .invalid-data
         display inline-block

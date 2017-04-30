@@ -1,36 +1,58 @@
 @import ("../variables.styl")
 @import ("../common.styl")
+body
+    overflow visible
 
+    .thanks
+        font-size f50
+        letter-spacing 0.03em
+        margin 20px auto
+        width 800px
+        text-align center
 
-    input 
+    .thanks-small
+        text-align center
+        width 400px
+        margin 20px auto
+        font-size f17
+        color lightgray
+
+    textarea 
         font-family Alabama
         font-size f17
         letter-spacing 0.05em
-        color green
+        color placeholder
         background-color rgba(255,255,255,0.7)
-        padding 8px 0 8px 40px
+        padding 10px 15px
         border-radius 10px
         border 1px solid #cccccc
-        width 375px
-        margin-left 307px
-        margin-bottom 25px
-        margin-top -25px
+        position relative
+        left 215px
+        margin-bottom 34px
+        resize none
 
         &:focus
             outline 0           
             box-shadow 0 0 7px rgba(94,162,125,0.7)
             transition all 0.3s
 
-    placeH = @block{color placeholder}
+    placeH = @block{
+        color placeholder
+        font-size 50px
+        }
 
-    input::-webkit-input-placeholder
-        {placeH}
-    input::-moz-placeholder 
-        {placeH}
-    input:-moz-placeholder
-        {placeH} 
-    input:-ms-input-placeholder
-        {placeH} 
+    textarea::-webkit-input-placeholder
+        color placeholder
+        font-size 53px
+    textarea::-moz-placeholder 
+        color placeholder
+        font-size 53px
+    textarea:-moz-placeholder
+        color placeholder
+        font-size 53px 
+    textarea:-ms-input-placeholder
+        color placeholder
+        font-size 53px 
 
     .empty-value::-webkit-input-placeholder
         color pink
@@ -40,7 +62,16 @@
         color pink 
     .empty-value:-ms-input-placeholder
         color pink 
-
+    
+    textarea:focus::-webkit-input-placeholder{
+    color: transparent!important
+    }
+    textarea:focus::-moz-placeholder{
+        color: transparent!important
+    }
+    textarea:focus:-moz-placeholder{
+        color: transparent!important
+    }
 
     #sendComment
         background-image url('../images/login_btn.png')
@@ -58,10 +89,36 @@
         cursor pointer
         padding-bottom 2px
         display block
-        letter-spacing 0.02em      
+        letter-spacing 0.02em  
+        margin-bottom 17px
+            
         &:hover
             background-color rgba(94,162,125,0.5)
             transition all 0.3s
 
         &:focus
             outline none   
+
+    .comment-template
+        letter-spacing 0.05em
+        width 700px
+        background-color rgba(136,160,226,0.1)
+        padding 10px 15px
+        border-radius 10px
+        border 1px solid rgba(255,23,148,.4)
+        margin 3px auto
+
+        .login
+            float left
+            margin-left 10px
+            color pink
+            color #136894
+
+        .date
+            float right
+            margin-right 10px
+            color #136894
+
+        .text
+            padding 30px 10px 7px 10px
+            margin 0

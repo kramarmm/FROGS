@@ -10,7 +10,7 @@ exports.get = (req, res, next) => {
 
 // POST USER CHOICE AND CHECK IT FOR WIN
 exports.post = (req, res, next) => {
-    User.findById(req.session.user, function(err, user) {
+    User.findById(req.session.user, (err, user) => {
         if (err) return next(err);          
 
         if (checkWin(req.body.enemy, req.body.fateObj)) {
@@ -28,7 +28,7 @@ exports.post = (req, res, next) => {
 
 // UPDATE USER POINTS +3
 exports.put = (req, res, next) => {
-    User.findById(req.session.user, function(err, user) {
+    User.findById(req.session.user, (err, user) => {
         if (err) return next(err); 
 
         User.update({ _id: user._id }, { $set: { points: 3 }}, err => err);   

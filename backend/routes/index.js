@@ -14,5 +14,8 @@ module.exports = (app) => {
     app.get("/game/boss", require("./game_boss").get);
 
     app.get("/comments", require("./comments").get);
+    app.post("/comments", require("./comments").post);
+
+    app.get("/comments/all", require("./comments_all").get);
 
 }

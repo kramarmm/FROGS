@@ -1,7 +1,7 @@
 var User = require('../models/user').User;
 
 exports.get = (req, res, next) => {
-    User.findById(req.session.user, function(err, user) {
+    User.findById(req.session.user, (err, user) => {
         if (err) return next(err);    
 
         res.json({

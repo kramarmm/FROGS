@@ -62,19 +62,23 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "/";
 /******/
+/******/ 	// webpack-livereload-plugin
+/******/ 	(function() {
+/******/ 	  if (typeof window === "undefined") { return };
+/******/ 	  var id = "webpack-livereload-plugin-script";
+/******/ 	  if (document.getElementById(id)) { return; }
+/******/ 	  var el = document.createElement("script");
+/******/ 	  el.id = id;
+/******/ 	  el.async = true;
+/******/ 	  el.src = "http://localhost:35729/livereload.js";
+/******/ 	  document.getElementsByTagName("head")[0].appendChild(el);
+/******/ 	}());
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 27);
+/******/ 	return __webpack_require__(__webpack_require__.s = 29);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "fonts/Alabama.ttf";
-
-/***/ }),
-/* 1 */,
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -195,7 +199,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 3 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -209,9 +213,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(2)
-var ieee754 = __webpack_require__(10)
-var isArray = __webpack_require__(11)
+var base64 = __webpack_require__(0)
+var ieee754 = __webpack_require__(4)
+var isArray = __webpack_require__(5)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -1989,10 +1993,10 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 4 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/*
@@ -2071,35 +2075,16 @@ function toComment(sourceMap) {
   return '/*# ' + data + ' */';
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1).Buffer))
 
 /***/ }),
-/* 5 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fonts/Alabama.eot";
+module.exports = __webpack_require__.p + "fonts/Alabama.ttf";
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "fonts/Alabama.woff";
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/cell.png";
-
-/***/ }),
-/* 8 */,
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/github.png";
-
-/***/ }),
-/* 10 */
+/* 4 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -2189,7 +2174,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 11 */
+/* 5 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -2200,7 +2185,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 12 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -2237,7 +2222,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(13);
+	fixUrls = __webpack_require__(7);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -2496,7 +2481,7 @@ function updateLink(linkElement, options, obj) {
 
 
 /***/ }),
-/* 13 */
+/* 7 */
 /***/ (function(module, exports) {
 
 
@@ -2591,7 +2576,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 14 */
+/* 8 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2618,6 +2603,32 @@ module.exports = g;
 
 
 /***/ }),
+/* 9 */,
+/* 10 */,
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/Alabama.eot";
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/Alabama.woff";
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/cell.png";
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/github.png";
+
+/***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2628,8 +2639,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var checkAuthStatus = function checkAuthStatus(res) {
+    var $errorSound = document.querySelector(".error-sound");
     if (res.status === 403) {
         var errorsOutput = document.querySelector(".invalid-data");
+        $errorSound.play();
         switch (res.headers.get("errorMessage")) {
             case "Incorrect password":
                 errorsOutput.textContent = "Неверный пароль";
@@ -2644,6 +2657,7 @@ var checkAuthStatus = function checkAuthStatus(res) {
         return;
     }
     if (res.status === 200) {
+        localStorage.clear();
         document.location.href = "/game";
     } else {
         return err;
@@ -2664,11 +2678,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _loginPost = __webpack_require__(24);
+var _loginPost = __webpack_require__(25);
 
 var _loginPost2 = _interopRequireDefault(_loginPost);
 
-var _signinPost = __webpack_require__(25);
+var _signinPost = __webpack_require__(26);
 
 var _signinPost2 = _interopRequireDefault(_signinPost);
 
@@ -2737,16 +2751,17 @@ exports.default = toogleAuthMode;
 /* 20 */,
 /* 21 */,
 /* 22 */,
-/* 23 */
+/* 23 */,
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(29);
+var content = __webpack_require__(32);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(12)(content, {});
+var update = __webpack_require__(6)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2763,7 +2778,7 @@ if(false) {
 }
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2799,7 +2814,7 @@ var loginPost = function loginPost(login, password) {
 exports.default = loginPost;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2834,14 +2849,15 @@ var signinPost = function signinPost(login, password) {
 exports.default = signinPost;
 
 /***/ }),
-/* 26 */,
-/* 27 */
+/* 27 */,
+/* 28 */,
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(23);
+__webpack_require__(24);
 
 var _sendAuthData = __webpack_require__(17);
 
@@ -2874,29 +2890,30 @@ function ready() {
 }
 
 /***/ }),
-/* 28 */,
-/* 29 */
+/* 30 */,
+/* 31 */,
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(2)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(5) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(6) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(7) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n  overflow-y: hidden;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\n@-webkit-keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@-webkit-keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n@keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n.table-frogs {\n  width: 648px;\n  height: 296px;\n  position: relative;\n  top: -26px;\n  left: 142px;\n}\n.login-toogle {\n  width: 311px;\n  position: relative;\n  top: -35px;\n  left: 307px;\n  margin-left: 16px;\n}\n.login-toogle .log-sign {\n  display: inline-block;\n  color: #909090;\n  letter-spacing: 0.07em;\n  padding: 1px 25px 3px;\n}\n.login-toogle .log-sign:hover {\n  cursor: pointer;\n  color: #000;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.login-toogle .choosen-auth {\n  background-color: rgba(94,162,125,0.3);\n  border-radius: 10px;\n  color: #000;\n}\n.login-toogle #logIn {\n  width: 37px;\n}\n.login-toogle #signIn {\n  margin-left: 22px;\n  width: 106px;\n}\ninput {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 307px;\n  margin-bottom: 25px;\n  margin-top: -25px;\n}\ninput:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ninput::-webkit-input-placeholder {\n  color: #909090;\n}\ninput::-moz-placeholder {\n  color: #909090;\n}\ninput:-moz-placeholder {\n  color: #909090;\n}\ninput:-ms-input-placeholder {\n  color: #909090;\n}\n.empty-value::-webkit-input-placeholder {\n  color: #f65263;\n}\n.empty-value::-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-ms-input-placeholder {\n  color: #f65263;\n}\n.invalid-data {\n  display: inline-block;\n  width: 140px;\n  color: #f65263;\n  text-align: center;\n  vertical-align: middle;\n  margin-left: 15px;\n}\n#loginBtn {\n  background-image: url(" + __webpack_require__(37) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n}\n#loginBtn:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#loginBtn:focus {\n  outline: none;\n}\n.fish {\n  display: block;\n  position: relative;\n  width: 156px;\n  height: 95px;\n  top: -125px;\n  -webkit-animation: swimming 15s infinite linear;\n          animation: swimming 15s infinite linear;\n}\n.fish1 {\n  -webkit-animation: upDown 1s infinite linear;\n          animation: upDown 1s infinite linear;\n}\n.plant1 {\n  position: relative;\n  top: -10px;\n  left: -40px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n.plant2 {\n  position: relative;\n  left: 750px;\n  bottom: 10px;\n}\n.github {\n  position: fixed;\n  left: 10px;\n  top: 10px;\n  height: 27px;\n  width: 28px;\n}\n.github:before {\n  content: url(" + __webpack_require__(9) + ");\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(3) + ");\n  src: url(" + __webpack_require__(11) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(12) + ") format('woff'), url(" + __webpack_require__(3) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(13) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n  overflow-y: hidden;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\n@-webkit-keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@keyframes swimming {\n  0% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n  3% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  43% {\n    opacity: 1;\n  }\n  47% {\n    opacity: 0;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    left: 50px;\n  }\n  50% {\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n    opacity: 0;\n  }\n  53% {\n    opacity: 0;\n    left: 50px;\n  }\n  57% {\n    opacity: 1;\n  }\n  93% {\n    opacity: 1;\n  }\n  98% {\n    opacity: 0;\n    -webkit-transform: scaleX(-1);\n            transform: scaleX(-1);\n  }\n  100% {\n    left: 750px;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    opacity: 0;\n  }\n}\n@-webkit-keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n@keyframes upDown {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  50% {\n    -webkit-transform: rotate(-13deg);\n            transform: rotate(-13deg);\n  }\n  100% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n}\n.table-frogs {\n  width: 648px;\n  height: 296px;\n  position: relative;\n  top: -26px;\n  left: 142px;\n}\n.login-toogle {\n  width: 311px;\n  position: relative;\n  top: -35px;\n  left: 307px;\n  margin-left: 16px;\n}\n.login-toogle .log-sign {\n  display: inline-block;\n  color: #909090;\n  letter-spacing: 0.07em;\n  padding: 1px 25px 3px;\n}\n.login-toogle .log-sign:hover {\n  cursor: pointer;\n  color: #000;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.login-toogle .choosen-auth {\n  background-color: rgba(94,162,125,0.3);\n  border-radius: 10px;\n  color: #000;\n}\n.login-toogle #logIn {\n  width: 37px;\n}\n.login-toogle #signIn {\n  margin-left: 22px;\n  width: 106px;\n}\ninput {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 307px;\n  margin-bottom: 25px;\n  margin-top: -25px;\n}\ninput:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ninput::-webkit-input-placeholder {\n  color: #909090;\n}\ninput::-moz-placeholder {\n  color: #909090;\n}\ninput:-moz-placeholder {\n  color: #909090;\n}\ninput:-ms-input-placeholder {\n  color: #909090;\n}\n.empty-value::-webkit-input-placeholder {\n  color: #f65263;\n}\n.empty-value::-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-ms-input-placeholder {\n  color: #f65263;\n}\n.invalid-data {\n  display: inline-block;\n  width: 140px;\n  color: #f65263;\n  text-align: center;\n  vertical-align: middle;\n  margin-left: 15px;\n}\n#loginBtn {\n  background-image: url(" + __webpack_require__(40) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n}\n#loginBtn:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#loginBtn:focus {\n  outline: none;\n}\n.fish {\n  display: block;\n  position: relative;\n  width: 156px;\n  height: 95px;\n  top: -125px;\n  -webkit-animation: swimming 15s infinite linear;\n          animation: swimming 15s infinite linear;\n}\n.fish1 {\n  -webkit-animation: upDown 1s infinite linear;\n          animation: upDown 1s infinite linear;\n}\n.plant1 {\n  position: relative;\n  top: -10px;\n  left: -40px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n.plant2 {\n  position: relative;\n  left: 750px;\n  bottom: 10px;\n}\n.github {\n  position: fixed;\n  left: 10px;\n  top: 10px;\n  height: 27px;\n  width: 28px;\n}\n.github:before {\n  content: url(" + __webpack_require__(14) + ");\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 30 */,
-/* 31 */,
-/* 32 */,
 /* 33 */,
 /* 34 */,
 /* 35 */,
 /* 36 */,
-/* 37 */
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "images/login_btn.png";

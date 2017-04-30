@@ -1,4 +1,4 @@
-import '../styles/game.styl';
+import '../styles/game/game.styl';
 import checkStatus from "./helper/checkStatus";
 import {show, hide} from "./helper/showHide";
 import {$} from "./helper/querySelector";
@@ -6,6 +6,7 @@ import {$} from "./helper/querySelector";
 document.addEventListener("DOMContentLoaded", ready);
 function ready () {
 
+    // ELEMENTS
     let $rules = $(".rules");
     let $map = $(".map");
     let $points = $(".points");
@@ -67,7 +68,13 @@ function ready () {
             $succesAuth.play();
         }
         
-        json.showRules ? show($rules) : show($map);
+        if (json.showRules && !localStorage.showedRules) {
+            show($rules);
+            localStorage.showedRules = true;
+        } else {
+            show($map);
+        }
+
         $points.textContent = json.points;
         $userName.textContent = json.login;
         json.passedIslands.forEach(island => removeE(island));
@@ -196,12 +203,14 @@ function ready () {
     let blockGame = e => {
         $dimondsSound.play();
         show($dimondsEnd);
+        show($map);
+        hide($rules);
         
         // MAKE UPDATING USER POINTS IN DB
         fetch('/game', {
             credentials: 'same-origin',
             method: 'PUT'        
-        })
+        }) 
         .then( () => {
             var timer = self.setInterval(() => {
                 --$secconds.textContent;
@@ -255,8 +264,9 @@ function ready () {
             $bossSound.setAttribute("loop", "");
             $bossSound.play();
             hide($map);
-            $theEnd.innerHTML = text;
+            $theEnd.innerHTML = "<div class='close'></div>" + text;
             show($theEnd);
+            $(".the-end>.close").addEventListener("click", () => location.href = "/comments");
         })
         .catch(error => console.log(error));  
     }  

@@ -74,7 +74,7 @@
 /******/ 	  document.getElementsByTagName("head")[0].appendChild(el);
 /******/ 	}());
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 28);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2603,18 +2603,8 @@ module.exports = g;
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/close.png";
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/cursor.png";
-
-/***/ }),
+/* 9 */,
+/* 10 */,
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2633,86 +2623,21 @@ module.exports = __webpack_require__.p + "fonts/Alabama.woff";
 module.exports = __webpack_require__.p + "images/cell.png";
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/github.png";
-
-/***/ }),
+/* 14 */,
 /* 15 */,
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/yes_btn.png";
-
-/***/ }),
+/* 16 */,
 /* 17 */,
 /* 18 */,
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var checkStatus = function checkStatus(response) {
-    if (response.status == 200) {
-        return response;
-    } else {
-        throw new Error(response.statusText);
-    }
-};
-
-exports.default = checkStatus;
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-function $(elem) {
-    return document.querySelector(elem);
-}
-
-exports.$ = $;
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-function show(elem) {
-    elem.classList.remove("hiden");
-}
-
-function hide(elem) {
-    elem.classList.add("hiden");
-}
-
-exports.show = show;
-exports.hide = hide;
-
-/***/ }),
-/* 22 */,
-/* 23 */
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(31);
+var content = __webpack_require__(30);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(6)(content, {});
@@ -2721,8 +2646,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js?importLoaders=1!../../../node_modules/postcss-loader/index.js!../../../node_modules/stylus-loader/index.js?resolve url!./game.styl", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js?importLoaders=1!../../../node_modules/postcss-loader/index.js!../../../node_modules/stylus-loader/index.js?resolve url!./game.styl");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js?importLoaders=1!../../../node_modules/postcss-loader/index.js!../../../node_modules/stylus-loader/index.js?resolve url!./comments.styl", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js?importLoaders=1!../../../node_modules/postcss-loader/index.js!../../../node_modules/stylus-loader/index.js?resolve url!./comments.styl");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -2732,342 +2657,25 @@ if(false) {
 }
 
 /***/ }),
+/* 23 */,
 /* 24 */,
 /* 25 */,
 /* 26 */,
-/* 27 */,
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(23);
-
-var _checkStatus = __webpack_require__(19);
-
-var _checkStatus2 = _interopRequireDefault(_checkStatus);
-
-var _showHide = __webpack_require__(21);
-
-var _querySelector = __webpack_require__(20);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+__webpack_require__(22);
 
 document.addEventListener("DOMContentLoaded", ready);
-function ready() {
-
-    // ELEMENTS
-    var $rules = (0, _querySelector.$)(".rules");
-    var $map = (0, _querySelector.$)(".map");
-    var $points = (0, _querySelector.$)(".points");
-    var $userName = (0, _querySelector.$)("#userName");
-    var $attack = (0, _querySelector.$)(".attack");
-    var $attackBtn = (0, _querySelector.$)("#attackBtn");
-    var $attackErrorText = (0, _querySelector.$)(".attack-error-text");
-    var $info = (0, _querySelector.$)(".info");
-    var $okay = document.querySelectorAll(".okay");
-    var $close = document.querySelectorAll(".close");
-    var $fateObj = document.querySelectorAll(".fate-obj");
-    var $enemiesImages = document.querySelectorAll(".image-attack");
-    var $outcome = (0, _querySelector.$)(".outcome");
-    var $outcomeText = (0, _querySelector.$)(".outcome-text");
-    var $attackResult = (0, _querySelector.$)(".attack-result");
-    var $dimondsEnd = (0, _querySelector.$)(".dimonds-end");
-    var $secconds = (0, _querySelector.$)("#secconds");
-    var $accentOnBoss = (0, _querySelector.$)(".accent-on-boss");
-    var $theEnd = (0, _querySelector.$)(".the-end");
-
-    // ISLANDS
-    var $gir = (0, _querySelector.$)(".gir");
-    var $lazy = (0, _querySelector.$)(".lazy");
-
-    var $goose = (0, _querySelector.$)(".goose");
-    var $gooseHint = (0, _querySelector.$)(".goose-hint");
-
-    var $chi = (0, _querySelector.$)(".chi");
-    var $boss = (0, _querySelector.$)(".boss-close");
-
-    // SOUNDS  
-    var $succesAuth = (0, _querySelector.$)(".succes-auth");
-    var $loseSound = (0, _querySelector.$)(".lose-sound");
-    var $winSound = (0, _querySelector.$)(".win-sound");
-    var $buttonsSound = (0, _querySelector.$)(".buttons-sound");
-    var $hintSound = (0, _querySelector.$)(".hint-sound");
-    var $islandSound = (0, _querySelector.$)(".island-sound");
-    var $dimondsSound = (0, _querySelector.$)(".dimonds-sound");
-    var $bossSound = (0, _querySelector.$)(".boss-sound");
-    var $errorSound = (0, _querySelector.$)(".error-sound");
-
-    // GET USER DATA
-    fetch('/user/info', {
-        credentials: 'same-origin',
-        method: 'GET'
-    }).then(_checkStatus2.default).then(function (res) {
-        return res.json();
-    }).then(function (json) {
-        if (json.bossWasSeen) {
-            getBossOutcome();
-            return;
-        }
-        if (localStorage.secconds > 0) {
-            $secconds.textContent = localStorage.secconds;
-            blockGame();
-        } else {
-            $succesAuth.play();
-        }
-
-        if (json.showRules && !localStorage.showedRules) {
-            (0, _showHide.show)($rules);
-            localStorage.showedRules = true;
-        } else {
-            (0, _showHide.show)($map);
-        }
-
-        $points.textContent = json.points;
-        $userName.textContent = json.login;
-        json.passedIslands.forEach(function (island) {
-            return removeE(island);
-        });
-    }).catch(function (error) {
-        return console.log(error);
-    });
-
-    // MOUSEOVER
-    var mouseover = function mouseover(e) {
-        $hintSound.play();
-        (0, _querySelector.$)("." + e.currentTarget.classList[0] + "-hint").classList.remove("transparent");
-    };
-    // MOUSEOUT
-    var mouseout = function mouseout(e) {
-        (0, _querySelector.$)("." + e.currentTarget.classList[0] + "-hint").classList.add("transparent");
-    };
-
-    // ATACK THE ISLAND
-    var showAttack = function showAttack(e) {
-        $islandSound.play();
-
-        var enemy = e.currentTarget.classList[0];
-        var imageToShow = null;
-        $enemiesImages.forEach(function (image) {
-            if (image.getAttribute("data-enemy-image") == enemy) imageToShow = image;
-        });
-        $attack.setAttribute("data-enemy", enemy);
-        (0, _showHide.show)(imageToShow);
-        (0, _showHide.hide)($map);
-        (0, _showHide.show)($attack);
-    };
-
-    // EVENT LISTENERS FOR ALL ISLANDS    
-    var islandEventListeners = function islandEventListeners(toogle) {
-        for (var _len = arguments.length, theElems = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-            theElems[_key - 1] = arguments[_key];
-        }
-
-        if (toogle === "add") {
-            theElems.forEach(function (elem) {
-                elem.addEventListener("click", showAttack);
-                elem.addEventListener("mouseover", mouseover);
-                elem.addEventListener("mouseout", mouseout);
-            });
-        } else if (toogle === "remove") {
-            theElems.forEach(function (elem) {
-                elem.removeEventListener("click", showAttack);
-                elem.removeEventListener("mouseover", mouseover);
-                elem.removeEventListener("mouseout", mouseout);
-            });
-        }
-    };
-    islandEventListeners("add", $gir, $lazy, $goose, $chi);
-    var eventCounter = 4;
-
-    // CHOOSE FATE OBJECT
-    $fateObj.forEach(function (fate, i) {
-        return fate.addEventListener("click", function () {
-            $buttonsSound.play();
-
-            $fateObj.forEach(function (fate) {
-                return fate.classList.remove("choosen-fate");
-            });
-            fate.classList.add("choosen-fate");
-            $attackBtn.setAttribute("chosen-object-number", i);
-            $attackErrorText.classList.remove("visible");
-        });
-    });
-
-    // POST ATTACK
-    $attackBtn.addEventListener("click", function () {
-        if (!$attackBtn.getAttribute("chosen-object-number")) {
-            $errorSound.play();
-            $attackErrorText.classList.add("visible");
-            return;
-        }
-
-        var enemy = $attack.getAttribute("data-enemy");
-        fetch('/game', {
-            credentials: 'same-origin',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                enemy: enemy,
-                fateObj: $attackBtn.getAttribute("chosen-object-number")
-            })
-        }).then(_checkStatus2.default).then(function (res) {
-
-            // WIN 
-            if (res.headers.get("win") === "true") {
-                $winSound.play();
-                $attackResult.textContent = "Победа!";
-                $attackResult.classList.add("green");
-                $points.textContent = ++$points.textContent;
-
-                removeE(enemy);
-
-                // LOSE
-            } else {
-                $loseSound.play();
-                $attackResult.textContent = "Поражение!";
-                $attackResult.classList.remove("green");
-                $points.textContent = --$points.textContent;
-            }
-            return res.text();
-        }).then(function (text) {
-            $outcomeText.textContent = text;
-            (0, _showHide.hide)($attack);
-            (0, _showHide.show)($outcome);
-        }).then(function () {
-            // CLEAR PREVIOUS ATTACK CHOISE
-            $fateObj.forEach(function (fate) {
-                return fate.classList.remove("choosen-fate");
-            });
-            $attackBtn.setAttribute("chosen-object-number", "");
-            $attackErrorText.classList.remove("visible");
-            $enemiesImages.forEach(function (image) {
-                return (0, _showHide.hide)(image);
-            });
-        }).then(function () {
-            // DIMONDS IS END
-            if ($points.textContent <= "0") {
-                (0, _querySelector.$)(".outcome>.close").addEventListener("click", blockGame);
-                (0, _querySelector.$)(".outcome>.okay").addEventListener("click", blockGame);
-            }
-        }).catch(function (error) {
-            return console.log(error);
-        });
-    });
-
-    // BLOCK GAME PROCESS 
-    var blockGame = function blockGame(e) {
-        $dimondsSound.play();
-        (0, _showHide.show)($dimondsEnd);
-        (0, _showHide.show)($map);
-        (0, _showHide.hide)($rules);
-
-        // MAKE UPDATING USER POINTS IN DB
-        fetch('/game', {
-            credentials: 'same-origin',
-            method: 'PUT'
-        }).then(function () {
-            var timer = self.setInterval(function () {
-                --$secconds.textContent;
-                localStorage.secconds = $secconds.textContent;
-
-                if (parseInt($secconds.textContent) <= 0) {
-                    $dimondsSound.pause();
-                    $succesAuth.play();
-
-                    window.clearInterval(timer);
-                    (0, _querySelector.$)(".outcome>.close").removeEventListener("click", blockGame);
-                    (0, _querySelector.$)(".outcome>.okay").removeEventListener("click", blockGame);
-                    $points.textContent = 3;
-                    (0, _showHide.hide)($dimondsEnd);
-                    $secconds.textContent = 30;
-                }
-            }, 1000);
-        }).catch(function (error) {
-            return console.log(error);
-        });
-    };
-
-    // REMOVE EVENT LISTENERS FROM WINED ENEMIES
-    var removeE = function removeE(enemy) {
-        var winedEnemy = document.getElementsByClassName(enemy)[0];
-        islandEventListeners("remove", winedEnemy);
-        winedEnemy.classList.remove(enemy);
-        winedEnemy.classList.add(enemy + "-passed");
-        // CHECK IF BOSS IS AVAILABLE 
-        eventCounter--;
-        if (!eventCounter) showBoss();
-    };
-
-    // SHOW BOSS 
-    var showBoss = function showBoss() {
-        (0, _showHide.show)($accentOnBoss);
-        $boss.classList.remove("boss-close");
-        $boss.classList.add("boss");
-
-        $boss.addEventListener("click", getBossOutcome);
-    };
-
-    var getBossOutcome = function getBossOutcome() {
-        (0, _showHide.hide)($accentOnBoss);
-        fetch('/game/boss', {
-            credentials: 'same-origin',
-            method: 'GET'
-        }).then(_checkStatus2.default).then(function (res) {
-            return res.text();
-        }).then(function (text) {
-            $bossSound.setAttribute("loop", "");
-            $bossSound.play();
-            (0, _showHide.hide)($map);
-            $theEnd.innerHTML = "<div class='close'></div>" + text;
-            (0, _showHide.show)($theEnd);
-            (0, _querySelector.$)(".the-end>.close").addEventListener("click", function () {
-                return location.href = "/comments";
-            });
-        }).catch(function (error) {
-            return console.log(error);
-        });
-    };
-
-    // CLOSE AND OKAY BUTTONS
-    var close = function close(e) {
-        $buttonsSound.play();
-
-        if (e.currentTarget.parentElement === $attack) $enemiesImages.forEach(function (image) {
-            return (0, _showHide.hide)(image);
-        });
-        (0, _showHide.hide)(e.currentTarget.parentElement);
-        (0, _showHide.show)($map);
-        // CLEAR PREVIOUS FATE OBJECT CHOICE
-        $attackErrorText.classList.remove("visible");
-        $fateObj.forEach(function (fate) {
-            return fate.classList.remove("choosen-fate");
-        });
-        $attackBtn.setAttribute("chosen-object-number", "");
-    };
-
-    $close.forEach(function (closeBtn) {
-        return closeBtn.addEventListener("click", close);
-    });
-    $okay.forEach(function (okayBtn) {
-        return okayBtn.addEventListener("click", close);
-    });
-
-    // INFO BUTTON
-    $info.addEventListener("click", function () {
-        $buttonsSound.play();
-        (0, _showHide.hide)($map);
-        (0, _showHide.show)($rules);
-    });
-}
+function ready() {}
 
 /***/ }),
+/* 28 */,
 /* 29 */,
-/* 30 */,
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -3075,61 +2683,26 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(3) + ");\n  src: url(" + __webpack_require__(11) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(12) + ") format('woff'), url(" + __webpack_require__(3) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(13) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n  overflow-y: hidden;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\nbody .papper {\n  height: 545px;\n  background-image: url(" + __webpack_require__(41) + ");\n  background-repeat: no-repeat;\n  background-position: center;\n  padding-top: 25px;\n}\n.rules {\n  position: absolute;\n  z-index: 2;\n}\n.rules .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(9) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.rules .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.rules .rules-image {\n  position: relative;\n  top: 4px;\n  left: 30px;\n}\n.rules .okay {\n  background-image: url(" + __webpack_require__(16) + ");\n  width: 116px;\n  height: 45px;\n  position: absolute;\n  z-index: 3;\n  top: 431px;\n  left: 396px;\n  border-radius: 10px;\n  font-family: Alabama, sans-serif;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  letter-spacing: 0.05em;\n  text-align: center;\n}\n.rules .okay:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.map {\n  position: relative;\n  top: -2px;\n}\n.map .boss-close {\n  width: 250px;\n  height: 190px;\n  position: absolute;\n  z-index: 3;\n  top: 120px;\n  left: 108px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: url(" + __webpack_require__(34) + "), not-allowed;\n}\n.map .boss {\n  width: 250px;\n  height: 190px;\n  position: absolute;\n  z-index: 3;\n  top: 120px;\n  left: 108px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: pointer;\n}\n.map .chi {\n  width: 180px;\n  height: 116px;\n  position: absolute;\n  z-index: 3;\n  top: 362px;\n  left: 78px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: pointer;\n}\n.map .chi-hint {\n  background-image: url(" + __webpack_require__(33) + ");\n  position: relative;\n  z-index: 3;\n  display: block;\n  top: 289px;\n  left: 223px;\n  width: 149px;\n  height: 70px;\n}\n.map .chi-passed {\n  width: 180px;\n  height: 116px;\n  position: absolute;\n  z-index: 3;\n  top: 362px;\n  left: 78px;\n  -webkit-transform: rotate(15deg);\n          transform: rotate(15deg);\n  border-radius: 70px;\n  cursor: not-allowed;\n  cursor: url(" + __webpack_require__(10) + "), default;\n}\n.map .goose {\n  width: 160px;\n  height: 127px;\n  position: absolute;\n  z-index: 3;\n  top: 336px;\n  left: 408px;\n  -webkit-transform: rotate(-18deg);\n          transform: rotate(-18deg);\n  border-radius: 70px;\n  cursor: pointer;\n}\n.map .goose-hint {\n  background-image: url(" + __webpack_require__(37) + ");\n  position: relative;\n  z-index: 3;\n  display: block;\n  top: 191px;\n  left: 539px;\n  width: 149px;\n  height: 70px;\n}\n.map .goose-passed {\n  width: 160px;\n  height: 127px;\n  position: absolute;\n  z-index: 3;\n  top: 336px;\n  left: 408px;\n  -webkit-transform: rotate(-18deg);\n          transform: rotate(-18deg);\n  border-radius: 70px;\n  cursor: url(" + __webpack_require__(10) + "), default;\n}\n.map .lazy {\n  width: 140px;\n  height: 107px;\n  position: absolute;\n  z-index: 3;\n  top: 144px;\n  left: 456px;\n  -webkit-transform: rotate(23deg);\n          transform: rotate(23deg);\n  border-radius: 70px;\n  cursor: pointer;\n}\n.map .lazy-hint {\n  background-image: url(" + __webpack_require__(39) + ");\n  position: relative;\n  z-index: 3;\n  display: block;\n  top: -170px;\n  left: 391px;\n  width: 149px;\n  height: 70px;\n}\n.map .lazy-passed {\n  width: 140px;\n  height: 107px;\n  position: absolute;\n  z-index: 3;\n  top: 144px;\n  left: 456px;\n  -webkit-transform: rotate(23deg);\n          transform: rotate(23deg);\n  border-radius: 70px;\n  cursor: url(" + __webpack_require__(10) + "), default;\n}\n.map .gir {\n  width: 126px;\n  height: 221px;\n  position: absolute;\n  z-index: 3;\n  top: 122px;\n  left: 703px;\n  border-radius: 70px;\n  cursor: pointer;\n}\n.map .gir-hint {\n  background-image: url(" + __webpack_require__(36) + ");\n  position: relative;\n  z-index: 3;\n  display: block;\n  top: -9px;\n  left: 724px;\n  width: 149px;\n  height: 70px;\n}\n.map .gir-passed {\n  width: 126px;\n  height: 221px;\n  position: absolute;\n  z-index: 3;\n  top: 122px;\n  left: 703px;\n  border-radius: 70px;\n  cursor: url(" + __webpack_require__(10) + "), default;\n}\n.map .transparent {\n  opacity: 0;\n}\n.map .plan {\n  font-size: 30px;\n  width: 389px;\n  display: block;\n  margin: 0 auto;\n  padding-top: 30px;\n}\n.map .info {\n  width: 31px;\n  height: 31px;\n  background-image: url(" + __webpack_require__(38) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 881px;\n}\n.map .info:hover {\n  background-position: -31px 0;\n  cursor: pointer;\n}\n.map .shine_diamond {\n  position: relative;\n  top: -67px;\n  left: 141px;\n}\n.map .points {\n  display: inline-block;\n  width: 50px;\n  text-align: center;\n  position: relative;\n  left: 99px;\n  top: -46px;\n  color: #000;\n  font-size: 24px;\n}\n.map .cat {\n  position: relative;\n  left: 691px;\n  top: -51px;\n}\n.map #userName {\n  position: relative;\n  left: 650px;\n  top: -41px;\n  font-size: 13px;\n}\n.map .islands {\n  position: relative;\n  left: 49px;\n  top: -327px;\n}\n.map .rigth-hand {\n  position: absolute;\n  left: 885px;\n  top: 220px;\n}\n.map .left-hand {\n  position: absolute;\n  left: -172px;\n  top: 220px;\n  -webkit-transform: scaleX(-1);\n          transform: scaleX(-1);\n}\n@-webkit-keyframes c2 {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    border-color: rgba(255,83,123,0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    border-color: rgba(255,83,123,0);\n  }\n}\n@keyframes c2 {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    border-color: rgba(255,83,123,0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    border-color: rgba(255,83,123,0);\n  }\n}\n@-webkit-keyframes c3 {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    border-color: rgba(255,83,123,0.7);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    border-color: rgba(255,83,123,0);\n  }\n}\n@keyframes c3 {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    border-color: rgba(255,83,123,0.7);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    border-color: rgba(255,83,123,0);\n  }\n}\n@-webkit-keyframes c4 {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    border-color: rgba(255,42,68,0.5);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    border-color: rgba(255,42,68,0);\n  }\n}\n@keyframes c4 {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    border-color: rgba(255,42,68,0.5);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    border-color: rgba(255,42,68,0);\n  }\n}\n.accent-on-boss .c2 {\n  position: relative;\n  top: -660px;\n  left: 200px;\n  height: 30px;\n  width: 30px;\n  background: rgba(0,0,0,0);\n  border: 20px solid #00204d;\n  border-radius: 50%;\n  position: relative;\n  -webkit-animation: c2 2s infinite;\n          animation: c2 2s infinite;\n}\n.accent-on-boss .c3 {\n  position: relative;\n  top: -782px;\n  left: 151px;\n  height: 110px;\n  width: 110px;\n  background: rgba(0,0,0,0);\n  border: 30px solid #f50;\n  border-radius: 50%;\n  position: relative;\n  -webkit-animation: c3 2s infinite;\n          animation: c3 2s infinite;\n}\n.accent-on-boss .c4 {\n  position: relative;\n  top: -1013px;\n  left: 90px;\n  height: 210px;\n  width: 210px;\n  background: rgba(0,0,0,0);\n  border: 40px solid #00204d;\n  border-radius: 50%;\n  position: relative;\n  -webkit-animation: c4 2s infinite;\n          animation: c4 2s infinite;\n}\n.attack {\n  position: absolute;\n  z-index: 2;\n}\n.attack .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(9) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.attack .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.attack .image-attack {\n  position: relative;\n  top: 34px;\n  left: 93px;\n}\n.attack #attackBtn {\n  font-size: 30px;\n  color: #000;\n  position: relative;\n  top: -600px;\n  left: 378px;\n  height: 42px;\n  width: 100px;\n  padding-left: 19px;\n  padding-top: 8px;\n}\n.attack #attackBtn:hover {\n  color: #f65263;\n  cursor: pointer;\n  -webkit-transition: all 0.2s;\n  transition: all 0.2s;\n}\n.attack #attackBtn:active {\n  color: #000;\n  -webkit-transform: scale(0.94);\n          transform: scale(0.94);\n}\n.attack .fate-obj {\n  height: 102px;\n  width: 102px;\n  border-radius: 12px;\n  border: 2px dashed #e0e0e0;\n  position: relative;\n}\n.attack .fate-obj:hover {\n  border-color: #f65263;\n  cursor: pointer;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.attack .fate-obj:active {\n  border-color: #6a111a;\n  -webkit-transform: scale(0.96);\n          transform: scale(0.96);\n}\n.attack .choosen-fate {\n  border: 2px solid #f65263;\n}\n.attack .fate1 {\n  top: -262px;\n  left: 107px;\n}\n.attack .fate2 {\n  top: -368px;\n  left: 258px;\n}\n.attack .fate3 {\n  top: -474px;\n  left: 409px;\n}\n.attack .fate4 {\n  top: -580px;\n  left: 561px;\n}\n.attack .fate5 {\n  top: -686px;\n  left: 712px;\n}\n.attack .attack-error-text {\n  opacity: 0;\n  width: 190px;\n  color: #f65263;\n  font-size: 17px;\n  position: relative;\n  top: -622px;\n  left: 355px;\n}\n.attack .visible {\n  opacity: 1;\n}\n.outcome {\n  position: absolute;\n  z-index: 2;\n}\n.outcome .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(9) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.outcome .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.outcome .outcome-text {\n  font-size: 20px;\n  width: 530px;\n  position: relative;\n  top: 205px;\n  left: 0;\n  text-align: center;\n  padding: 0 200px;\n}\n.outcome .attack-result {\n  position: absolute;\n  width: 930px;\n  top: 33px;\n  font-size: 50px;\n  text-align: center;\n  color: #f65263;\n}\n.outcome .green {\n  color: #5ea27d;\n}\n.outcome .okay {\n  background-image: url(" + __webpack_require__(16) + ");\n  width: 116px;\n  height: 45px;\n  position: absolute;\n  z-index: 3;\n  top: 431px;\n  left: 396px;\n  border-radius: 10px;\n  font-family: Alabama, sans-serif;\n  font-size: 33px;\n  color: #4d4d4d;\n  cursor: pointer;\n  letter-spacing: 0.05em;\n  text-align: center;\n}\n.outcome .okay:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.dimonds-end {\n  position: absolute;\n  z-index: 5;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n}\n.dimonds-end .background {\n  position: relative;\n  top: 56px;\n  left: 55px;\n  background-image: url(" + __webpack_require__(35) + ");\n  width: 800px;\n  height: 460px;\n}\n.dimonds-end .timer {\n  position: relative;\n  top: -150px;\n  left: 445px;\n  width: 150px;\n  font-size: 20px;\n}\n.dimonds-end .dimond {\n  position: relative;\n  z-index: 6;\n}\n@-webkit-keyframes levitation {\n  0% {\n    -webkit-transform: translateY(5px);\n            transform: translateY(5px);\n  }\n  45% {\n    -webkit-transform: translateY(-5px);\n            transform: translateY(-5px);\n  }\n  100% {\n    -webkit-transform: translateY(5px);\n            transform: translateY(5px);\n  }\n}\n@keyframes levitation {\n  0% {\n    -webkit-transform: translateY(5px);\n            transform: translateY(5px);\n  }\n  45% {\n    -webkit-transform: translateY(-5px);\n            transform: translateY(-5px);\n  }\n  100% {\n    -webkit-transform: translateY(5px);\n            transform: translateY(5px);\n  }\n}\n@-webkit-keyframes disappear {\n  0% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  25% {\n    opacity: 0;\n  }\n  40% {\n    opacity: 1;\n  }\n  60% {\n    opacity: 0;\n  }\n  80% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n@keyframes disappear {\n  0% {\n    opacity: 0;\n  }\n  10% {\n    opacity: 1;\n  }\n  25% {\n    opacity: 0;\n  }\n  40% {\n    opacity: 1;\n  }\n  60% {\n    opacity: 0;\n  }\n  80% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n.d1 {\n  top: -83px;\n  left: 131px;\n  -webkit-animation: levitation 2s infinite ease-in-out, disappear 8s infinite ease-in-out;\n          animation: levitation 2s infinite ease-in-out, disappear 8s infinite ease-in-out;\n}\n.d2 {\n  top: -90px;\n  left: 685px;\n  -webkit-animation: levitation 1.8s infinite ease-in-out, disappear 9.2s infinite ease-in-out;\n          animation: levitation 1.8s infinite ease-in-out, disappear 9.2s infinite ease-in-out;\n}\n.d3 {\n  top: -127px;\n  left: 419px;\n  -webkit-animation: levitation 1.6s infinite ease-in-out, disappear 10.5s infinite ease-in-out;\n          animation: levitation 1.6s infinite ease-in-out, disappear 10.5s infinite ease-in-out;\n}\n.d4 {\n  top: -174px;\n  left: 70px;\n  -webkit-animation: levitation 1.3s infinite ease-in-out, disappear 11s infinite ease-in-out;\n          animation: levitation 1.3s infinite ease-in-out, disappear 11s infinite ease-in-out;\n}\n.d5 {\n  top: -288px;\n  left: 223px;\n  -webkit-animation: levitation 1.2s infinite ease-in-out, disappear 8s infinite ease-in-out;\n          animation: levitation 1.2s infinite ease-in-out, disappear 8s infinite ease-in-out;\n}\n.d6 {\n  top: -364px;\n  left: 20px;\n  -webkit-animation: levitation 1.9s infinite ease-in-out, disappear 10s infinite ease-in-out;\n          animation: levitation 1.9s infinite ease-in-out, disappear 10s infinite ease-in-out;\n}\n.d7 {\n  top: -338px;\n  left: -320px;\n  -webkit-animation: levitation 1.5s infinite ease-in-out, disappear 9s infinite ease-in-out;\n          animation: levitation 1.5s infinite ease-in-out, disappear 9s infinite ease-in-out;\n}\n.d8 {\n  top: -381px;\n  left: 167px;\n  -webkit-animation: levitation 1.7s infinite ease-in-out, disappear 8.5s infinite ease-in-out;\n          animation: levitation 1.7s infinite ease-in-out, disappear 8.5s infinite ease-in-out;\n}\n.the-end {\n  position: absolute;\n  z-index: 2;\n}\n.the-end .boss-image {\n  position: relative;\n  top: -12px;\n  left: 1px;\n}\n.the-end .boss-levitation {\n  position: relative;\n  top: -563px;\n  left: 0;\n  -webkit-animation: levitation 2s infinite ease-in-out;\n          animation: levitation 2s infinite ease-in-out;\n}\n.the-end .close {\n  width: 22px;\n  height: 22px;\n  background-image: url(" + __webpack_require__(9) + ");\n  background-repeat: no-repeat;\n  position: absolute;\n  z-index: 3;\n  top: 10px;\n  left: 885px;\n}\n.the-end .close:hover {\n  background-position: -22px 0;\n  cursor: pointer;\n}\n.github {\n  position: fixed;\n  left: 10px;\n  top: 10px;\n  height: 27px;\n  width: 28px;\n}\n.github:before {\n  content: url(" + __webpack_require__(14) + ");\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(3) + ");\n  src: url(" + __webpack_require__(11) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(12) + ") format('woff'), url(" + __webpack_require__(3) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(13) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n  overflow-y: hidden;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\ninput {\n  font-family: Alabama;\n  font-size: 20px;\n  letter-spacing: 0.05em;\n  color: #5ea27d;\n  background-color: rgba(255,255,255,0.7);\n  padding: 8px 0 8px 40px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  width: 270px;\n  margin-left: 307px;\n  margin-bottom: 25px;\n  margin-top: -25px;\n}\ninput:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ninput::-webkit-input-placeholder {\n  color: #909090;\n}\ninput::-moz-placeholder {\n  color: #909090;\n}\ninput:-moz-placeholder {\n  color: #909090;\n}\ninput:-ms-input-placeholder {\n  color: #909090;\n}\n.empty-value::-webkit-input-placeholder {\n  color: #f65263;\n}\n.empty-value::-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-ms-input-placeholder {\n  color: #f65263;\n}\n#sendComment {\n  background-image: url(" + __webpack_require__(40) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n}\n#sendComment:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#sendComment:focus {\n  outline: none;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
+/* 31 */,
 /* 32 */,
-/* 33 */
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/chi_hint.png";
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/cursor_no.png";
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/diamonds_is_end.png";
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/gir_hint.png";
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/goose_hint.png";
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/info.png";
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/lazy_hint.png";
-
-/***/ }),
-/* 40 */,
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "images/papper.png";
+module.exports = __webpack_require__.p + "images/login_btn.png";
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=game.js.map
+//# sourceMappingURL=comments.js.map

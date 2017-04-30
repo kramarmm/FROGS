@@ -10,7 +10,7 @@ exports.get = (req, res, next) => {
         }
 
         res.write('<img src="../images/boss_outcome.png" class="boss-image"/>');
-        res.write('<img src="../images/boss_levitation.png" class="boss_levitation"/>');
+        res.write('<img src="../images/boss_levitation.png" class="boss-levitation"/>');
         res.end();
     });
     

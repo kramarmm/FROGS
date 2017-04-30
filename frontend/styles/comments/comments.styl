@@ -1,0 +1,67 @@
+@import ("../variables.styl")
+@import ("../common.styl")
+
+
+    input 
+        font-family Alabama
+        font-size f20
+        letter-spacing 0.05em
+        color green
+        background-color rgba(255,255,255,0.7)
+        padding 8px 0 8px 40px
+        border-radius 10px
+        border 1px solid #cccccc
+        width 270px
+        margin-left 307px
+        margin-bottom 25px
+        margin-top -25px
+
+        &:focus
+            outline 0           
+            box-shadow 0 0 7px rgba(94,162,125,0.7)
+            transition all 0.3s
+
+    placeH = @block{color placeholder}
+
+    input::-webkit-input-placeholder
+        {placeH}
+    input::-moz-placeholder 
+        {placeH}
+    input:-moz-placeholder
+        {placeH} 
+    input:-ms-input-placeholder
+        {placeH} 
+
+    .empty-value::-webkit-input-placeholder
+        color pink
+    .empty-value::-moz-placeholder 
+        color pink
+    .empty-value:-moz-placeholder
+        color pink 
+    .empty-value:-ms-input-placeholder
+        color pink 
+
+
+    #sendComment
+        background-image url('../images/login_btn.png')
+        width 196px
+        height 45px
+        position relative
+        top -12px
+        left 366px
+        border-radius 10px
+        background-color rgba(0,0,0,0)
+        border none
+        font-family Alabama, sans-serif
+        font-size f17
+        color darkgray
+        cursor pointer
+        padding-bottom 2px
+        display block
+        letter-spacing 0.02em      
+        &:hover
+            background-color rgba(94,162,125,0.5)
+            transition all 0.3s
+
+        &:focus
+            outline none   

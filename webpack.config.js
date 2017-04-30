@@ -10,7 +10,8 @@ module.exports = {
 
     entry: {
        index: "./js/index.js",
-       game: "./js/game.js"
+       game: "./js/game.js",
+       comments: "./js/comments.js"
     },
         
     output: {
@@ -58,7 +59,7 @@ module.exports = {
     ]
 }
 
-if (NODE_ENV == 'develipment') {
+if (NODE_ENV == 'development') {
   module.exports.plugins.push(
       new LiveReloadPlugin({
           appendScriptTag: true

@@ -44,4 +44,8 @@ app.use(function(err, req, res, next) {
   }
 });
 
-app.listen(config.get("port"), () => console.log("\nServer is on! \n \\ \/\n\ . \.\n  O"));
+
+app.listen(process.env.PORT || 3000, () => {
+  console.log('listening');
+});
+

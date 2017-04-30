@@ -7,6 +7,7 @@ mongoose.Promise = global.Promise;
  var uristring =
     process.env.MONGOLAB_URI ||
     process.env.MONGOHQ_URL ||
+    process.env.MONGODB_URI ||
     config.get('mongoose:uri');
 
 

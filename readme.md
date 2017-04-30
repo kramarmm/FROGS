@@ -2,9 +2,9 @@
 
 It is my first project. Short but very interesting html game.
 
-Capture the world with only an army of paper frogs.
+Capture the world with only an army of paper frogs!
 
-[Try it yourself][game]
+[Try it yourself][game] (only for Google Chrome)
 
 ![N|Solid](./public/images/frog.png)
 
@@ -14,4 +14,4 @@ Capture the world with only an army of paper frogs.
 - mongo db
 - webpack
 
-[game]: <http://localhost:3000>
+[game]: <https://frogs-game.herokuapp.com>

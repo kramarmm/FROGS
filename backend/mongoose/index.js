@@ -4,7 +4,13 @@ var config = require('../config');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(config.get('mongoose:uri'), config.get('mongoose:options'));
+ var uristring =
+    process.env.MONGOLAB_URI ||
+    process.env.MONGOHQ_URL ||
+    config.get('mongoose:uri');
+
+
+mongoose.connect(uristring, config.get('mongoose:options'));
 
 
 module.exports = mongoose;

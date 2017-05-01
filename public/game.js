@@ -3029,7 +3029,7 @@ function ready() {
             $theEnd.innerHTML = "<div class='close'></div>" + text;
             (0, _showHide.show)($theEnd);
             (0, _querySelector.$)(".the-end>.close").addEventListener("click", function () {
-                return location.href = "/comments";
+                return location.replace("/comments");
             });
         }).catch(function (error) {
             return console.log(error);

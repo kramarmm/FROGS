@@ -266,7 +266,7 @@ function ready () {
             hide($map);
             $theEnd.innerHTML = "<div class='close'></div>" + text;
             show($theEnd);
-            $(".the-end>.close").addEventListener("click", () => location.href = "/comments");
+            $(".the-end>.close").addEventListener("click", () => location.replace("/comments"));
         })
         .catch(error => console.log(error));  
     }  

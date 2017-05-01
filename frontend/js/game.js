@@ -3,6 +3,8 @@ import checkStatus from "./helper/checkStatus";
 import {show, hide} from "./helper/showHide";
 import {$} from "./helper/querySelector";
 
+
+
 document.addEventListener("DOMContentLoaded", ready);
 function ready () {
 

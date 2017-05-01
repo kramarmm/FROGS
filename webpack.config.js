@@ -1,7 +1,6 @@
 var webpack = require("webpack"),
     path = require("path"),
     LiveReloadPlugin = require('webpack-livereload-plugin');
-    process.env.PRODUCTION = 0;
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -9,9 +8,9 @@ module.exports = {
     context: __dirname + "/frontend",
 
     entry: {
-       index: "./js/index.js",
-       game: "./js/game.js",
-       comments: "./js/comments.js"
+       index: ["babel-polyfill", "whatwg-fetch", "./js/index.js"],
+       game: ["babel-polyfill", "whatwg-fetch", "./js/game.js"],
+       comments: ["babel-polyfill", "whatwg-fetch", "./js/comments.js"]
     },
         
     output: {
@@ -55,7 +54,11 @@ module.exports = {
 
     
     plugins: [
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.ProvidePlugin({
+            'Promise': 'es6-promise-promise',
+            'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+        })
     ]
 }
 

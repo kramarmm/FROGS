@@ -8,6 +8,7 @@ let sendComment = () => {
     let $buttonsSound = $(".buttons-sound");
 
         if( !$comment.value ) {
+            $comment.classList.remove("filled-value");
             $comment.classList.add("empty-value");
             return;
         }
@@ -35,6 +36,7 @@ let sendComment = () => {
         .then(() => {
             $comment.value = "";
             $comment.classList.remove("empty-value");
+            $comment.classList.remove("filled-value");
         })
         .catch(error => console.log(error))
 }

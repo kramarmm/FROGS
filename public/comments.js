@@ -2803,6 +2803,7 @@ var sendComment = function sendComment() {
     var $buttonsSound = (0, _querySelector.$)(".buttons-sound");
 
     if (!$comment.value) {
+        $comment.classList.remove("filled-value");
         $comment.classList.add("empty-value");
         return;
     }
@@ -2824,6 +2825,7 @@ var sendComment = function sendComment() {
     }).then(function () {
         $comment.value = "";
         $comment.classList.remove("empty-value");
+        $comment.classList.remove("filled-value");
     }).catch(function (error) {
         return console.log(error);
     });
@@ -2886,12 +2888,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 document.addEventListener("DOMContentLoaded", ready);
 function ready() {
 
+    var $comment = (0, _querySelector.$)("[name='comment']");
+    var $sendCommentBtn = (0, _querySelector.$)("#sendComment");
+
     (0, _getAllComments2.default)();
 
-    var $sendCommentBtn = (0, _querySelector.$)("#sendComment");
     $sendCommentBtn.addEventListener("click", _sendComment2.default);
     document.addEventListener("keypress", function (e) {
         if (e.keyCode == 13) (0, _sendComment2.default)();
+    });
+
+    $comment.addEventListener("change", function (e) {
+        if ($comment.value) {
+            e.target.classList.remove("empty-value");
+            e.target.classList.add("filled-value");
+        } else {
+            e.target.classList.remove("filled-value");
+        }
     });
 }
 
@@ -2907,10 +2920,31 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(5) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(6) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(7) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n  overflow-y: hidden;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\nbody .github {\n  position: fixed;\n  left: 10px;\n  top: 10px;\n  height: 27px;\n  width: 28px;\n}\nbody .github:before {\n  content: url(" + __webpack_require__(8) + ");\n}\nbody {\n  overflow: visible;\n}\nbody .thanks {\n  font-size: 50px;\n  letter-spacing: 0.03em;\n  margin: 20px auto;\n  width: 800px;\n  text-align: center;\n}\nbody .thanks-small {\n  text-align: center;\n  width: 400px;\n  margin: 20px auto;\n  font-size: 17px;\n  color: #818180;\n}\nbody textarea {\n  font-family: Alabama;\n  font-size: 17px;\n  letter-spacing: 0.05em;\n  color: #909090;\n  background-color: rgba(255,255,255,0.7);\n  padding: 10px 15px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  position: relative;\n  left: 215px;\n  margin-bottom: 34px;\n  resize: none;\n}\nbody textarea:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\ntextarea::-webkit-input-placeholder {\n  color: #909090;\n  font-size: 53px;\n}\ntextarea::-moz-placeholder {\n  color: #909090;\n  font-size: 53px;\n}\ntextarea:-moz-placeholder {\n  color: #909090;\n  font-size: 53px;\n}\ntextarea:-ms-input-placeholder {\n  color: #909090;\n  font-size: 53px;\n}\n.empty-value::-webkit-input-placeholder {\n  color: #f65263;\n}\n.empty-value::-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-moz-placeholder {\n  color: #f65263;\n}\n.empty-value:-ms-input-placeholder {\n  color: #f65263;\n}\ntextarea:focus::-webkit-input-placeholder {\n  color: transparent !important;\n}\ntextarea:focus::-moz-placeholder {\n  color: transparent !important;\n}\ntextarea:focus:-moz-placeholder {\n  color: transparent !important;\n}\n#sendComment {\n  background-image: url(" + __webpack_require__(17) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n  margin-bottom: 17px;\n}\n#sendComment:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n#sendComment:focus {\n  outline: none;\n}\n.comment-template {\n  letter-spacing: 0.05em;\n  width: 700px;\n  background-color: rgba(136,160,226,0.1);\n  padding: 10px 15px;\n  border-radius: 10px;\n  border: 1px solid rgba(255,23,148,0.4);\n  margin: 3px auto;\n}\n.comment-template .login {\n  float: left;\n  margin-left: 10px;\n  color: #f65263;\n  color: #136894;\n}\n.comment-template .date {\n  float: right;\n  margin-right: 10px;\n  color: #136894;\n}\n.comment-template .text {\n  padding: 30px 10px 7px 10px;\n  margin: 0;\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: \"Alabama\";\n  src: url(" + __webpack_require__(0) + ");\n  src: url(" + __webpack_require__(5) + "?#iefix) format('embedded-opentype'), url(" + __webpack_require__(6) + ") format('woff'), url(" + __webpack_require__(0) + ") format('truetype');\n  font-weight: normal;\n  font-style: normal;\n}\nbody {\n  background-image: url(" + __webpack_require__(7) + ");\n  margin: 0;\n  padding: 0;\n  font-family: Alabama;\n  overflow-y: hidden;\n}\nbody .wrapper {\n  width: 930px;\n  margin: 0 auto;\n}\nbody .hiden {\n  display: none;\n}\nbody .github {\n  position: fixed;\n  left: 10px;\n  top: 10px;\n  height: 27px;\n  width: 28px;\n}\nbody .github:before {\n  content: url(" + __webpack_require__(8) + ");\n}\nbody {\n  overflow: visible;\n}\nbody .thanks {\n  font-size: 50px;\n  letter-spacing: 0.03em;\n  margin: 20px auto;\n  width: 800px;\n  text-align: center;\n}\nbody .thanks-small {\n  text-align: center;\n  width: 400px;\n  margin: 20px auto;\n  font-size: 17px;\n  color: #818180;\n}\nbody textarea {\n  font-family: Alabama;\n  font-size: 17px;\n  letter-spacing: 0.05em;\n  color: #909090;\n  background-color: rgba(255,255,255,0.7);\n  background-image: url(" + __webpack_require__(45) + ");\n  background-position: left 10px top 21px;\n  background-repeat: no-repeat;\n  padding: 10px 15px;\n  border-radius: 10px;\n  border: 1px solid #ccc;\n  position: relative;\n  left: calc(50% - 226px);\n  margin-bottom: 34px;\n  resize: none;\n}\nbody textarea:focus {\n  outline: 0;\n  box-shadow: 0 0 7px rgba(94,162,125,0.7);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n  background-image: none !important;\n}\n@-moz-document url-prefix() {\n  body textarea {\n    height: 3.7em;\n    width: 40ch;\n  }\n}\nbody .empty-value {\n  background-image: url(" + __webpack_require__(46) + ") !important;\n  background-repeat: no-repeat;\n}\nbody .filled-value {\n  background-image: none !important;\n}\nbody #sendComment {\n  background-image: url(" + __webpack_require__(17) + ");\n  width: 196px;\n  height: 45px;\n  position: relative;\n  top: -12px;\n  left: 366px;\n  border-radius: 10px;\n  background-color: rgba(0,0,0,0);\n  border: none;\n  font-family: Alabama, sans-serif;\n  font-size: 17px;\n  color: #4d4d4d;\n  cursor: pointer;\n  padding-bottom: 2px;\n  display: block;\n  letter-spacing: 0.02em;\n  margin-bottom: 17px;\n}\nbody #sendComment:hover {\n  background-color: rgba(94,162,125,0.5);\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\nbody #sendComment:focus {\n  outline: none;\n}\nbody .comment-template {\n  letter-spacing: 0.05em;\n  width: 700px;\n  background-color: rgba(136,160,226,0.1);\n  padding: 10px 15px;\n  border-radius: 10px;\n  border: 1px solid rgba(255,23,148,0.4);\n  margin: 3px auto;\n}\nbody .comment-template .login {\n  float: left;\n  margin-left: 10px;\n  color: #f65263;\n  color: #136894;\n}\nbody .comment-template .date {\n  float: right;\n  margin-right: 10px;\n  color: #136894;\n}\nbody .comment-template .text {\n  padding: 30px 10px 7px 10px;\n  margin: 0;\n}\n", ""]);
 
 // exports
 
+
+/***/ }),
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/placeholder_hand.png";
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/placeholder_red_hand.png";
 
 /***/ })
 /******/ ]);

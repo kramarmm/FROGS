@@ -23,11 +23,14 @@ body
         letter-spacing 0.05em
         color placeholder
         background-color rgba(255,255,255,0.7)
+        background-image url('../../images/placeholder_hand.png')
+        background-position left 10px top 21px
+        background-repeat no-repeat
         padding 10px 15px
         border-radius 10px
         border 1px solid #cccccc
         position relative
-        left 215px
+        left calc(50% - 226px)
         margin-bottom 34px
         resize none
 
@@ -35,43 +38,19 @@ body
             outline 0           
             box-shadow 0 0 7px rgba(94,162,125,0.7)
             transition all 0.3s
+            background-image none !important
 
-    placeH = @block{
-        color placeholder
-        font-size 50px
-        }
+    @-moz-document url-prefix() 
+        textarea 
+            height 3.7em
+            width 40ch    
 
-    textarea::-webkit-input-placeholder
-        color placeholder
-        font-size 53px
-    textarea::-moz-placeholder 
-        color placeholder
-        font-size 53px
-    textarea:-moz-placeholder
-        color placeholder
-        font-size 53px 
-    textarea:-ms-input-placeholder
-        color placeholder
-        font-size 53px 
+    .empty-value
+        background-image url('../../images/placeholder_red_hand.png') !important
+        background-repeat no-repeat
 
-    .empty-value::-webkit-input-placeholder
-        color pink
-    .empty-value::-moz-placeholder 
-        color pink
-    .empty-value:-moz-placeholder
-        color pink 
-    .empty-value:-ms-input-placeholder
-        color pink 
-    
-    textarea:focus::-webkit-input-placeholder{
-    color: transparent!important
-    }
-    textarea:focus::-moz-placeholder{
-        color: transparent!important
-    }
-    textarea:focus:-moz-placeholder{
-        color: transparent!important
-    }
+    .filled-value
+        background-image none !important
 
     #sendComment
         background-image url('../images/login_btn.png')

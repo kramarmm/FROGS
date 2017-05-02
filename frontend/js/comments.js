@@ -8,6 +8,9 @@ function ready () {
 
     let $comment = $("[name='comment']");
     let $sendCommentBtn = $("#sendComment");
+    let $commentsSound = $(".comments-sound");
+
+    $commentsSound.play();
 
     getAllComments();
     

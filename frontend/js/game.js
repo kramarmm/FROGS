@@ -263,7 +263,6 @@ function ready () {
         .then(checkStatus)
         .then(res => res.text())
         .then(text => {
-            $bossSound.setAttribute("loop", "");
             $bossSound.play();
             hide($map);
             $theEnd.innerHTML = "<div class='close'></div>" + text;

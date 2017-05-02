@@ -12919,6 +12919,9 @@ function ready() {
 
     var $comment = (0, _querySelector.$)("[name='comment']");
     var $sendCommentBtn = (0, _querySelector.$)("#sendComment");
+    var $commentsSound = (0, _querySelector.$)(".comments-sound");
+
+    $commentsSound.play();
 
     (0, _getAllComments2.default)();
 

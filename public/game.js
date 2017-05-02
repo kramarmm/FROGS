@@ -13154,7 +13154,6 @@ function ready() {
         }).then(_checkStatus2.default).then(function (res) {
             return res.text();
         }).then(function (text) {
-            $bossSound.setAttribute("loop", "");
             $bossSound.play();
             (0, _showHide.hide)($map);
             $theEnd.innerHTML = "<div class='close'></div>" + text;

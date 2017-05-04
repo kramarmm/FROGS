@@ -2,26 +2,26 @@ const nodemailer = require('nodemailer');
 
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
-service: 'gmail',
-auth: {
-user: process.env.SENDER,
-pass: process.env.PASSWORD
-}
+    service: 'gmail',
+    auth: {
+    user: process.env.SENDER,
+    pass: process.env.PASSWORD
+    }
 });
 
 let sendCommentToMyEmail = commentText => {
-// setup email data with unicode symbols
-let mailOptions = {
-from: process.env.SENDER, // sender address
-to: process.env.ME, // list of receivers
-subject: 'Comment on FROGS', // Subject line
-text: commentText // plain text body
-};
+    // setup email data with unicode symbols
+    let mailOptions = {
+    from: process.env.SENDER, // sender address
+    to: process.env.ME, // list of receivers
+    subject: 'Comment on FROGS', // Subject line
+    text: commentText // plain text body
+    };
 
-// send mail with defined transport object
-transporter.sendMail(mailOptions, (err, info) => {
-if (err) return next(err);
-});
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (err, info) => {
+    if (err) return err;
+    });
 }
 
 module.exports = sendCommentToMyEmail;

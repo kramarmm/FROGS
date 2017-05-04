@@ -4,6 +4,11 @@ import toogleAuthMode from './authorization/toogleAuthMode';
 
 document.addEventListener("DOMContentLoaded", ready);
 function ready () {
+    
+if (screen.width < 900) {
+    document.body.innerHTML = "<p>Извините,</br> но это приложение не предназначено для мобильных устройств.</p>";
+    return;
+}
 
     let $logIn = document.querySelector("#logIn");
     let $signUp = document.querySelector("#signUp");

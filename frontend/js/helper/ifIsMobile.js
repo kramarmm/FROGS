@@ -7,7 +7,7 @@ var detectMobile = () => {
 var scaleScreen = scale => {
     var metaForMobile = document.createElement('meta');
     metaForMobile.name = "viewport";
-    metaForMobile.content = "width=device-width, maximum-scale=" + scale;
+    metaForMobile.content = "width=device-width, initial-scale=" + scale;
     document.getElementsByTagName("head")[0].appendChild(metaForMobile);
     console.log(document.getElementsByTagName("head")[0].lastChild);
 }

@@ -9,43 +9,7 @@ function ready () {
 
     // FOR MOBILE DEVICES
     var isMobile = detectMobile() || false;
-
-    var $mobileRecommend = document.querySelector(".mobile-recommend");
-    var $wrapper = document.querySelector(".wrapper");
-
-    // EVENT ORIENTATION CHANGE
-    var orinentChanged = false;
-
-    var hideRecommend = () => {
-        orinentChanged = true;
-        hide($mobileRecommend);
-        appendScaleMeta();
-        show($wrapper);      
-        if (orinentChanged) {
-            document.removeEventListener("orientationchange", hideRecommend);
-        }
-    }
-
-    if (isMobile) {
-        if (window.screen.orientation.type.match("portrait") ) {
-            show($mobileRecommend);
-
-            document.addEventListener("orientationchange", hideRecommend);
-
-            setTimeout((() => {
-                hide($mobileRecommend);
-                appendScaleMeta();
-                show($wrapper);
-            }), 2000);
-
-        } else {
-            appendScaleMeta();
-            show($wrapper);
-        } 
-    } else {
-        show($wrapper);
-    }
-
+    if (isMobile) appendScaleMeta();
 
     // AUTHORIZATION
     let $logIn = document.querySelector("#logIn");

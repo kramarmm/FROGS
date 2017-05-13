@@ -2,9 +2,13 @@ import '../styles/comments/comments.styl';
 import sendComment from "./comments/sendComment";
 import getAllComments from "./comments/getAllComments";
 import {$} from "./helper/querySelector";
+import {detectMobile, appendScaleMeta} from './helper/ifIsMobile';
 
 document.addEventListener("DOMContentLoaded", ready);
 function ready () {
+
+    var isMobile = detectMobile() || false;
+    if (isMobile) appendScaleMeta();
 
     let $comment = $("[name='comment']");
     let $sendCommentBtn = $("#sendComment");

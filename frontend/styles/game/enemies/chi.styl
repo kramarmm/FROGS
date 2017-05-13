@@ -28,6 +28,21 @@
     left 78px
     transform rotate(15deg)
     border-radius 70px
-    cursor not-allowed
     cursor url(../../../images/cursor.png), default
 
+.chi-passed-mobile
+    width 180px
+    height 116px
+    position absolute
+    z-index 3
+    top 362px
+    left 78px
+    transform rotate(15deg)
+    border-radius 70px
+    &:before
+        content url(../../../images/cursor.png)
+        position relative
+        left 166px
+        top -23px
+        display block 
+        transform rotate(-15deg)

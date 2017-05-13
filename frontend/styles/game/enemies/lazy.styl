@@ -30,3 +30,20 @@
     transform rotate(23deg)
     border-radius 70px
     cursor url(../../../images/cursor.png), default
+
+.lazy-passed-mobile
+    width 140px
+    height 107px
+    position absolute
+    z-index 3
+    top 144px
+    left 456px
+    transform rotate(23deg)
+    border-radius 70px
+    &:before
+        content url(../../../images/cursor.png)
+        position relative
+        left -27px
+        top -5px
+        display block 
+        transform rotate(-15deg)

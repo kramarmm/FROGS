@@ -2,11 +2,15 @@ import '../styles/game/game.styl';
 import checkStatus from "./helper/checkStatus";
 import {show, hide} from "./helper/showHide";
 import {$} from "./helper/querySelector";
+import {detectMobile, appendScaleMeta} from './helper/ifIsMobile';
 
 
 
 document.addEventListener("DOMContentLoaded", ready);
 function ready () {
+
+    var isMobile = detectMobile() || false;
+    if (isMobile) appendScaleMeta();
 
     // ELEMENTS
     let $rules = $(".rules");
@@ -32,10 +36,7 @@ function ready () {
     // ISLANDS
     let $gir = $(".gir");
     let $lazy = $(".lazy");
-
     let $goose = $(".goose");
-    let $gooseHint = $(".goose-hint");
-
     let $chi = $(".chi");    
     let $boss = $(".boss-close"); 
 
@@ -114,14 +115,18 @@ function ready () {
         if (toogle === "add") {
             theElems.forEach(elem => {
                 elem.addEventListener("click", showAttack);    
-                elem.addEventListener("mouseover", mouseover);    
-                elem.addEventListener("mouseout", mouseout);
+                if (!isMobile) {
+                    elem.addEventListener("mouseover", mouseover);    
+                    elem.addEventListener("mouseout", mouseout);
+                }
             })
         } else if (toogle === "remove") {
             theElems.forEach(elem => {
-                elem.removeEventListener("click", showAttack);    
-                elem.removeEventListener("mouseover", mouseover);    
-                elem.removeEventListener("mouseout", mouseout);
+                elem.removeEventListener("click", showAttack); 
+                if (!isMobile) {   
+                    elem.removeEventListener("mouseover", mouseover);    
+                    elem.removeEventListener("mouseout", mouseout);
+                }
             })
         }
     }
@@ -239,10 +244,17 @@ function ready () {
         let winedEnemy = document.getElementsByClassName(enemy)[0];
         islandEventListeners("remove", winedEnemy);
         winedEnemy.classList.remove(enemy); 
-        winedEnemy.classList.add(enemy + "-passed");
+
     // CHECK IF BOSS IS AVAILABLE 
         eventCounter--;
         if (!eventCounter) showBoss();
+        
+        // CHECK HOW DISPLAY WINED ISLANDS HINTS
+        if (isMobile) {
+            winedEnemy.classList.add(enemy + "-passed-mobile");
+            return;
+        }
+        winedEnemy.classList.add(enemy + "-passed");
     }
 
     // SHOW BOSS 
